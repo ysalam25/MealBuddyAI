@@ -9,7 +9,8 @@
       "UnauthRoleName": "amplify-mealbuddy-staging-12503-unauthRole",
       "StackName": "amplify-mealbuddy-staging-12503",
       "StackId": "arn:aws:cloudformation:us-east-1:867149938724:stack/amplify-mealbuddy-staging-12503/f38221c0-9243-11ee-a08f-0eeeb621168f",
-      "AmplifyAppId": "dwiysdjqnkcof"
+      "AmplifyAppId": "dwiysdjqnkcof",
+      "APIGatewayAuthURL": "https://s3.amazonaws.com/amplify-mealbuddy-staging-12503-deployment/amplify-cfn-templates/api/APIGatewayAuthStack.json"
     },
     "categories": {
       "auth": {

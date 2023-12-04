@@ -1,0 +1,20 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-mealbuddy-staging-12503-authRole",
+      "UnauthRoleArn": "arn:aws:iam::867149938724:role/amplify-mealbuddy-staging-12503-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::867149938724:role/amplify-mealbuddy-staging-12503-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-mealbuddy-staging-12503-deployment",
+      "UnauthRoleName": "amplify-mealbuddy-staging-12503-unauthRole",
+      "StackName": "amplify-mealbuddy-staging-12503",
+      "StackId": "arn:aws:cloudformation:us-east-1:867149938724:stack/amplify-mealbuddy-staging-12503/f38221c0-9243-11ee-a08f-0eeeb621168f",
+      "AmplifyAppId": "dwiysdjqnkcof"
+    },
+    "categories": {
+      "auth": {
+        "MealBuddy": {}
+      }
+    }
+  }
+}

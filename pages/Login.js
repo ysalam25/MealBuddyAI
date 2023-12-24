@@ -27,7 +27,6 @@ const Login = ({ navigation }) => {
     <StyledContainer>
       <StatusBar style="dark" />
       <InnerContainer>
-        <PageTitle>Title</PageTitle>
         <LoginContainer>
           <SubTitle>Login</SubTitle>
           <ExtraView>

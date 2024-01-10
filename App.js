@@ -1,24 +1,12 @@
-import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { Amplify } from 'aws-amplify';
 import amplifyconfig from './src/amplifyconfiguration.json';
 Amplify.configure(amplifyconfig);
 
+import RootStack from './navigators/RootStack';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>MealBuDDY!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <RootStack/>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

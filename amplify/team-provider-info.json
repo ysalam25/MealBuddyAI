@@ -21,6 +21,9 @@
           "deploymentBucketName": "amplify-mealbuddy-staging-12503-deployment",
           "s3Key": "amplify-builds/mealbuddylambda-73635758736c74476466-build.zip"
         }
+      },
+      "api": {
+        "mealbuddyapi": {}
       }
     }
   }

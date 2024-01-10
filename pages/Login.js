@@ -21,8 +21,18 @@ import {
 import { Formik } from "formik";
 import { View } from "react-native";
 import { Colors } from "./../components/styles";
+import { Auth } from "@aws-amplify/auth";
 
 const Login = ({ navigation }) => {
+  const handleLogin = async (values) => {
+    try {
+      const user = await Auth.signIn(values.email, values.password);
+      console.log("User logged in:", user);
+      navigation.navigate("Walkthrough");
+    } catch (error) {
+      console.log("Error logging in:", error);
+    }
+  };
   return (
     <StyledContainer>
       <StatusBar style="dark" />
@@ -37,10 +47,7 @@ const Login = ({ navigation }) => {
           </ExtraView>
           <Formik
             initialValues={{ email: "", password: "" }}
-            onSubmit={(values) => {
-              console.log(values);
-              navigation.navigate("Walkthrough");
-            }}
+            onSubmit={handleLogin}
           >
             {({ handleChange, handleBlur, handleSubmit, values }) => (
               <StyledFormArea>
@@ -60,12 +67,12 @@ const Login = ({ navigation }) => {
                   value={values.password}
                   secureTextEntry={true}
                 />
+                <StyledButton onPress={handleSubmit}>
+                  <ButtonText>Log In</ButtonText>
+                </StyledButton>
               </StyledFormArea>
             )}
           </Formik>
-          <StyledButton>
-            <ButtonText>Log In</ButtonText>
-          </StyledButton>
         </LoginContainer>
       </InnerContainer>
     </StyledContainer>

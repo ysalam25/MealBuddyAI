@@ -3,7 +3,7 @@
   "cognitoConfig": {
     "identityPoolName": "testAuthIdentityPool",
     "allowUnauthenticatedIdentities": true,
-    "resourceNameTruncated": "mealbubc09ad39",
+    "resourceNameTruncated": "mealbu4bd6b72a",
     "userPoolName": "MealBuddy",
     "autoVerifiedAttributes": [
       "email"
@@ -25,18 +25,17 @@
       "Requires Uppercase"
     ],
     "requiredAttributes": [
-      "email",
       "name",
-      "gender"
+      "email"
     ],
     "aliasAttributes": [],
     "userpoolClientGenerateSecret": false,
     "userpoolClientRefreshTokenValidity": 30,
     "userpoolClientWriteAttributes": [],
     "userpoolClientReadAttributes": [],
-    "userpoolClientLambdaRole": "MealBubc09ad39_userpoolclient_lambda_role",
+    "userpoolClientLambdaRole": "MealBu4bd6b72a_userpoolclient_lambda_role",
     "userpoolClientSetAttributes": false,
-    "sharedId": "bc09ad39",
+    "sharedId": "4bd6b72a",
     "resourceName": "MealBuddy",
     "authSelections": "identityPoolAndUserPool",
     "serviceName": "Cognito",

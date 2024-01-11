@@ -24,6 +24,8 @@ import { Formik } from "formik";
 import { View } from "react-native";
 import { Colors } from "./../components/styles";
 import { Auth } from "aws-amplify";
+// signup handling authentication
+
 const Signup = ({navigation}) => {
   const handleSignup = async (values) => {
     try {
@@ -33,6 +35,7 @@ const Signup = ({navigation}) => {
         attributes: {
           email: values.email,
           name: values.name,
+          dietaryPreferences: values.dietaryPreferences,
         },
       });
       console.log("User signed up:", user);
@@ -52,11 +55,18 @@ const Signup = ({navigation}) => {
           <SubTitle>Get Started</SubTitle>
 
           <Formik
-            initialValues={{ name: "", email: "", password: "", confirmPassword: ""}}
+            initialValues={{ dietaryPreferences: "", name: "", email: "", password: "", confirmPassword: ""}}
             onSubmit={handleSignup}
           >
             {({ handleChange, handleBlur, handleSubmit, values }) => (
               <StyledFormArea>
+                <MyTextInput
+                  placeholder="dietaryPreferences"
+                  placeholderTextColor={darkLight}
+                  onChangeText={handleChange("dietaryPreferences")}
+                  onBlur={handleBlur("dietaryPreferences")}
+                  value={values.dietaryPreferences}
+                />
                 <MyTextInput
                   placeholder="Name"
                   placeholderTextColor={darkLight}

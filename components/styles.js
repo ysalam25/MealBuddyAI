@@ -38,6 +38,7 @@ export const LoginContainer = styled.View`
   position: relative;
   top: 15%;
   align-items: center;
+  justifycontent: center;
 `;
 
 export const PageTitle = styled.Text`

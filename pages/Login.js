@@ -45,6 +45,9 @@ const Login = ({ navigation }) => {
               <TextLinkContent>Sign Up</TextLinkContent>
             </TextLink>
           </ExtraView>
+          <TextLink onPress={() => navigation.navigate("Walkthrough")}>
+              <TextLinkContent>Walkthrough</TextLinkContent>
+            </TextLink>
           <Formik
             initialValues={{ email: "", password: "" }}
             onSubmit={handleLogin}

@@ -6,8 +6,8 @@ const StatusBarHeight = Constants.statusBarHeight;
 
 export const Colors = {
   primary: "#ffffff",
-  secondary: "#4D7E69",
-  link: "#34A27F",
+  secondary: "#F87D57",
+  link: "#F87D57",
   lightdark: "#e3e3e3",
   darkLight: "#969696",
 };
@@ -25,6 +25,12 @@ export const StyledContainer = styled.View`
 export const InnerContainer = styled.View`
   flex: 1;
   width: 100%;
+  align-items: center;
+`;
+export const SlideContainer = styled.View`
+  position: relative;
+  height: 55%;
+  top: 5%;
   align-items: center;
 `;
 

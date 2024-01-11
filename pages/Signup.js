@@ -22,17 +22,22 @@ import { Formik } from "formik";
 import { View } from "react-native";
 import { Colors } from "./../components/styles";
 
-const Signup = ({navigation}) => {
+const Signup = ({ navigation }) => {
   return (
     <StyledContainer>
       <StatusBar style="dark" />
       <InnerContainer>
-
         <LoginContainer>
           <SubTitle>Get Started</SubTitle>
 
           <Formik
-            initialValues={{ firstName: '', lastName: '', email: "", password: "", confirmPassword: ""}}
+            initialValues={{
+              firstName: "",
+              lastName: "",
+              email: "",
+              password: "",
+              confirmPassword: "",
+            }}
             onSubmit={(values) => {
               console.log(values);
             }}

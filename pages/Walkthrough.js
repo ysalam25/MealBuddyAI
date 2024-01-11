@@ -10,49 +10,43 @@ import {
   LoginContainer,
   StyledInputLabel,
   StyledButton,
+  StyledButton2,
   StyledTextInput,
   ButtonText,
   ExtraView,
   ExtraText,
   TextLink,
   TextLinkContent,
+  SlideContainer,
 } from "./../components/styles";
 
 import { Formik } from "formik";
 import { View } from "react-native";
 import { Colors } from "./../components/styles";
+import { SliderBox } from "react-native-image-slider-box";
 
-const Walkthrough = () => {
+const images = [
+  require("./../assets/kitchen.png"), // Local image
+  require("./../assets/stove.png"),
+  require("./../assets/chef.png"), // Local image
+];
+
+const Walkthrough = ({ navigation }) => {
   return (
     <StyledContainer>
       <StatusBar style="dark" />
+      <SlideContainer>
+        <SliderBox images={images} sliderBoxHeight={300} resizeMode="contain" />
+      </SlideContainer>
       <InnerContainer>
-        <PageTitle>Title</PageTitle>
-        <LoginContainer>
-          <SubTitle>Walkthrough</SubTitle>
-          <ExtraView>
-            <ExtraText> No account? </ExtraText>
-            <TextLink>
-              <TextLinkContent>Sign Up</TextLinkContent>
-            </TextLink>
-          </ExtraView>
-          <StyledButton>
-            <ButtonText>YY</ButtonText>
-          </StyledButton>
-        </LoginContainer>
+        <StyledButton onPress={() => navigation.navigate("Signup")}>
+          <ButtonText>Sign Up</ButtonText>
+        </StyledButton>
+        <StyledButton onPress={() => navigation.navigate("Login")}>
+          <ButtonText>Log In</ButtonText>
+        </StyledButton>
       </InnerContainer>
     </StyledContainer>
-  );
-};
-
-//Colors
-const { primary, darkLight } = Colors;
-
-const MyTextInput = ({ label, ...props }) => {
-  return (
-    <View>
-      <StyledTextInput {...props} />
-    </View>
   );
 };
 

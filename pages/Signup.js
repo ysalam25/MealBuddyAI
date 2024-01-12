@@ -51,7 +51,13 @@ const Signup = ({navigation}) => {
           <SubTitle>Get Started</SubTitle>
 
           <Formik
-            initialValues={{ name: "", email: "", password: "", confirmPassword: ""}}
+            initialValues={{
+              firstName: "",
+              lastName: "",
+              email: "",
+              password: "",
+              confirmPassword: "",
+            }}
             onSubmit={handleSignup}
           >
             {({ handleChange, handleBlur, handleSubmit, values }) => (

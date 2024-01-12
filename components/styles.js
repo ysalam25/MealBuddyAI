@@ -326,3 +326,43 @@ export const RatingContainer = styled.View`
   align-items: center;
   padding: 10px;
 `;
+
+export const WalkthroughStyles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+  },
+  slideContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  image: {
+    width: 200,
+    height: 200,
+    marginBottom: 0.6,
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: "500",
+    marginBottom: 10,
+    color: "#231714",
+  },
+  buttonContainer: {
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    gap: 10,
+    marginTop: 20,
+  },
+  button: {
+    marginHorizontal: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    backgroundColor: '#F87D57',
+    borderRadius: 5,
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+});

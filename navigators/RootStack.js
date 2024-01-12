@@ -11,6 +11,7 @@ import Walkthrough from "./../pages/Walkthrough";
 import ConfirmEmail from "./../pages/ConfirmEmail";
 import ForgotPassword from "./../pages/ForgotPassword";
 import NewPasswordScreen from "./../pages/NewPasswordScreen";
+import Walkthrough1 from "./../pages/Walkthrough1";
 
 // test home page
 import TestHome from "./../pages/TestHome";
@@ -32,7 +33,7 @@ const RootStack = () => {
           paddingLeft: 20,
         },
       }}
-      initialRouteName="Walkthrough"
+      initialRouteName="Walkthrough1"
     >
       {/* Tab Navigator as a screen */}
       <Stack.Screen
@@ -44,7 +45,7 @@ const RootStack = () => {
       />
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Signup" component={Signup} />
-      <Stack.Screen name="Walkthrough" component={Walkthrough} />
+      <Stack.Screen name="Walkthrough1" component={Walkthrough1} />
       <Stack.Screen name="ConfirmEmail" component={ConfirmEmail} />
       <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
       <Stack.Screen name="NewPasswordScreen" component={NewPasswordScreen} />

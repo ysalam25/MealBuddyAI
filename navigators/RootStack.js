@@ -14,9 +14,6 @@ import NewPasswordScreen from "./../pages/NewPasswordScreen";
 
 // test home page
 import TestHome from "./../pages/TestHome";
-import Login from "../pages/Login";
-import Signup from "../pages/Signup";
-import Walkthrough from "../pages/Walkthrough";
 import Tabs from "../navigators/tabs"; // Ensure this import is correct
 
 const Stack = createNativeStackNavigator();
@@ -48,6 +45,9 @@ const RootStack = () => {
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Signup" component={Signup} />
       <Stack.Screen name="Walkthrough" component={Walkthrough} />
+      <Stack.Screen name="ConfirmEmail" component={ConfirmEmail} />
+      <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
+      <Stack.Screen name="NewPasswordScreen" component={NewPasswordScreen} />
     </Stack.Navigator>
   );
 };

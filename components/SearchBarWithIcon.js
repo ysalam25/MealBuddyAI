@@ -7,21 +7,23 @@ import {
   StyleSheet,
 } from "react-native";
 
-const SearchBarWithIcons = () => {
+const SearchBarWithIcon = ({ onPress }) => {
   return (
     <View style={styles.container}>
       <View style={styles.searchContainer}>
-        <Image
-          source={require("../assets/Icons/searchIcon.png")}
-          style={styles.searchIcon}
-        />
+        <TouchableOpacity >
+          <Image
+            source={require("../assets/Icons/searchIcon.png")}
+            style={styles.searchIcon}
+          />
+        </TouchableOpacity>
         <TextInput
           placeholder="Search"
           style={styles.searchInput}
           placeholderTextColor="gray"
         />
       </View>
-      <TouchableOpacity style={styles.pantryIcon}>
+      <TouchableOpacity onPress={onPress} style={styles.pantryIcon}>
         <Image
           source={require("../assets/Icons/pantryIcon.png")}
           style={styles.icon}
@@ -30,6 +32,7 @@ const SearchBarWithIcons = () => {
     </View>
   );
 };
+
 
 const styles = StyleSheet.create({
   container: {
@@ -74,4 +77,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SearchBarWithIcons;
+export default SearchBarWithIcon;

@@ -1,3 +1,4 @@
+import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 
@@ -30,6 +31,7 @@ const CustomTabBarButton = ({ children, onPress }) => (
     </View>
   </TouchableOpacity>
 );
+
 const Tabs = () => {
   return (
     <Tab.Navigator
@@ -44,15 +46,15 @@ const Tabs = () => {
       }}
     >
       <Tab.Screen
-        name="Home"
+        name="HomeTab"
         component={Home}
         options={{
           headerTitleAlign: "center",
           headerTitleStyle: {
             fontSize: 24,
           },
+          // Remove the marginTop from headerStyle
           headerStyle: {
-            top:30,
             height: 80,
           },
           tabBarIcon: ({ focused }) => (
@@ -83,7 +85,7 @@ const Tabs = () => {
       />
 
       <Tab.Screen
-        name="Search"
+        name="SearchTab"
         component={Search}
         options={{
           headerTitleAlign: "center",
@@ -138,7 +140,7 @@ const Tabs = () => {
         }}
       />
       <Tab.Screen
-        name="Pantry"
+        name="PantryTab"
         component={Pantry}
         options={{
           headerTitleAlign: "center",
@@ -175,7 +177,7 @@ const Tabs = () => {
         }}
       />
       <Tab.Screen
-        name="Profile"
+        name="ProfileTab"
         component={Profile}
         options={{
           headerTitleAlign: "center",

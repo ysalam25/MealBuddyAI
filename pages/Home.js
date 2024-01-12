@@ -1,5 +1,6 @@
-import React from "react";
-import { StyledContainer,
+import React, { useState } from "react";
+import {
+  StyledContainer,
   OverlappingScreen,
   OverlappingContent,
   OverlappingTitle,
@@ -10,21 +11,41 @@ import { StyledContainer,
   FilterButton,
   CrossSVGIcon,
   StarSVGIcon,
-  RatingContainer, } from "./../components/styles";
+  RatingContainer,
+} from "./../components/styles";
 import RecommendedForYou from "../components/RecommendedForYou";
 import TrendingNow from "../components/TrendingNow";
 import SearchBarWithIcon from "../components/SearchBarWithIcon";
-import {Modal, View, Text, Image, TouchableOpacity } from "react-native";
-import { useState } from "react";
+import FilteredRecipes from "../components/FilteredRecipies";// Import the new component
+import { Modal, View, TouchableOpacity } from "react-native";
 import filterData from "../mockData/filterData";
+import recipeData from "../mockData/recipeData";
 
 const Home = () => {
   const [showModal, setShowModal] = useState(false);
   const [starStates, setStarStates] = useState([false, false, false, false, false]);
   const [selectedCategory, setSelectedCategory] = useState([]);
 
+  // Mock data for recipes
+  const [recipes, setRecipes] = useState([
+    {
+      id: 1,
+      title: "Recipe 1",
+      category: "Breakfast",
+      attributes: ["Vegan", "30 mins"],
+      rating: 3,
+    },
+    {
+      id: 2,
+      title: "Recipe 2",
+      category: "Lunch",
+      attributes: ["Vegie", "30 mins"],
+      rating: 3,
+    },
+    // Add more recipes as needed
+  ]);
+
   const handleSearchBarClick = () => {
-    console.log("search bar clicked");
     setShowModal(true);
   };
 
@@ -38,28 +59,46 @@ const Home = () => {
       return updatedStars;
     });
   };
+
   const handleReset = () => {
     setSelectedCategory([]);
     setStarStates([false, false, false, false, false]);
   };
 
+  const handleApply = () => {
+    console.log("Apply button clicked");
+    setShowModal(false);
+  };
+
   const handleCategoryButtonClick = (category) => {
-    console.log("Category button clicked:", category);
     setSelectedCategory((prevSelectedCategories) => {
       const isCategorySelected = prevSelectedCategories.includes(category);
-  
+
       if (isCategorySelected) {
         return prevSelectedCategories.filter((selectedCategory) => selectedCategory !== category);
       }
-  
+
       return [...prevSelectedCategories, category];
     });
   };
+
+  // Filter recipes based on selected categories
+  const filteredRecipes = recipes.filter((recipe) => selectedCategory.includes(recipe.category));
+
   return (
     <StyledContainer>
-      <SearchBarWithIcon onPress={handleSearchBarClick}/>
-      <RecommendedForYou />
-      <TrendingNow />
+      <SearchBarWithIcon onPress={handleSearchBarClick} />
+
+      {/* Conditionally render the FilteredRecipes component */}
+      {selectedCategory.length > 0 ? (
+        <FilteredRecipes recipes={filteredRecipes} />
+      ) : (
+        <>
+          <RecommendedForYou />
+          <TrendingNow />
+        </>
+      )}
+
       <Modal visible={showModal} animationType="slide" transparent={true}>
         <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
           <OverlappingScreen>
@@ -95,7 +134,7 @@ const Home = () => {
                 <FilterButton onPress={handleReset}>
                   <CategoryButtonText>Reset</CategoryButtonText>
                 </FilterButton>
-                <FilterButton>
+                <FilterButton onPress={handleApply}>
                   <CategoryButtonText>Apply</CategoryButtonText>
                 </FilterButton>
               </ApplyContainer>

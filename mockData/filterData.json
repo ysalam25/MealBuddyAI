@@ -1,0 +1,10 @@
+[
+	{
+		"heading": "Category",
+		"choices": ["Breakfast", "Lunch", "Dinner"]
+	},
+	{
+		"heading": "Cuisine Type",
+		"choices": ["Mexican", "Italian", "Mediterranean", "Asian Fusion", "Indian", "Comfort"]
+	}
+]

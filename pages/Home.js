@@ -16,7 +16,7 @@ import {
 import RecommendedForYou from "../components/RecommendedForYou";
 import TrendingNow from "../components/TrendingNow";
 import SearchBarWithIcon from "../components/SearchBarWithIcon";
-import FilteredRecipes from "../components/FilteredRecipies";// Import the new component
+import FilteredRecipes from "../components/FilteredRecipies";
 import { Modal, View, TouchableOpacity } from "react-native";
 import filterData from "../mockData/filterData";
 import recipeData from "../mockData/recipeData";
@@ -25,22 +25,57 @@ const Home = () => {
   const [showModal, setShowModal] = useState(false);
   const [starStates, setStarStates] = useState([false, false, false, false, false]);
   const [selectedCategory, setSelectedCategory] = useState([]);
+  const [selectedCuisine, setSelectedCuisine] = useState([]);
 
   // Mock data for recipes
   const [recipes, setRecipes] = useState([
     {
       id: 1,
-      title: "Recipe 1",
+      title: "Avocado Toast",
       category: "Breakfast",
       attributes: ["Vegan", "30 mins"],
       rating: 3,
+      cuisine: "Mexican",
     },
     {
       id: 2,
-      title: "Recipe 2",
+      title: "Margherita Pizza",
       category: "Lunch",
-      attributes: ["Vegie", "30 mins"],
-      rating: 3,
+      attributes: ["Vegetarian", "30 mins"],
+      rating: 4,
+      cuisine: "Italian",
+    },
+    {
+      id: 3,
+      title: "Chicken Curry",
+      category: "Dinner",
+      attributes: ["Non-Vegetarian", "1 hour"],
+      rating: 5,
+      cuisine: "Indian",
+    },
+    {
+      id: 4,
+      title: "Asian Fusion Noodles",
+      category: "Dinner",
+      attributes: ["Vegetarian", "30 mins"],
+      rating: 4,
+      cuisine: "Asian Fusion",
+    },
+    {
+      id: 5,
+      title: "Mediterranean Salad",
+      category: "Lunch",
+      attributes: ["Vegetarian", "20 mins"],
+      rating: 4,
+      cuisine: "Mediterranean",
+    },
+    {
+      id: 6,
+      title: "Taco Tuesday",
+      category: "Dinner",
+      attributes: ["Non-Vegetarian", "40 mins"],
+      rating: 4,
+      cuisine: "Mexican",
     },
     // Add more recipes as needed
   ]);
@@ -62,6 +97,7 @@ const Home = () => {
 
   const handleReset = () => {
     setSelectedCategory([]);
+    setSelectedCuisine([]);
     setStarStates([false, false, false, false, false]);
   };
 
@@ -70,27 +106,44 @@ const Home = () => {
     setShowModal(false);
   };
 
-  const handleCategoryButtonClick = (category) => {
-    setSelectedCategory((prevSelectedCategories) => {
-      const isCategorySelected = prevSelectedCategories.includes(category);
+  const handleCategoryButtonClick = (category, heading) => {
+    if (heading === "Category") {
+      setSelectedCategory((prevSelectedCategories) => {
+        const isCategorySelected = prevSelectedCategories.includes(category);
 
-      if (isCategorySelected) {
-        return prevSelectedCategories.filter((selectedCategory) => selectedCategory !== category);
-      }
+        if (isCategorySelected) {
+          return prevSelectedCategories.filter((selectedCategory) => selectedCategory !== category);
+        }
 
-      return [...prevSelectedCategories, category];
-    });
+        return [...prevSelectedCategories, category];
+      });
+    } else if (heading === "Cuisine Type") {
+      setSelectedCuisine((prevSelectedCuisines) => {
+        const isCuisineSelected = prevSelectedCuisines.includes(category);
+
+        if (isCuisineSelected) {
+          return prevSelectedCuisines.filter((selectedCuisine) => selectedCuisine !== category);
+        }
+
+        return [...prevSelectedCuisines, category];
+      });
+    }
   };
 
-  // Filter recipes based on selected categories
-  const filteredRecipes = recipes.filter((recipe) => selectedCategory.includes(recipe.category));
+  // Filter recipes based on selected categories, cuisine, and rating
+  const filteredRecipes = recipes.filter(
+    (recipe) =>
+      (selectedCategory.length === 0 || selectedCategory.includes(recipe.category)) &&
+      (selectedCuisine.length === 0 || selectedCuisine.includes(recipe.cuisine)) &&
+      (starStates.filter((isFilled) => isFilled).length === 0 || starStates[recipe.rating - 1])
+  );
 
   return (
     <StyledContainer>
       <SearchBarWithIcon onPress={handleSearchBarClick} />
 
       {/* Conditionally render the FilteredRecipes component */}
-      {selectedCategory.length > 0 ? (
+      {selectedCategory.length > 0 || selectedCuisine.length > 0 || starStates.filter((isFilled) => isFilled).length > 0 ? (
         <FilteredRecipes recipes={filteredRecipes} />
       ) : (
         <>
@@ -113,8 +166,12 @@ const Home = () => {
                     {item.choices.map((choice, choiceIndex) => (
                       <CategoryButton
                         key={choiceIndex}
-                        onPress={() => handleCategoryButtonClick(choice)}
-                        selected={selectedCategory.includes(choice)}
+                        onPress={() => handleCategoryButtonClick(choice, item.heading)}
+                        selected={
+                          item.heading === "Category"
+                            ? selectedCategory.includes(choice)
+                            : selectedCuisine.includes(choice)
+                        }
                       >
                         <CategoryButtonText>{choice}</CategoryButtonText>
                       </CategoryButton>

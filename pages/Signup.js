@@ -47,7 +47,6 @@ const Signup = ({navigation}) => {
     <StyledContainer>
       <StatusBar style="dark" />
       <InnerContainer>
-
         <LoginContainer>
           <SubTitle>Get Started</SubTitle>
 

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { View, Text, TextInput, TouchableOpacity ,StyleSheet} from "react-native";
+import { View, Image, Text, TextInput, TouchableOpacity ,StyleSheet} from "react-native";
 import Constants from "expo-constants";
 import { SvgXml, Path, LinearGradient, Stop } from "react-native-svg";
 
@@ -7,25 +7,37 @@ const StatusBarHeight = Constants.statusBarHeight;
 
 export const Colors = {
   primary: "#ffffff",
-  secondary: "#4D7E69",
-  link: "#34A27F",
+  secondary: "#F87D57",
+  link: "#F87D57",
   lightdark: "#e3e3e3",
   darkLight: "#969696",
+  background: "#F9F6EE",
 };
 
 //consistent
-const { primary, secondary, link, lightdark, darkLight } = Colors;
+const { primary, secondary, link, lightdark, darkLight, background } = Colors;
 
 export const StyledContainer = styled.View`
   flex: 1;
   padding: 25px;
   padding-top: ${StatusBarHeight + 30}px;
-  background-color: ${primary};
+  background-color: ${background};
+
+  align-items: center; 
+  justify-content: center;  
 `;
+
+
 
 export const InnerContainer = styled.View`
   flex: 1;
   width: 100%;
+  align-items: center;
+`;
+export const SlideContainer = styled.View`
+  position: relative;
+  height: 55%;
+  top: 5%;
   align-items: center;
 `;
 
@@ -33,7 +45,20 @@ export const LoginContainer = styled.View`
   position: relative;
   top: 15%;
   align-items: center;
+  justifycontent: center;
 `;
+
+
+export const SearchContainer = styled.View`
+  justify-content: center;
+  align-content: center;
+  flex-direction: row;
+  align-items: center; 
+  width: 98%;
+  position: relative;
+`;
+
+
 
 export const PageTitle = styled.Text`
   font-size: 18px;
@@ -67,6 +92,36 @@ export const StyledTextInput = styled.TextInput`
   margin-bottom: 10px;
 `;
 
+export const SearchTextInput = styled.TextInput`
+  height: 40px;
+  width: 90%;
+  border: 1px solid white;
+  background-color: white;
+  border-radius: 12px;
+  margin-right: 10px;
+  padding: 8px;
+  flex: 1;
+`;
+
+export const SearchTextInputWrapper = styled.View`
+  height: 40px;
+  width: 90%;
+
+  background-color: white;
+  border-radius: 12px;
+  margin-right: 10px;
+  padding: 8px;
+  flex: 1;
+`;
+
+
+
+export const SearchTextInputIcon = styled.Image`
+  height: 16px; 
+  width: 16px; 
+  margin-right: 8px; /* Add right margin to create space between the icon and the text */
+`;
+
 export const StyledInputLabel = styled.Text`
   color: ${lightdark};
   font-size: 13px;
@@ -84,6 +139,18 @@ export const StyledButton = styled.TouchableOpacity`
   width: 120px;
 `;
 
+export const SearchButton = styled.TouchableOpacity`
+  height: 40px;
+  width: 16px;
+  justify-content: center;
+  align-self: center;
+`;
+
+export const SearchButtonIcon = styled.Image`
+  height: 16px; 
+  width: 16px; 
+  align-self: center;
+`;
 
 
 export const ButtonText = styled.Text`

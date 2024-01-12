@@ -10,133 +10,44 @@ import {
   LoginContainer,
   StyledInputLabel,
   StyledButton,
+  StyledButton2,
   StyledTextInput,
   ButtonText,
   ExtraView,
   ExtraText,
   TextLink,
   TextLinkContent,
-  OverlappingScreen,
-  OverlappingContent,
-  OverlappingText,
-  CloseButton,
-  CloseButtonText,
-  OverlappingTitle,
-  CategoryButton,
-  CategoryContainer,
-  CategoryButtonText,
-  ApplyContainer,
-  FilterButton,
-  CrossSVGIcon,
-  StarSVGIcon,
-  RatingContainer,
+  SlideContainer,
 } from "./../components/styles";
 
 import { Formik } from "formik";
 import { Colors } from "./../components/styles";
+import { SliderBox } from "react-native-image-slider-box";
 
-const Walkthrough = () => {
-  const [showModal, setShowModal] = useState(false);
-  const [starStates, setStarStates] = useState([false, false, false, false, false]);
+const images = [
+  require("./../assets/kitchen.png"), // Local image
+  require("./../assets/stove.png"),
+  require("./../assets/chef.png"), // Local image
+];
 
-
-  const handleButtonClick = () => {
-    setShowModal(true);
-  };
-
-  const closeModal = () => {
-    setShowModal(false);
-  };
-
-  const handleStarClick = (index) => {
-    setStarStates((prevStars) => {
-      const updatedStars = prevStars.map((_, i) => i <= index);
-      return updatedStars;
-    });
-  };
-  
+const Walkthrough = ({ navigation }) => {
   return (
     <StyledContainer>
       <StatusBar style="dark" />
+      <SlideContainer>
+        <SliderBox images={images} sliderBoxHeight={300} resizeMode="contain" />
+      </SlideContainer>
       <InnerContainer>
-        <PageTitle>Title</PageTitle>
-        <LoginContainer>
-          <SubTitle>Walkthrough</SubTitle>
-          <ExtraView>
-            <ExtraText> No account? </ExtraText>
-            <TextLink>
-              <TextLinkContent>Sign Up</TextLinkContent>
-            </TextLink>
-          </ExtraView>
-          <StyledButton onPress={handleButtonClick}>
-            <ButtonText>YY</ButtonText>
-          </StyledButton>
-        </LoginContainer>
+        <StyledButton onPress={() => navigation.navigate("Signup")}>
+          <ButtonText>Sign Up</ButtonText>
+        </StyledButton>
+        <StyledButton onPress={() => navigation.navigate("Login")}>
+          <ButtonText>Log In</ButtonText>
+        </StyledButton>
+        <StyledButton onPress={() => navigation.navigate("TestHome")}>
+          <ButtonText>Home (test)</ButtonText>
+        </StyledButton>
       </InnerContainer>
-
-      <Modal visible={showModal} animationType="slide" transparent={true}>
-        <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-          <OverlappingScreen>
-            <OverlappingContent>
-            <TouchableOpacity onPress={closeModal}>
-                <CrossSVGIcon />
-              </TouchableOpacity>
-              <OverlappingTitle>Category</OverlappingTitle>
-               <CategoryContainer>
-              <CategoryButton>
-                <CategoryButtonText>BreakFast</CategoryButtonText>
-              </CategoryButton>
-              <CategoryButton>
-                <CategoryButtonText>Lunch</CategoryButtonText>
-              </CategoryButton>
-              <CategoryButton>
-                <CategoryButtonText>Dinner</CategoryButtonText>
-              </CategoryButton>
-              <CategoryButton>
-                <CategoryButtonText>Snack</CategoryButtonText>
-              </CategoryButton>
-              </CategoryContainer>
-              <OverlappingTitle>Cuisine Type</OverlappingTitle>
-              <CategoryContainer>
-              <CategoryButton>
-                <CategoryButtonText>Mexican</CategoryButtonText>
-              </CategoryButton>
-              <CategoryButton>
-                <CategoryButtonText>Italian</CategoryButtonText>
-              </CategoryButton>
-              <CategoryButton>
-                <CategoryButtonText>Mediterranean</CategoryButtonText>
-              </CategoryButton>
-              <CategoryButton>
-                <CategoryButtonText>Asian Fusion</CategoryButtonText>
-              </CategoryButton>
-              <CategoryButton>
-                <CategoryButtonText>Indian</CategoryButtonText>
-              </CategoryButton>
-              <CategoryButton>
-                <CategoryButtonText>Comfort</CategoryButtonText>
-              </CategoryButton>
-              </CategoryContainer>
-             <OverlappingTitle>Rating</OverlappingTitle>
-             <RatingContainer>
-                {starStates.map((isFilled, index) => (
-                  <TouchableOpacity key={index} onPress={() => handleStarClick(index)}>
-                    <StarSVGIcon isFilled={isFilled} color='#9095A0' />
-                  </TouchableOpacity>
-                ))}
-              </RatingContainer>
-            <ApplyContainer>
-              <FilterButton>
-                <CategoryButtonText>Reset</CategoryButtonText>
-              </FilterButton>
-              <FilterButton>
-                <CategoryButtonText>Apply</CategoryButtonText>
-              </FilterButton>
-            </ApplyContainer>
-            </OverlappingContent>
-          </OverlappingScreen>
-        </View>
-      </Modal>
     </StyledContainer>
   );
 };

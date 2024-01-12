@@ -67,6 +67,9 @@ const Login = ({ navigation }) => {
                   value={values.password}
                   secureTextEntry={true}
                 />
+                <TextLink onPress={() => navigation.navigate("ForgotPassword")}>
+                  <TextLinkContent>Forgot Password?</TextLinkContent>
+                </TextLink>
                 <StyledButton onPress={handleSubmit}>
                   <ButtonText>Log In</ButtonText>
                 </StyledButton>

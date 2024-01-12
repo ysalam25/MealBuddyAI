@@ -10,6 +10,9 @@ const { primary, secondary } = Colors;
 import Login from "./../pages/Login";
 import Signup from "./../pages/Signup";
 import Walkthrough from "./../pages/Walkthrough";
+import ConfirmEmail from "./../pages/ConfirmEmail";
+import ForgotPassword from "./../pages/ForgotPassword";
+import NewPasswordScreen from "./../pages/NewPasswordScreen";
 
 // test home page
 import TestHome from "./../pages/TestHome";
@@ -36,6 +39,9 @@ const RootStack = () => {
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="Walkthrough" component={Walkthrough} />
+        <Stack.Screen name="ConfirmEmail" component={ConfirmEmail} />
+        <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
+        <Stack.Screen name="NewPasswordScreen" component={NewPasswordScreen} />
         <Stack.Screen name="TestHome" component={TestHome} />
       </Stack.Navigator>
     </NavigationContainer>

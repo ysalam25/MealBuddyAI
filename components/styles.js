@@ -90,6 +90,8 @@ export const StyledButton = styled.TouchableOpacity`
   width: 120px;
 `;
 
+
+
 export const ButtonText = styled.Text`
   color: ${primary};
   font-size: 16px;

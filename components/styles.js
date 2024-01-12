@@ -94,7 +94,7 @@ export const StyledTextInput = styled.TextInput`
 export const SearchTextInput = styled.TextInput`
   height: 40px;
   width: 90%;
-  border: 1px solid black;
+  border: 1px solid white;
   background-color: white;
   margin-right: 10px;
   flex: 1;
@@ -115,7 +115,7 @@ export const SearchTextInputWrapper = styled.View`
 export const SearchTextInputIcon = styled.Image`
   height: 16px; 
   width: 16px; 
-  margin-right: 8px; /* Add right margin to create space between the icon and the text */
+  margin-right: 8px; 
   align-self: center;
   margin-left: 8px; 
 
@@ -181,3 +181,4 @@ export const TextLinkContent = styled.Text`
   color: ${link};
   font-size: 15px;
 `;
+

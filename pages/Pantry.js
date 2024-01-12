@@ -1,16 +1,22 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { StatusBar, Dimensions, Image, Text, StyleSheet, View} from 'react-native';
+import { StatusBar, Dimensions, Image, Text, StyleSheet, View, TouchableOpacity} from 'react-native';
 import Constants from "expo-constants";
 
 import { StyledContainer, InnerContainer, SearchContainer, SearchButton, SearchButtonIcon, SubTitle, SearchTextInput, SearchTextInputIcon, SearchTextInputWrapper, StyledButton, ButtonText} from "../components/styles";
+
 import iconFilter from "../assets/icon-filter.png";
 import iconSearch from "../assets/icon-search.png"; 
+
+import iconCamera from "../assets/icon-add-camera.png"; 
+import iconPlus from "../assets/icon-add-plus.png"; 
+
 
 import imgEmptyPantry from "../assets/pantry-empty.png"; 
 const txtEmptyPantry = "Let's start by filling up your empty pantry. Click the plus button below to start.";
 
 import { Colors } from "../components/styles";
+import AddItem from "./AddItem";
 
 // const screenHeight = Dimensions.get('window').height - StatusBar.currentHeight;
 
@@ -48,10 +54,20 @@ const styles = StyleSheet.create({
 
 
 const Pantry = ({ navigation }) => {
+
+  // ----- search items functionality -----
   const [searchText, setSearchText] = useState("");
 
   const handleSearch = () => {
     console.log("search button", searchText);
+  };
+
+
+  // ----- add items functionality -----
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    setModalVisible(!isModalVisible);
   };
 
   return (
@@ -85,7 +101,26 @@ const Pantry = ({ navigation }) => {
 
         </PantryScreen>
 
-        <StyledButton style={{ width: 50, marginTop: 10, borderRadius: 10 }}><ButtonText>+</ButtonText></StyledButton>
+        <StyledButton onPress={toggleModal} style={{ width: 50, marginTop: 10, borderRadius: 10 }}><ButtonText>+</ButtonText></StyledButton>
+        
+        <AddItem isVisible={isModalVisible} onClose={toggleModal}>
+
+        <Text>Choose scanning preference</Text>
+
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 20 }}>
+          <TouchableOpacity style={{ alignItems: 'center' }}>
+            <Image source={iconCamera} style={{ width: 50, height: 50, marginBottom: 10 }} />
+            <Text>Scan with camera</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={{ alignItems: 'center' }}>
+            <Image source={iconPlus} style={{ width: 50, height: 50, marginBottom: 10 }} />
+            <Text>Enter details manually</Text>
+          </TouchableOpacity>
+        </View>
+      </AddItem>
+      
+      
       </InnerContainer>
     </StyledContainer>
   );

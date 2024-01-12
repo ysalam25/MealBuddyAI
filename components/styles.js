@@ -207,7 +207,7 @@ export const OverlappingText = styled.Text`
 `;
 export const OverlappingTitle = styled.Text`
   color: #231714;
-  text-align: Left;
+  text-align: left;
   font-size: 18px;
   font-weight: 500;
   padding: 10px;

@@ -234,7 +234,7 @@ export const CloseButtonText = styled.Text`
 export const CategoryButton = styled.TouchableOpacity`
   border-radius: 12px;
   border: 1px solid #000;
-  background:#F9F6EE;
+  background: ${(props) => (props.selected ? Colors.secondary : "#F9F6EE")};
   padding: 10px;
   margin: 5px;
 `;
@@ -310,7 +310,7 @@ const starIconSvg = `
 `;
 export const StarSVGIcon = ({ isFilled, color }) => (
     <View style={stylesStarSVG.container}>
-      <SvgXml xml={starIconSvg} width={37} height={36} fill={isFilled ? color : '#DEE1E6'} />
+      <SvgXml xml={starIconSvg} width={37} height={36} fill={isFilled ? Colors.secondary : '#DEE1E6'} />
     </View>
   );
 

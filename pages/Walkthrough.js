@@ -1,5 +1,7 @@
 import React from "react";
 import { StatusBar } from "expo-status-bar";
+import { NavigationContainer } from "@react-navigation/native";
+import Tabs from "../navigators/tabs";
 
 import {
   StyledContainer,
@@ -45,6 +47,9 @@ const Walkthrough = ({ navigation }) => {
         <StyledButton onPress={() => navigation.navigate("Login")}>
           <ButtonText>Log In</ButtonText>
         </StyledButton>
+        <TextLink onPress={() => navigation.navigate("Home")}>
+          <TextLinkContent>Home</TextLinkContent>
+        </TextLink>
       </InnerContainer>
     </StyledContainer>
   );

@@ -1,9 +1,8 @@
-import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 
 import Home from "../pages/Home";
-import Search from "../pages/Search";
+import Settings from "../pages/Settings";
 import Pantry from "../pages/Pantry";
 import Profile from "../pages/Profile";
 import addRecipe from "../pages/AddRecipe";
@@ -31,7 +30,6 @@ const CustomTabBarButton = ({ children, onPress }) => (
     </View>
   </TouchableOpacity>
 );
-
 const Tabs = () => {
   return (
     <Tab.Navigator
@@ -46,14 +44,13 @@ const Tabs = () => {
       }}
     >
       <Tab.Screen
-        name="HomeTab"
+        name="Home"
         component={Home}
         options={{
           headerTitleAlign: "center",
           headerTitleStyle: {
             fontSize: 24,
           },
-          // Remove the marginTop from headerStyle
           headerStyle: {
             height: 80,
           },
@@ -83,64 +80,8 @@ const Tabs = () => {
           ),
         }}
       />
-
       <Tab.Screen
-        name="SearchTab"
-        component={Search}
-        options={{
-          headerTitleAlign: "center",
-          headerTitleStyle: {
-            fontSize: 28,
-          },
-          headerStyle: {
-            height: 100,
-          },
-          tabBarIcon: ({ focused }) => (
-            <View
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                top: 10,
-              }}
-            >
-              <Image
-                source={require("../assets/Icons/searchIcon.png")}
-                resizeMode="contain"
-                style={{
-                  width: 20,
-                  height: 20,
-                  tintColor: focused ? "#F87D57" : "#000000",
-                }}
-              />
-              <Text
-                style={{ color: focused ? "#F87D57" : "#000000", fontSize: 12 }}
-              >
-                Search
-              </Text>
-            </View>
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="addRecipe"
-        component={addRecipe}
-        options={{
-          tabBarIcon: ({ focused }) => (
-            <Image
-              source={require("../assets/Icons/addIcon.png")}
-              resizeMode="contain"
-              style={{
-                width: 30,
-                height: 30,
-                tintColor: "#fff",
-              }}
-            />
-          ),
-          tabBarButton: (props) => <CustomTabBarButton {...props} />,
-        }}
-      />
-      <Tab.Screen
-        name="PantryTab"
+        name="Pantry"
         component={Pantry}
         options={{
           headerTitleAlign: "center",
@@ -177,7 +118,26 @@ const Tabs = () => {
         }}
       />
       <Tab.Screen
-        name="ProfileTab"
+        name="addRecipe"
+        component={addRecipe}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <Image
+              source={require("../assets/Icons/addIcon.png")}
+              resizeMode="contain"
+              style={{
+                width: 30,
+                height: 30,
+                tintColor: "#fff",
+              }}
+            />
+          ),
+          tabBarButton: (props) => <CustomTabBarButton {...props} />,
+        }}
+      />
+
+      <Tab.Screen
+        name="Profile"
         component={Profile}
         options={{
           headerTitleAlign: "center",
@@ -208,6 +168,44 @@ const Tabs = () => {
                 style={{ color: focused ? "#F87D57" : "#000000", fontSize: 12 }}
               >
                 Profile
+              </Text>
+            </View>
+          ),
+        }}
+      />
+
+      <Tab.Screen
+        name="Settings"
+        component={Settings}
+        options={{
+          headerTitleAlign: "center",
+          headerTitleStyle: {
+            fontSize: 28,
+          },
+          headerStyle: {
+            height: 100,
+          },
+          tabBarIcon: ({ focused }) => (
+            <View
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                top: 10,
+              }}
+            >
+              <Image
+                source={require("../assets/Icons/settingIcon.png")}
+                resizeMode="contain"
+                style={{
+                  width: 30,
+                  height: 25,
+                  tintColor: focused ? "#F87D57" : "#000000",
+                }}
+              />
+              <Text
+                style={{ color: focused ? "#F87D57" : "#000000", fontSize: 12 }}
+              >
+                Settings
               </Text>
             </View>
           ),

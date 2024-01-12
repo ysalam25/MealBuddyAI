@@ -15,6 +15,7 @@ import {
 } from "./../components/styles";
 import RecommendedForYou from "../components/RecommendedForYou";
 import TrendingNow from "../components/TrendingNow";
+import FlashCard from "../components/FlashCard";
 import SearchBarWithIcon from "../components/SearchBarWithIcon";
 import FilteredRecipes from "../components/FilteredRecipies";
 import { Modal, View, TouchableOpacity } from "react-native";
@@ -23,7 +24,13 @@ import recipeData from "../mockData/recipeData";
 
 const Home = () => {
   const [showModal, setShowModal] = useState(false);
-  const [starStates, setStarStates] = useState([false, false, false, false, false]);
+  const [starStates, setStarStates] = useState([
+    false,
+    false,
+    false,
+    false,
+    false,
+  ]);
   const [selectedCategory, setSelectedCategory] = useState([]);
   const [selectedCuisine, setSelectedCuisine] = useState([]);
 
@@ -79,6 +86,22 @@ const Home = () => {
     },
     // Add more recipes as needed
   ]);
+
+  const trendingItems = [
+    {
+      title: "Avocado Toast with Egg",
+      attributes: ["High-Protein", "10 mins"],
+    },
+    {
+      title: "Mango Berry Smoothie Bowl",
+      attributes: ["No Added Sugar", "5 mins"],
+    },
+    {
+      title: "Almond Flour Pancakes",
+      attributes: ["Low-Carb", "20 mins"],
+    },
+    // ... add more items as needed
+  ];
 
   const handleSearchBarClick = () => {
     setShowModal(true);
@@ -148,12 +171,14 @@ const Home = () => {
       ) : (
         <>
           <RecommendedForYou />
-          <TrendingNow />
+          <FlashCard title="Trending now" items={trendingItems} />
         </>
       )}
 
       <Modal visible={showModal} animationType="slide" transparent={true}>
-        <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <View
+          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+        >
           <OverlappingScreen>
             <OverlappingContent>
               <TouchableOpacity onPress={closeModal}>
@@ -182,7 +207,10 @@ const Home = () => {
               <OverlappingTitle>Rating</OverlappingTitle>
               <RatingContainer>
                 {starStates.map((isFilled, index) => (
-                  <TouchableOpacity key={index} onPress={() => handleStarClick(index)}>
+                  <TouchableOpacity
+                    key={index}
+                    onPress={() => handleStarClick(index)}
+                  >
                     <StarSVGIcon isFilled={isFilled} color="#9095A0" />
                   </TouchableOpacity>
                 ))}

@@ -5,6 +5,25 @@ import Onboarding from "react-native-onboarding-swiper";
 import { Button } from "react-native-elements";
 import { WalkthroughStyles } from "../components/styles";
 
+import {
+  StyledContainer,
+  InnerContainer,
+  PageTitle,
+  SubTitle,
+  StyledFormArea,
+  LoginContainer,
+  StyledInputLabel,
+  StyledButton,
+  StyledButton2,
+  StyledTextInput,
+  ButtonText,
+  ExtraView,
+  ExtraText,
+  TextLink,
+  TextLinkContent,
+  SlideContainer,
+} from "./../components/styles";
+
 const Walkthrough1 = ({ navigation }) => {
   const handleSignUp = () => {
     navigation.navigate("Signup");
@@ -33,6 +52,9 @@ const Walkthrough1 = ({ navigation }) => {
             buttonStyle={WalkthroughStyles.button}
             titleStyle={WalkthroughStyles.buttonText}
           />
+          <TextLink onPress={() => navigation.navigate("Home")}>
+            <TextLinkContent>Home</TextLinkContent>
+          </TextLink>
         </View>
       ),
       titleStyles: WalkthroughStyles.title,

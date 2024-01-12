@@ -45,7 +45,7 @@ const Walkthrough = ({ navigation }) => {
         <StyledButton onPress={() => navigation.navigate("Login")}>
           <ButtonText>Log In</ButtonText>
         </StyledButton>
-        <StyledButton onPress={() => navigation.navigate("Home")}>
+        <StyledButton onPress={() => navigation.navigate("TestHome")}>
           <ButtonText>Home (test)</ButtonText>
         </StyledButton>
       </InnerContainer>

@@ -51,7 +51,20 @@ const Home = () => {
     },
     // Add more recipes as needed
   ]);
-
+  const recommendedItems = [
+    {
+      title: "Creamy Tomato Basil Pasta",
+      attributes: ["Vegan", "25 mins"],
+    },
+    {
+      title: "Hearty Vegetable Stew",
+      attributes: ["Gluten-Free", "40 mins"],
+    },
+    {
+      title: "Spicy Black Bean Tacos",
+      attributes: ["Vegetarian", "15 mins"],
+    },
+  ];
   const trendingItems = [
     {
       title: "Avocado Toast with Egg",
@@ -65,7 +78,6 @@ const Home = () => {
       title: "Almond Flour Pancakes",
       attributes: ["Low-Carb", "20 mins"],
     },
-    // ... add more items as needed
   ];
 
   const handleSearchBarClick = () => {
@@ -106,8 +118,6 @@ const Home = () => {
       return [...prevSelectedCategories, category];
     });
   };
-
-  // Filter recipes based on selected categories
   const filteredRecipes = recipes.filter((recipe) =>
     selectedCategory.includes(recipe.category)
   );
@@ -115,13 +125,11 @@ const Home = () => {
   return (
     <StyledContainer>
       <SearchBarWithIcon onPress={handleSearchBarClick} />
-
-      {/* Conditionally render the FilteredRecipes component */}
       {selectedCategory.length > 0 ? (
         <FilteredRecipes recipes={filteredRecipes} />
       ) : (
         <>
-          <RecommendedForYou />
+          <FlashCard title="Recommended for you" items={recommendedItems} />
           <FlashCard title="Trending now" items={trendingItems} />
         </>
       )}

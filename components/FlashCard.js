@@ -112,7 +112,8 @@ const styles = StyleSheet.create({
   likeButton: {
     flexDirection: "row",
     marginTop: 8,
-    padding: 8,
+    paddingHorizontal: 10, // Increased horizontal padding for a wider button
+    paddingVertical: 8,
     backgroundColor: "#FFD1DC",
     borderRadius: 8,
     justifyContent: "center",
@@ -123,6 +124,7 @@ const styles = StyleSheet.create({
     marginLeft: 4,
     color: "#000",
     textAlign: "left",
+    paddingLeft: 6,
   },
   itemAttribute: {
     color: "gray",

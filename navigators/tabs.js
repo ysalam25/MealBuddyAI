@@ -47,6 +47,14 @@ const Tabs = () => {
         name="Home"
         component={Home}
         options={{
+          headerTitleAlign: "center",
+          headerTitleStyle: {
+            fontSize: 24,
+          },
+          headerStyle: {
+            top:30,
+            height: 80,
+          },
           tabBarIcon: ({ focused }) => (
             <View
               style={{
@@ -78,6 +86,13 @@ const Tabs = () => {
         name="Search"
         component={Search}
         options={{
+          headerTitleAlign: "center",
+          headerTitleStyle: {
+            fontSize: 28,
+          },
+          headerStyle: {
+            height: 100,
+          },
           tabBarIcon: ({ focused }) => (
             <View
               style={{
@@ -126,6 +141,13 @@ const Tabs = () => {
         name="Pantry"
         component={Pantry}
         options={{
+          headerTitleAlign: "center",
+          headerTitleStyle: {
+            fontSize: 28,
+          },
+          headerStyle: {
+            height: 100,
+          },
           tabBarIcon: ({ focused }) => (
             <View
               style={{
@@ -156,6 +178,13 @@ const Tabs = () => {
         name="Profile"
         component={Profile}
         options={{
+          headerTitleAlign: "center",
+          headerTitleStyle: {
+            fontSize: 28,
+          },
+          headerStyle: {
+            height: 100,
+          },
           tabBarIcon: ({ focused }) => (
             <View
               style={{

@@ -1,16 +1,16 @@
 import React from "react";
-import { StatusBar } from "expo-status-bar";
+import { StyledContainer } from "./../components/styles";
+import RecommendedForYou from "../components/RecommendedForYou";
+import TrendingNow from "../components/TrendingNow";
+import SearchBarWithIcon from "../components/SearchBarWithIcon";
+import { View, Text, Image, TouchableOpacity } from "react-native";
 
-import {
-  StyledContainer,
-} from "./../components/styles";
-
-
-import { SliderBox } from "react-native-image-slider-box";
-
-const Home = ({ }) => {
+const Home = () => {
   return (
     <StyledContainer>
+      <SearchBarWithIcon />
+      <RecommendedForYou />
+      <TrendingNow />
     </StyledContainer>
   );
 };

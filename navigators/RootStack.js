@@ -11,6 +11,9 @@ import Login from "./../pages/Login";
 import Signup from "./../pages/Signup";
 import Walkthrough from "./../pages/Walkthrough";
 
+// test home page
+import TestHome from "./../pages/TestHome";
+
 const Stack = createNativeStackNavigator();
 
 const RootStack = () => {
@@ -33,6 +36,7 @@ const RootStack = () => {
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Signup" component={Signup} />
         <Stack.Screen name="Walkthrough" component={Walkthrough} />
+        <Stack.Screen name="TestHome" component={TestHome} />
       </Stack.Navigator>
     </NavigationContainer>
   );

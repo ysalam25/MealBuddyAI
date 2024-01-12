@@ -22,19 +22,25 @@ import { Formik } from "formik";
 import { View } from "react-native";
 import { Colors } from "./../components/styles";
 
-const Signup = ({navigation}) => {
+const Signup = ({ navigation }) => {
   return (
     <StyledContainer>
       <StatusBar style="dark" />
       <InnerContainer>
-
         <LoginContainer>
           <SubTitle>Get Started</SubTitle>
 
           <Formik
-            initialValues={{ firstName: '', lastName: '', email: "", password: "", confirmPassword: ""}}
+            initialValues={{
+              firstName: "",
+              lastName: "",
+              email: "",
+              password: "",
+              confirmPassword: "",
+            }}
             onSubmit={(values) => {
               console.log(values);
+              navigation.navigate('DietaryPreferences'); 
             }}
           >
             {({ handleChange, handleBlur, handleSubmit, values }) => (
@@ -77,14 +83,17 @@ const Signup = ({navigation}) => {
                   value={values.confirmPassword}
                   secureTextEntry={true}
                 />
+
+                <StyledButton onPress={handleSubmit}> 
+                  <ButtonText>Get Started</ButtonText>
+                </StyledButton>
+
+            
               </StyledFormArea>
             )}
           </Formik>
 
-          <StyledButton>
-            <ButtonText>Get Started</ButtonText>
-          </StyledButton>
-
+         
           <ExtraView>
             <ExtraText> Have an account? </ExtraText>
             <TextLink onPress={() => navigation.navigate("Login")}>

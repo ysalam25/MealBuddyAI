@@ -12,7 +12,11 @@
     "@aws-amplify/react-native": "^1.0.5",
     "@react-native-async-storage/async-storage": "^1.21.0",
     "@react-native-community/netinfo": "^11.1.1",
+<<<<<<< HEAD
     "@react-navigation/bottom-tabs": "^6.5.11",
+=======
+    "@react-navigation/material-top-tabs": "^6.6.5",
+>>>>>>> 2dd7881a (pantry empty state)
     "@react-navigation/native": "^6.1.9",
     "@react-navigation/native-stack": "^6.9.17",
     "@react-navigation/stack": "^6.3.20",

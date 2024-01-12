@@ -9,6 +9,7 @@ import Login from "./../pages/Login";
 import Signup from "./../pages/Signup";
 import ForgotPassword from "./../pages/ForgotPassword";
 import NewPasswordScreen from "./../pages/NewPasswordScreen";
+<<<<<<< HEAD
 import Walkthrough1 from "./../pages/Walkthrough1";
 import Settings from "./../pages/Settings";
 import Tabs from "../navigators/tabs"; 
@@ -16,6 +17,12 @@ import ConfirmEmail from "./../pages/ConfirmEmail";
 import DietaryPreferences from "./../pages/DietaryPreferences";
 import LoginNewUser from "./../pages/LoginNewUser";
 import RecipeDetailScreen from "../pages/RecipeDetailScreen";
+=======
+
+// test home page
+import TestHome from "./../pages/TestHome";
+import Pantry from "./../pages/Pantry"
+>>>>>>> 2dd7881a (pantry empty state)
 
 const Stack = createNativeStackNavigator();
 
@@ -41,6 +48,7 @@ const RootStack = () => {
         options={{
           headerShown: false,
         }}
+<<<<<<< HEAD
       />
       <Stack.Screen
         name="Login"
@@ -60,6 +68,20 @@ const RootStack = () => {
         
       <Stack.Screen name="RecipeDetailScreen" component={RecipeDetailScreen} />
     </Stack.Navigator>
+=======
+        initialRouteName="Walkthrough"
+      >
+        <Stack.Screen name="Login" component={Login} />
+        <Stack.Screen name="Signup" component={Signup} />
+        <Stack.Screen name="Walkthrough" component={Walkthrough} />
+        <Stack.Screen name="ConfirmEmail" component={ConfirmEmail} />
+        <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
+        <Stack.Screen name="NewPasswordScreen" component={NewPasswordScreen} />
+        <Stack.Screen name="TestHome" component={TestHome} />
+        <Stack.Screen name="Pantry" component={Pantry} />
+      </Stack.Navigator>
+    </NavigationContainer>
+>>>>>>> 2dd7881a (pantry empty state)
   );
 };
 

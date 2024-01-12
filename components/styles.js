@@ -92,31 +92,32 @@ export const StyledTextInput = styled.TextInput`
 export const SearchTextInput = styled.TextInput`
   height: 40px;
   width: 90%;
-  border: 1px solid white;
+  border: 1px solid black;
   background-color: white;
-  border-radius: 12px;
   margin-right: 10px;
-  padding: 8px;
   flex: 1;
+  align-self: center;
 `;
 
 export const SearchTextInputWrapper = styled.View`
   height: 40px;
   width: 90%;
-
   background-color: white;
-  border-radius: 12px;
   margin-right: 10px;
+  border-radius: 12px;
   padding: 8px;
   flex: 1;
+  flex-direction: row;
 `;
-
-
 
 export const SearchTextInputIcon = styled.Image`
   height: 16px; 
   width: 16px; 
   margin-right: 8px; /* Add right margin to create space between the icon and the text */
+  align-self: center;
+  margin-left: 8px; 
+
+
 `;
 
 export const StyledInputLabel = styled.Text`

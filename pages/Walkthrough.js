@@ -47,9 +47,15 @@ const Walkthrough = ({ navigation }) => {
         <StyledButton onPress={() => navigation.navigate("Login")}>
           <ButtonText>Log In</ButtonText>
         </StyledButton>
+<<<<<<< HEAD
         <TextLink onPress={() => navigation.navigate("Home")}>
           <TextLinkContent>Home</TextLinkContent>
         </TextLink>
+=======
+        <StyledButton onPress={() => navigation.navigate("Pantry")}>
+          <ButtonText>Pantry (test)</ButtonText>
+        </StyledButton>
+>>>>>>> 2dd7881a (pantry empty state)
       </InnerContainer>
     </StyledContainer>
   );

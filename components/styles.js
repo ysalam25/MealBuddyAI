@@ -20,11 +20,8 @@ const { primary, secondary, link, lightdark, darkLight, background } = Colors;
 export const StyledContainer = styled.View`
   flex: 1;
   padding: 25px;
-  padding-top: ${StatusBarHeight + 30}px;
-  background-color: ${background};
-
-  align-items: center; 
-  justify-content: center;  
+  padding-top: ${StatusBarHeight + 20}px;
+  background-color: ${primary};
 `;
 
 

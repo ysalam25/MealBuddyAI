@@ -1,6 +1,4 @@
 import React from "react";
-
-import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { Colors } from "./../components/styles";
@@ -16,35 +14,41 @@ import NewPasswordScreen from "./../pages/NewPasswordScreen";
 
 // test home page
 import TestHome from "./../pages/TestHome";
+import Login from "../pages/Login";
+import Signup from "../pages/Signup";
+import Walkthrough from "../pages/Walkthrough";
+import Tabs from "../navigators/tabs"; // Ensure this import is correct
 
 const Stack = createNativeStackNavigator();
 
 const RootStack = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerStyle: {
-            backgroundColor: "transparent",
-          },
-          hearderTintColor: secondary,
-          headerTransparent: true,
-          headerTitle: "",
-          headerLeftContainterStyle: {
-            paddingLeft: 20,
-          },
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: "transparent",
+        },
+        headerTintColor: "#000", // Update the color as needed
+        headerTransparent: true,
+        headerTitle: "",
+        headerLeftContainerStyle: {
+          paddingLeft: 20,
+        },
+      }}
+      initialRouteName="Walkthrough"
+    >
+      {/* Tab Navigator as a screen */}
+      <Stack.Screen
+        name="Home"
+        component={Tabs}
+        options={{
+          headerShown: false, // Hide the header on Home tab
         }}
-        initialRouteName="Walkthrough"
-      >
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Signup" component={Signup} />
-        <Stack.Screen name="Walkthrough" component={Walkthrough} />
-        <Stack.Screen name="ConfirmEmail" component={ConfirmEmail} />
-        <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
-        <Stack.Screen name="NewPasswordScreen" component={NewPasswordScreen} />
-        <Stack.Screen name="TestHome" component={TestHome} />
-      </Stack.Navigator>
-    </NavigationContainer>
+      />
+      <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="Signup" component={Signup} />
+      <Stack.Screen name="Walkthrough" component={Walkthrough} />
+    </Stack.Navigator>
   );
 };
 

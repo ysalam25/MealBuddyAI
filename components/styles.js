@@ -139,6 +139,20 @@ export const StyledButton = styled.TouchableOpacity`
   width: 120px;
 `;
 
+export const StyledButton2 = styled.TouchableOpacity`
+  margin-top: 50px;
+  padding: 15px;
+  background-color: ${primary};
+  justify-content: center;
+  border-radius: 15px;
+  border: 2px solid ${secondary};
+  margin-vertical: 5px;
+  height: 50px;
+  width: 120px;
+`;
+
+
+
 export const SearchButton = styled.TouchableOpacity`
   height: 40px;
   width: 16px;

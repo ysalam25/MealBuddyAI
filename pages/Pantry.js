@@ -38,10 +38,6 @@ import { StyledContainer, InnerContainer, SearchContainer, SearchButton, SearchB
 import iconFilter from "../assets/icon-filter.png";
 import iconSearch from "../assets/icon-search.png"; 
 
-import iconCamera from "../assets/icon-add-camera.png"; 
-import iconPlus from "../assets/icon-add-plus.png"; 
-
-
 import imgEmptyPantry from "../assets/pantry-empty.png"; 
 const txtEmptyPantry = "Let's start by filling up your empty pantry. Click the plus button below to start.";
 
@@ -135,19 +131,7 @@ const Pantry = ({ navigation }) => {
         
         <AddItem isVisible={isModalVisible} onClose={toggleModal}>
 
-        <Text>Choose scanning preference</Text>
 
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 20 }}>
-          <TouchableOpacity style={{ alignItems: 'center' }}>
-            <Image source={iconCamera} style={{ width: 50, height: 50, marginBottom: 10 }} />
-            <Text>Scan with camera</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={{ alignItems: 'center' }}>
-            <Image source={iconPlus} style={{ width: 50, height: 50, marginBottom: 10 }} />
-            <Text>Enter details manually</Text>
-          </TouchableOpacity>
-        </View>
       </AddItem>
       
       

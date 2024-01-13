@@ -19,7 +19,7 @@ import {
 } from "../components/styles";
 
 import { Formik } from "formik";
-import { View } from "react-native";
+import { View, Text } from "react-native";
 import { Colors } from "../components/styles";
 import { Auth } from "@aws-amplify/auth";
 
@@ -38,7 +38,7 @@ const LoginNewUser = ({ navigation }) => {
       <StatusBar style="dark" />
       <InnerContainer>
         <LoginContainer>
-          <SubTitle>Login</SubTitle>
+          <SubTitle>LoginNew</SubTitle>
           <ExtraView>
             <ExtraText> No account? </ExtraText>
             <TextLink onPress={() => navigation.navigate("Signup")}>

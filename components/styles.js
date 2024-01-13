@@ -366,3 +366,30 @@ export const WalkthroughStyles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
+
+export const StyledSettingButton = styled.TouchableOpacity`
+  margin-top: 50px;
+  padding: 16px 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: stretch;
+  border-radius: 6px;
+  border: 1px solid #D1D5DB;
+  background: #F9FAFB;
+  height: 8%;
+  width: 100%;
+`;
+export const StyledSettingButtonText = styled.Text`
+  color: ${secondary};
+  font-size: 16px;
+  text-align: center;
+  fontWeight: bold;
+`;
+
+export const SettingTitle = styled.Text`
+  font-size: 18px;
+  text-align: left;
+  font-weight: bold;
+  padding: 10px;
+`;

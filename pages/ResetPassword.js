@@ -16,11 +16,11 @@ import {
   ExtraText,
   TextLink,
   TextLinkContent,
-} from "./../components/styles";
+} from "../components/styles";
 
 import { Formik } from "formik";
 import { View } from "react-native";
-import { Colors } from "./../components/styles";
+import { Colors } from "../components/styles";
 import { Auth } from "@aws-amplify/auth";
 
 const ForgotPassword = ({ navigation }) => {
@@ -28,11 +28,7 @@ const ForgotPassword = ({ navigation }) => {
         try {
           await Auth.forgotPassword(values.email); // Call the auth.forgotPassword function with the email value
           console.log("Password reset email sent successfully");
-          console.log(navigation.state);
-          navigation.navigate("NewPasswordScreen", {
-            email: values.email,
-            previousPage: navigation.state,
-          });
+          navigation.navigate("NewPasswordScreen",{email: values.email});
         } catch (error) {
           console.log("Error sending password reset email:", error);
         }
@@ -63,14 +59,6 @@ const ForgotPassword = ({ navigation }) => {
                   </StyledFormArea>
                 )}
               </Formik>
-    
-              <ExtraView>
-  {navigation && navigation.state && navigation.state.routeName === "Settings" ? (
-    <TextLink onPress={() => navigation.navigate("Login")}>
-      <TextLinkContent>Back to Log In</TextLinkContent>
-    </TextLink>
-  ) : null}
-</ExtraView>
             </LoginContainer>
           </InnerContainer>
         </StyledContainer>

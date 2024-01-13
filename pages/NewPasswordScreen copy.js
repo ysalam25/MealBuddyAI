@@ -24,7 +24,7 @@ import { Colors } from "./../components/styles";
 import { Auth } from "@aws-amplify/auth";
 
 const NewPasswordScreen = ({navigation, route}) => {
-    const { email, previousPage } = route.params;
+    const { email } = route.params;
     const handlePasswordReset = async (values) => {
         try {
           await Auth.forgotPasswordSubmit(
@@ -33,11 +33,7 @@ const NewPasswordScreen = ({navigation, route}) => {
             values.password
           ); 
           console.log("Password reset successful");
-          if (previousPage === "Login"){
-            navigation.navigate("Login");
-          }else{
-          navigation.navigate("Settings");
-          }
+          navigation.navigate("Login");
         } catch (error) {
           console.log("Error resetting password:", error);
         }
@@ -78,13 +74,12 @@ const NewPasswordScreen = ({navigation, route}) => {
                   </StyledFormArea>
                 )}
               </Formik>
+    
               <ExtraView>
-  {previousPage === "Login" && navigation ? (
-    <TextLink onPress={() => navigation.navigate("Login")}>
-      <TextLinkContent>Back to Log In</TextLinkContent>
-    </TextLink>
-  ) : null}
-</ExtraView>
+                <TextLink onPress={() => navigation.navigate("Login")}>
+                  <TextLinkContent>Back to Log In</TextLinkContent>
+                </TextLink>
+              </ExtraView>
             </LoginContainer>
           </InnerContainer>
         </StyledContainer>

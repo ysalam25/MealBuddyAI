@@ -1,0 +1,18 @@
+{
+    "0749017306216": {
+        "name": "Almond Milk - Original",
+        "brand": "Silk",
+		"ingredient": "Almond Milk",
+		"category": "Dairy Products",
+		"units": ["mLs", "cups", "oz", "L"]            
+        }
+
+    ,    
+    "0613008747688":{
+        "name": "Banana - Yellow",
+        "brand": "Dole",
+		"ingredient": "Bananas",
+		"category": "Fruit",
+		"units": []
+    }
+}

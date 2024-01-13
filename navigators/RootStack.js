@@ -22,7 +22,11 @@ import RecipeDetailScreen from "../pages/RecipeDetailScreen";
 // test home page
 import TestHome from "./../pages/TestHome";
 import Pantry from "./../pages/Pantry"
+<<<<<<< HEAD
 >>>>>>> 2dd7881a (pantry empty state)
+=======
+import EditItem from "./../pages/EditItem"
+>>>>>>> 65dc1ef0 (temp pantry page and add/scan items)
 
 const Stack = createNativeStackNavigator();
 
@@ -79,6 +83,8 @@ const RootStack = () => {
         <Stack.Screen name="NewPasswordScreen" component={NewPasswordScreen} />
         <Stack.Screen name="TestHome" component={TestHome} />
         <Stack.Screen name="Pantry" component={Pantry} />
+        <Stack.Screen name="EditItem" component={EditItem} />
+
       </Stack.Navigator>
     </NavigationContainer>
 >>>>>>> 2dd7881a (pantry empty state)

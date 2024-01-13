@@ -8,75 +8,60 @@ import {
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 
-const items = [
-  {
-    title: "Creamy Mushroom Pasta",
-    attributes: ["Vegan", "30 mins"],
-  },
-  {
-    title: "Fluffy Pancakes",
-    attributes: [],
-  },
-  {
-    title: "Blueberry Pancakes",
-    attributes: ["20 mins"],
-  },
-];
-
-const RecommendedItem = ({ title, attributes }) => {
+//flash cards
+const FlashCardItem = ({ item, navigation }) => {
   const [liked, setLiked] = useState(false);
 
   const toggleLike = () => {
     setLiked(!liked);
   };
+  const handlePress = () => {
+    navigation.navigate("RecipeDetailScreen", { recipe: item });
+  };
 
   return (
-    <View style={styles.itemContainer}>
-      <Text style={styles.itemTitle}>{title}</Text>
-      {attributes.map((attribute, index) => (
-        <View
-          key={index}
-          style={
-            attribute.toLowerCase() === "vegan"
-              ? styles.attributeVegan
-              : styles.attributeNormal
-          }
-        >
-          <Text style={styles.attributeText}>{attribute}</Text>
-        </View>
-      ))}
-      <TouchableOpacity style={styles.likeButton} onPress={toggleLike}>
-        <Text style={styles.likeButtonText}>
-          {liked ? "Added to Likes" : "Like"}
-        </Text>
-        <AntDesign name="heart" size={16} color={liked ? "red" : "black"} />
-      </TouchableOpacity>
+    <TouchableOpacity onPress={handlePress} activeOpacity={0.7}>
+      <View style={styles.itemContainer}>
+        <Text style={styles.itemTitle}>{item.title}</Text>
+        {item.attributes.map((attribute, attrIndex) => (
+          <Text key={attrIndex} style={styles.itemAttribute}>
+            {attribute}
+          </Text>
+        ))}
+        <TouchableOpacity style={styles.likeButton} onPress={toggleLike}>
+          <AntDesign
+            name={liked ? "heart" : "hearto"}
+            size={16}
+            color={liked ? "red" : "black"}
+          />
+          <Text style={styles.likeButtonText}>
+            {liked ? "Added to Likes" : "Like"}
+          </Text>
+        </TouchableOpacity>
+      </View>
+    </TouchableOpacity>
+  );
+};
+
+const FlashCard = ({ title, items, navigation }) => {
+  return (
+    <View style={styles.container}>
+      <View style={styles.headerContainer}>
+        <Text style={styles.header}>{title}</Text>
+        <Text style={styles.viewAllText}>View All</Text>
+      </View>
+      <ScrollView
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.itemsList}
+      >
+        {items.map((item, index) => (
+          <FlashCardItem key={index} item={item} navigation={navigation} />
+        ))}
+      </ScrollView>
     </View>
   );
 };
-const RecommendedForYou = () => (
-  <View style={styles.container}>
-    <View style={styles.headerContainer}>
-      <Text style={styles.header}>Recommended for you</Text>
-      <TouchableOpacity style={styles.viewAllButton}>
-        <Text style={styles.viewAllText}>View All</Text>
-      </TouchableOpacity>
-    </View>
-    <ScrollView
-      horizontal={true}
-      showsHorizontalScrollIndicator={false}
-      contentContainerStyle={styles.itemsList}
-    >
-      {items.map((item, index) => (
-        <RecommendedItem
-          key={index}
-          title={item.title}
-          attributes={item.attributes}
-        />
-      ))}
-    </ScrollView>
-  </View>
-);
 
 const styles = StyleSheet.create({
   container: {
@@ -130,26 +115,29 @@ const styles = StyleSheet.create({
     marginBottom: 4,
     textAlign: "left",
   },
-  itemAttribute: {
-    color: "gray",
-    fontSize: 14,
-    textAlign: "left",
-  },
   likeButton: {
     flexDirection: "row",
+    marginTop: 8,
+    paddingHorizontal: 10, // Increased horizontal padding for a wider button
     paddingVertical: 8,
-    paddingHorizontal: 16,
     backgroundColor: "#FFD1DC",
     borderRadius: 8,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 8,
     alignSelf: "flex-start",
   },
   likeButtonText: {
+    marginLeft: 4,
     color: "#000",
-    marginRight: 8,
     textAlign: "left",
+    paddingLeft: 6,
+  },
+  itemAttribute: {
+    color: "gray",
+    fontSize: 14,
+    textAlign: "left",
+    marginBottom: 4,
+    alignSelf: "flex-start",
   },
   attributeContainer: {
     backgroundColor: "#D3D3D3",
@@ -169,4 +157,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default RecommendedForYou;
+export default FlashCard;

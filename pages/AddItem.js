@@ -9,7 +9,7 @@ import iconCamera from "../assets/icon-add-camera.png";
 import iconPlus from "../assets/icon-add-plus.png";
 import { Colors } from "../components/styles";
 
-import barcodes from "../assets/data/barcode-scans.json";
+import barcodes from "../mockData/barcode-scans.json";
 
 const ItemScreen = styled.View`
   border: 2px solid ${Colors.primary};

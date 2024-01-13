@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Modal, StyleSheet } from 'react-native';
-import pantryData from '../assets/data/pantry.json';
+import pantryData from '../mockData/pantry.json';
 
 const SelectPantry = ({ onSelect }) => {
   const [modalVisible, setModalVisible] = useState(false);

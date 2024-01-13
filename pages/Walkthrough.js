@@ -1,5 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { StatusBar } from "expo-status-bar";
+import { Modal, View, Text, TouchableOpacity } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import Tabs from "../navigators/tabs";
 
 import {
   StyledContainer,
@@ -21,7 +24,6 @@ import {
 } from "./../components/styles";
 
 import { Formik } from "formik";
-import { View } from "react-native";
 import { Colors } from "./../components/styles";
 import { SliderBox } from "react-native-image-slider-box";
 

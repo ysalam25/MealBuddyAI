@@ -28,7 +28,7 @@ const Login = ({ navigation }) => {
     try {
       const user = await Auth.signIn(values.email, values.password);
       console.log("User logged in:", user);
-      navigation.navigate("Walkthrough");
+      navigation.navigate("Home");
     } catch (error) {
       console.log("Error logging in:", error);
     }

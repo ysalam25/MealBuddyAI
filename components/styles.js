@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import { View, Image, Text, TextInput, TouchableOpacity } from "react-native";
+import { View, Image, Text, TextInput, TouchableOpacity ,StyleSheet} from "react-native";
 import Constants from "expo-constants";
+import { SvgXml, Path, LinearGradient, Stop } from "react-native-svg";
 
 const StatusBarHeight = Constants.statusBarHeight;
 
@@ -21,7 +22,6 @@ export const StyledContainer = styled.View`
   padding: 25px;
   padding-top: ${StatusBarHeight + 30}px;
   background-color: ${background};
-
   align-items: center; 
   justify-content: center;  
 `;
@@ -189,7 +189,190 @@ export const TextLinkContent = styled.Text`
   font-size: 15px;
 `;
 
-export const ItemSectionText = styled.Text`
-  color: black;
-  font-size: 16px;
+/***Overlap screen for Filtered Search */
+export const OverlappingScreen = styled.View`
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: flex-end;
+  align-items: center;
 `;
+
+export const OverlappingContent = styled.View`
+  background-color: ${primary};
+  padding: 20px;
+  border-radius: 15px;
+  width: 90%;
+  height: 80%;
+  gap: 10%;
+`;
+
+export const OverlappingText = styled.Text`
+  color: ${darkLight};
+  font-size: 16px;
+  text-align: center;
+`;
+export const OverlappingTitle = styled.Text`
+  color: #231714;
+  text-align: left;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 10px;
+`;
+export const CloseButton = styled.TouchableOpacity`
+  margin-top: 20px;
+  padding: 10px;
+  background-color: ${secondary};
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  width: 80px;
+`;
+
+export const CloseButtonText = styled.Text`
+  color: ${primary};
+  font-size: 16px;
+  text-align: center;
+`;
+
+export const CategoryButton = styled.TouchableOpacity`
+  border-radius: 12px;
+  border: 1px solid #000;
+  background: ${(props) => (props.selected ? Colors.secondary : "#F9F6EE")};
+  padding: 10px;
+  margin: 5px;
+`;
+
+export const CategoryContainer = styled.View`
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: flex-start;
+`;
+
+export const CategoryButtonText = styled.Text`
+  color: #231714;
+  font-size: 12px;
+  text-align: center;
+`;
+
+export const FilterButton = styled.TouchableOpacity`
+  display: flex;
+  width: 125px;
+  padding: 7px 0px;
+  justify-content: center;
+  align-items: center;
+  background-color: #F9F6EE;
+  border-radius: 12px;
+  margin: 5px;
+  border: 1px solid #000;
+`;
+
+export const ApplyContainer = styled.View`
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  lign-content: center;
+  padding: 10px;
+`;
+
+export const CrossSVGIcon = () => (
+  <View style={stylesCrossSVG.container}>
+    <View style={[stylesCrossSVG.line, stylesCrossSVG.line1]} />
+    <View style={[stylesCrossSVG.line, stylesCrossSVG.line2]} />
+  </View>
+);
+
+const stylesCrossSVG = StyleSheet.create({
+  container: {
+    width: 28,
+    height: 26,
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  line: {
+    width: 28,
+    height: 3,
+    backgroundColor: "#231714",
+    marginVertical: 3,
+  },
+  line1: {
+    transform: [{ rotate: "45deg" }],
+    position: "absolute",
+  },
+  line2: {
+    transform: [{ rotate: "-45deg" }],
+    position: "absolute",
+  },
+});
+const starIconSvg = `
+  <svg xmlns="http://www.w3.org/2000/svg" width="37" height="36" viewBox="0 0 37 36">
+    <path d="M17.0184 3.30024C17.4421 2.28142 18.8854 2.28144 19.3092 3.30025L22.7946 11.6801C22.9732 12.1096 23.3772 12.4031 23.8408 12.4403L32.8876 13.1656C33.9876 13.2537 34.4335 14.6264 33.5955 15.3442L26.7028 21.2486C26.3496 21.5512 26.1952 22.0261 26.3032 22.4785L28.4091 31.3066C28.6651 32.38 27.4974 33.2282 26.5558 32.6531L18.8104 27.9223C18.4135 27.6799 17.9142 27.6799 17.5173 27.9223L9.77189 32.6531C8.83023 33.2282 7.6626 32.38 7.91862 31.3066L10.0245 22.4785C10.1324 22.0261 9.97811 21.5512 9.62483 21.2486L2.73212 15.3442C1.89411 14.6264 2.34011 13.2537 3.44001 13.1656L12.4868 12.4403C12.9505 12.4031 13.3544 12.1096 13.5331 11.6801L17.0184 3.30024Z"/>
+  </svg>
+`;
+export const StarSVGIcon = ({ isFilled, color }) => (
+    <View style={stylesStarSVG.container}>
+      <SvgXml xml={starIconSvg} width={37} height={36} fill={isFilled ? Colors.secondary : '#DEE1E6'} />
+    </View>
+  );
+
+const stylesStarSVG = StyleSheet.create({
+  container: {
+    width: 37,
+    height: 36,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+});
+
+export const RatingContainer = styled.View`
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  padding: 10px;
+`;
+
+export const WalkthroughStyles = StyleSheet.create({
+  wrapper: {
+    flex: 1,
+  },
+  slideContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  image: {
+    width: 200,
+    height: 200,
+    marginBottom: 0.6,
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: "500",
+    marginBottom: 10,
+    color: "#231714",
+  },
+  buttonContainer: {
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    gap: 10,
+    marginTop: 20,
+  },
+  button: {
+    marginHorizontal: 10,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    backgroundColor: '#F87D57',
+    borderRadius: 5,
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
+});

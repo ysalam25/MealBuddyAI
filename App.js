@@ -1,21 +1,20 @@
-import { StyleSheet, Text, View } from 'react-native';
-import { Amplify, API } from 'aws-amplify';
-import amplifyconfig from './src/amplifyconfiguration.json';
-import React, { useEffect } from 'react';
+import React, { useEffect } from "react";
+import { Amplify, API } from "aws-amplify";
+import amplifyconfig from "./src/amplifyconfiguration.json";
+import { NavigationContainer } from "@react-navigation/native";
+import RootStack from "./navigators/RootStack";
 
 Amplify.configure(amplifyconfig);
-
-import RootStack from './navigators/RootStack';
 
 export default function App() {
   useEffect(() => {
     // Function to make the API call
     const fetchDataFromApi = async () => {
       try {
-        const apiResponse = await API.get('mealbuddyapi', '/items');
-        console.log('API Response:', apiResponse);
+        const apiResponse = await API.get("mealbuddyapi", "/items");
+        console.log("API Response:", apiResponse);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       }
     };
 
@@ -24,6 +23,10 @@ export default function App() {
   }, []);
 
   return (
-    <RootStack/>
+   
+      <NavigationContainer>
+        <RootStack />
+      </NavigationContainer>
+  
   );
 }

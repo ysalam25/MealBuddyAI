@@ -1,6 +1,4 @@
 import React from "react";
-
-import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { Colors } from "./../components/styles";
@@ -13,11 +11,13 @@ import Walkthrough from "./../pages/Walkthrough";
 import ConfirmEmail from "./../pages/ConfirmEmail";
 import ForgotPassword from "./../pages/ForgotPassword";
 import NewPasswordScreen from "./../pages/NewPasswordScreen";
+import Walkthrough1 from "./../pages/Walkthrough1";
 
 // test home page
 import TestHome from "./../pages/TestHome";
 import Pantry from "./../pages/Pantry"
 import EditItem from "./../pages/EditItem"
+import Tabs from "../navigators/tabs"; // Ensure this import is correct
 
 const Stack = createNativeStackNavigator();
 
@@ -47,7 +47,6 @@ const RootStack = () => {
         <Stack.Screen name="TestHome" component={TestHome} />
         <Stack.Screen name="Pantry" component={Pantry} />
         <Stack.Screen name="EditItem" component={EditItem} />
-
       </Stack.Navigator>
     </NavigationContainer>
   );

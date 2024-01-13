@@ -17,6 +17,7 @@ import NewPasswordScreen from "./../pages/NewPasswordScreen";
 // test home page
 import TestHome from "./../pages/TestHome";
 import Pantry from "./../pages/Pantry"
+import EditItem from "./../pages/EditItem"
 
 const Stack = createNativeStackNavigator();
 
@@ -45,6 +46,8 @@ const RootStack = () => {
         <Stack.Screen name="NewPasswordScreen" component={NewPasswordScreen} />
         <Stack.Screen name="TestHome" component={TestHome} />
         <Stack.Screen name="Pantry" component={Pantry} />
+        <Stack.Screen name="EditItem" component={EditItem} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );

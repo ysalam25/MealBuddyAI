@@ -26,8 +26,6 @@ export const StyledContainer = styled.View`
   justify-content: center;  
 `;
 
-
-
 export const InnerContainer = styled.View`
   flex: 1;
   width: 100%;
@@ -47,7 +45,6 @@ export const LoginContainer = styled.View`
   justifycontent: center;
 `;
 
-
 export const SearchContainer = styled.View`
   justify-content: center;
   align-content: center;
@@ -56,8 +53,6 @@ export const SearchContainer = styled.View`
   width: 98%;
   position: relative;
 `;
-
-
 
 export const PageTitle = styled.Text`
   font-size: 18px;
@@ -151,8 +146,6 @@ export const StyledButton2 = styled.TouchableOpacity`
   width: 120px;
 `;
 
-
-
 export const SearchButton = styled.TouchableOpacity`
   height: 40px;
   width: 16px;
@@ -196,3 +189,7 @@ export const TextLinkContent = styled.Text`
   font-size: 15px;
 `;
 
+export const ItemSectionText = styled.Text`
+  color: black;
+  font-size: 16px;
+`;

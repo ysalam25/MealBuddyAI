@@ -24,7 +24,7 @@ import { Formik } from "formik";
 import { View } from "react-native";
 import { Colors } from "./../components/styles";
 import { Auth } from "aws-amplify";
-const Signup = ({navigation}) => {
+const Signup = ({ navigation }) => {
   const handleSignup = async (values) => {
     try {
       const { user } = await Auth.signUp({
@@ -37,12 +37,12 @@ const Signup = ({navigation}) => {
       });
       console.log("User signed up:", user);
       Alert.alert("Success", "Sign up successful. Please check your email for verification.");
-      navigation.navigate("ConfirmEmail",{ email: values.email });
+      navigation.navigate("ConfirmEmail", { email: values.email });
     } catch (error) {
       console.log("Error signing up:", error);
       Alert.alert("Error", "An error occurred while signing up. Please try again.");
     }
-  }; 
+  };
   return (
     <StyledContainer>
       <StatusBar style="dark" />
@@ -75,7 +75,7 @@ const Signup = ({navigation}) => {
                   onChangeText={handleChange("email")}
                   onBlur={handleBlur("email")}
                   value={values.email}
-                  //keyboardType="email-address"
+                //keyboardType="email-address"
                 />
                 <MyTextInput
                   placeholder="Password"
@@ -105,6 +105,9 @@ const Signup = ({navigation}) => {
             <TextLink onPress={() => navigation.navigate("Login")}>
               <TextLinkContent>Log In</TextLinkContent>
             </TextLink>
+            <StyledButton onPress={() => navigation.navigate("DietaryPreferences")}>
+              <ButtonText>Go to Dietary Preferences</ButtonText>
+            </StyledButton>
           </ExtraView>
         </LoginContainer>
       </InnerContainer>

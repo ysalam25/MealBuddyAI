@@ -15,6 +15,7 @@ import Tabs from "../navigators/tabs";
 import ConfirmEmail from "./../pages/ConfirmEmail";
 import DietaryPreferences from "./../pages/DietaryPreferences";
 import LoginNewUser from "./../pages/LoginNewUser";
+import RecipeDetailScreen from "../pages/RecipeDetailScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -25,7 +26,7 @@ const RootStack = () => {
         headerStyle: {
           backgroundColor: "transparent",
         },
-        headerTintColor: "#000", // Update the color as needed
+        headerTintColor: "#000",
         headerTransparent: true,
         headerTitle: "",
         headerLeftContainerStyle: {
@@ -34,7 +35,6 @@ const RootStack = () => {
       }}
       initialRouteName="Walkthrough1"
     >
-      {/* Tab Navigator as a screen */}
       <Stack.Screen
         name="Home"
         component={Tabs}
@@ -58,6 +58,7 @@ const RootStack = () => {
       <Stack.Screen name="DietaryPreferences" component={DietaryPreferences} />
       <Stack.Screen name="LoginNewUser" component={LoginNewUser} />
         
+      <Stack.Screen name="RecipeDetailScreen" component={RecipeDetailScreen} />
     </Stack.Navigator>
   );
 };

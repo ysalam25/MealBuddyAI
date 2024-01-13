@@ -8,36 +8,42 @@ import {
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
 
-const FlashCardItem = ({ item }) => {
+//flash cards
+const FlashCardItem = ({ item, navigation }) => {
   const [liked, setLiked] = useState(false);
 
   const toggleLike = () => {
     setLiked(!liked);
   };
+  const handlePress = () => {
+    navigation.navigate("RecipeDetailScreen", { recipe: item });
+  };
 
   return (
-    <View style={styles.itemContainer}>
-      <Text style={styles.itemTitle}>{item.title}</Text>
-      {item.attributes.map((attribute, attrIndex) => (
-        <Text key={attrIndex} style={styles.itemAttribute}>
-          {attribute}
-        </Text>
-      ))}
-      <TouchableOpacity style={styles.likeButton} onPress={toggleLike}>
-        <AntDesign
-          name={liked ? "heart" : "hearto"}
-          size={16}
-          color={liked ? "red" : "black"}
-        />
-        <Text style={styles.likeButtonText}>
-          {liked ? "Added to Likes" : "Like"}
-        </Text>
-      </TouchableOpacity>
-    </View>
+    <TouchableOpacity onPress={handlePress} activeOpacity={0.7}>
+      <View style={styles.itemContainer}>
+        <Text style={styles.itemTitle}>{item.title}</Text>
+        {item.attributes.map((attribute, attrIndex) => (
+          <Text key={attrIndex} style={styles.itemAttribute}>
+            {attribute}
+          </Text>
+        ))}
+        <TouchableOpacity style={styles.likeButton} onPress={toggleLike}>
+          <AntDesign
+            name={liked ? "heart" : "hearto"}
+            size={16}
+            color={liked ? "red" : "black"}
+          />
+          <Text style={styles.likeButtonText}>
+            {liked ? "Added to Likes" : "Like"}
+          </Text>
+        </TouchableOpacity>
+      </View>
+    </TouchableOpacity>
   );
 };
 
-const FlashCard = ({ title, items }) => {
+const FlashCard = ({ title, items, navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.headerContainer}>
@@ -50,7 +56,7 @@ const FlashCard = ({ title, items }) => {
         contentContainerStyle={styles.itemsList}
       >
         {items.map((item, index) => (
-          <FlashCardItem key={index} item={item} />
+          <FlashCardItem key={index} item={item} navigation={navigation} />
         ))}
       </ScrollView>
     </View>
@@ -112,7 +118,8 @@ const styles = StyleSheet.create({
   likeButton: {
     flexDirection: "row",
     marginTop: 8,
-    padding: 8,
+    paddingHorizontal: 10, // Increased horizontal padding for a wider button
+    paddingVertical: 8,
     backgroundColor: "#FFD1DC",
     borderRadius: 8,
     justifyContent: "center",
@@ -123,6 +130,7 @@ const styles = StyleSheet.create({
     marginLeft: 4,
     color: "#000",
     textAlign: "left",
+    paddingLeft: 6,
   },
   itemAttribute: {
     color: "gray",

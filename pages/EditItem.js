@@ -120,7 +120,7 @@ const EditItem = () => {
 
             <View style={{flexDirection: 'row'}}>
                 <StyledButton onPress={() => handleContinue()} style={{ marginRight: 10 }}>
-                    <ButtonText>Continue</ButtonText>
+                    <ButtonText>Add</ButtonText>
                 </StyledButton>
 
                 <StyledButton2 onPress={() => handleCancel()} style={{ marginLeft: 10 }}>

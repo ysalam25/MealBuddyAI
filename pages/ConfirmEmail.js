@@ -32,7 +32,7 @@ const ConfirmEmail = ({ navigation , route}) => {
     try {
       await Auth.confirmSignUp(email, values.verificationCode);
       Alert.alert("Success", "Email verification successful. You can now log in.");
-      navigation.navigate("Login");
+      navigation.navigate("LoginNewUser");
     } catch (error) {
       console.log("Error verifying email:", error);
       Alert.alert("Error", "An error occurred while verifying your email. Please try again.");

@@ -13,6 +13,11 @@ import NewPasswordScreen from "./../pages/NewPasswordScreen";
 import Walkthrough1 from "./../pages/Walkthrough1";
 import Settings from "./../pages/Settings";
 import Tabs from "../navigators/tabs"; 
+import ConfirmEmail from "./../pages/ConfirmEmail";
+import ForgotPassword from "./../pages/ForgotPassword";
+import NewPasswordScreen from "./../pages/NewPasswordScreen";
+import DietaryPreferences from "./../pages/DietaryPreferences";
+import LoginNewUser from "./../pages/LoginNewUser";
 
 const Stack = createNativeStackNavigator();
 
@@ -53,6 +58,12 @@ const RootStack = () => {
       <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
       <Stack.Screen name="NewPasswordScreen" component={NewPasswordScreen} />
       <Stack.Screen name="Settings" component={Settings} />
+        <Stack.Screen name="ConfirmEmail" component={ConfirmEmail} />
+        <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
+        <Stack.Screen name="NewPasswordScreen" component={NewPasswordScreen} />
+        <Stack.Screen name="DietaryPreferences" component={DietaryPreferences} />
+        <Stack.Screen name="LoginNewUser" component={LoginNewUser} />
+        
     </Stack.Navigator>
   );
 };

@@ -99,6 +99,9 @@ const Signup = ({navigation}) => {
             <TextLink onPress={() => navigation.navigate("Login")}>
               <TextLinkContent>Log In</TextLinkContent>
             </TextLink>
+            <StyledButton onPress={() => navigation.navigate("DietaryPreferences")}>
+              <ButtonText>Go to Dietary Preferences</ButtonText>
+            </StyledButton>
           </ExtraView>
         </LoginContainer>
       </InnerContainer>

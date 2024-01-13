@@ -12,10 +12,11 @@ import ConfirmEmail from "./../pages/ConfirmEmail";
 import ForgotPassword from "./../pages/ForgotPassword";
 import NewPasswordScreen from "./../pages/NewPasswordScreen";
 import Walkthrough1 from "./../pages/Walkthrough1";
+import RecipeDetailScreen from "../pages/RecipeDetailScreen";
 
 // test home page
 import TestHome from "./../pages/TestHome";
-import Tabs from "../navigators/tabs"; // Ensure this import is correct
+import Tabs from "../navigators/tabs";
 
 const Stack = createNativeStackNavigator();
 
@@ -26,7 +27,7 @@ const RootStack = () => {
         headerStyle: {
           backgroundColor: "transparent",
         },
-        headerTintColor: "#000", // Update the color as needed
+        headerTintColor: "#000",
         headerTransparent: true,
         headerTitle: "",
         headerLeftContainerStyle: {
@@ -35,12 +36,11 @@ const RootStack = () => {
       }}
       initialRouteName="Walkthrough1"
     >
-      {/* Tab Navigator as a screen */}
       <Stack.Screen
         name="Home"
         component={Tabs}
         options={{
-          headerShown: false, // Hide the header on Home tab
+          headerShown: false,
         }}
       />
       <Stack.Screen name="Login" component={Login} />
@@ -49,6 +49,7 @@ const RootStack = () => {
       <Stack.Screen name="ConfirmEmail" component={ConfirmEmail} />
       <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
       <Stack.Screen name="NewPasswordScreen" component={NewPasswordScreen} />
+      <Stack.Screen name="RecipeDetailScreen" component={RecipeDetailScreen} />
     </Stack.Navigator>
   );
 };

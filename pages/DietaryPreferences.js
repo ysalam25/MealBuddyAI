@@ -78,7 +78,7 @@ const DietaryPreferences = ({ navigation }) => {
         onSubmit={(values) => {
           console.log(values);
           updateUserDietaryPreferences(values.dietaryPreferences);
-          navigation.navigate('LoginNewUser');
+          navigation.navigate("Home");
         }}
         
       >

@@ -38,21 +38,25 @@ const Settings = ({ navigation }) => {
     try {
       await Auth.signOut();
       console.log("Sign out successful");
-      navigation.navigate("Login"); // Navigate to the login page
+
+      navigation.reset({
+        index: 0,
+        routes: [{ name: "Login" }],
+      });
     } catch (error) {
       console.log("Error signing out:", error);
     }
   };
   return (
-  <StyledContainer>
-    <SettingTitle>Settings</SettingTitle>
-    <StyledSettingButton onPress={handleResetPassword}>
-      <StyledSettingButtonText>Reset Password</StyledSettingButtonText>
-    </StyledSettingButton>
-    <StyledSettingButton onPress={handleLogout}>
-      <StyledSettingButtonText>Logout</StyledSettingButtonText>
-    </StyledSettingButton>
-  </StyledContainer>
+    <StyledContainer>
+      <SettingTitle>Settings</SettingTitle>
+      <StyledSettingButton onPress={handleResetPassword}>
+        <StyledSettingButtonText>Reset Password</StyledSettingButtonText>
+      </StyledSettingButton>
+      <StyledSettingButton onPress={handleLogout}>
+        <StyledSettingButtonText>Logout</StyledSettingButtonText>
+      </StyledSettingButton>
+    </StyledContainer>
   );
 };
 

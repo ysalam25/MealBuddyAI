@@ -12,8 +12,7 @@ import ForgotPassword from "./../pages/ForgotPassword";
 import NewPasswordScreen from "./../pages/NewPasswordScreen";
 import Walkthrough1 from "./../pages/Walkthrough1";
 import Settings from "./../pages/Settings";
-// test home page
-import Tabs from "../navigators/tabs"; // Ensure this import is correct
+import Tabs from "../navigators/tabs"; 
 
 const Stack = createNativeStackNavigator();
 
@@ -38,10 +37,16 @@ const RootStack = () => {
         name="Home"
         component={Tabs}
         options={{
-          headerShown: false, // Hide the header on Home tab
+          headerShown: false,
         }}
       />
-      <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen
+        name="Login"
+        component={Login}
+        options={({ route }) => ({
+          headerShown: !route.params?.loggedOut,
+        })}
+      />
       <Stack.Screen name="Signup" component={Signup} />
       <Stack.Screen name="Walkthrough1" component={Walkthrough1} />
       <Stack.Screen name="ConfirmEmail" component={ConfirmEmail} />

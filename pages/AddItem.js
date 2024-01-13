@@ -98,7 +98,6 @@ const AddItem = ({ isVisible, onClose }) => {
         <Text style={styles.mainText}>x</Text>
       </TouchableOpacity>
             <Text style={styles.mainText}>Choose scanning preference</Text>
-
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 40 }}>
               <TouchableOpacity style={styles.inputButtons} onPress={handleScanWithCamera}>
                 <Image source={iconCamera} style={{ width: 30, height: 30, marginBottom: 10 }} />

@@ -19,7 +19,6 @@ import TestHome from "./../pages/TestHome";
 import Tabs from "../navigators/tabs";
 import Pantry from "./../pages/Pantry"
 import EditItem from "./../pages/EditItem"
-import Tabs from "../navigators/tabs"; // Ensure this import is correct
 
 const Stack = createNativeStackNavigator();
 

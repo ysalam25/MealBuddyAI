@@ -24,9 +24,8 @@ const StatusBarHeight = Constants.statusBarHeight;
 const PantryScreen = styled.View`
   border: 2px solid ${Colors.background};
   width: 100%;
-  height: 80%;
+  height: 70%;
   align-items: center;
-  flex: 1;
 `;
 
 const ImageWrapper = styled.View`
@@ -41,7 +40,7 @@ const ImageWrapper = styled.View`
 
 const styles = StyleSheet.create({
   text: {
-    marginTop: 10, // Adjust the margin top to move it higher up
+    marginTop: 60, // Adjust the margin top to move it higher up
     fontSize: 16, // Adjust the font size as needed
     width: '50%',
     textAlign: 'center',
@@ -99,11 +98,7 @@ const Pantry = ({ navigation }) => {
 
         <StyledButton onPress={toggleModal} style={{ width: 50, marginTop: 10, borderRadius: 10 }}><ButtonText>+</ButtonText></StyledButton>
         
-        <AddItem isVisible={isModalVisible} onClose={toggleModal}>
-
-
-      </AddItem>
-      
+        <AddItem isVisible={isModalVisible} onClose={toggleModal}></AddItem>
       
       </InnerContainer>
     </StyledContainer>

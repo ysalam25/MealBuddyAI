@@ -66,7 +66,6 @@ const AddItem = ({ isVisible, onClose }) => {
       visible={isVisible}
       onRequestClose={onClose}
     >
-
       {scannedData ? (
         <View style={styles.modalContainer}>
 
@@ -92,11 +91,10 @@ const AddItem = ({ isVisible, onClose }) => {
         </View>
       ) : (
         <View style={styles.modalContainer}>
-
           <View style={[styles.popupContent, { backgroundColor: 'darkgray' }]}>
           <TouchableOpacity onPress={onClose} style={styles.closeButton}>
-        <Text style={styles.mainText}>x</Text>
-      </TouchableOpacity>
+            <Text style={styles.mainText}>x</Text>
+          </TouchableOpacity>
             <Text style={styles.mainText}>Choose scanning preference</Text>
             <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 40 }}>
               <TouchableOpacity style={styles.inputButtons} onPress={handleScanWithCamera}>
@@ -114,12 +112,10 @@ const AddItem = ({ isVisible, onClose }) => {
       )}
       {hasPermission && !scannedData && (
         <BarCodeScanner
-          onBarCodeScanned={({ data }) => setScannedData(data)}
+          onBarCodeScanned={({ data }) => {console.log("Scanned Barcode Data:", data);setScannedData(data)}}
           style={StyleSheet.absoluteFillObject}
         />
       )}
-
-
 
     </Modal>
   );
@@ -151,7 +147,6 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 20,
     border: 'black',
-    
   },
   mainText:{  
     fontSize: 24, 

@@ -9,7 +9,6 @@ import iconFilter from "../assets/icon-filter.png";
 import iconSearch from "../assets/icon-search.png"; 
 
 import imgEmptyPantry from "../assets/pantry-empty.png"; 
-const txtEmptyPantry = "Let's start by filling up your empty pantry. Click the plus button below to start.";
 
 import { Colors } from "../components/styles";
 import AddItem from "./AddItem";
@@ -18,6 +17,7 @@ import AddItem from "./AddItem";
 
 const screenHeight = Dimensions.get('window').height 
 const screenWidth = Dimensions.get('window').width;
+const txtEmptyPantry = "Let's start by filling up your empty pantry. Click the plus button below to start.";
 
 const StatusBarHeight = Constants.statusBarHeight;
 
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
 });
 
 
-const Pantry = ({ navigation }) => {
+const Pantry = () => {
 
   // ----- search items functionality -----
   const [searchText, setSearchText] = useState("");

@@ -50,6 +50,9 @@ const Walkthrough = ({ navigation }) => {
         <TextLink onPress={() => navigation.navigate("Home")}>
           <TextLinkContent>Home</TextLinkContent>
         </TextLink>
+        <StyledButton onPress={() => navigation.navigate("Pantry")}>
+          <ButtonText>Pantry (test)</ButtonText>
+        </StyledButton>
       </InnerContainer>
     </StyledContainer>
   );

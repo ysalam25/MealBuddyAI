@@ -16,6 +16,8 @@ import ConfirmEmail from "./../pages/ConfirmEmail";
 import DietaryPreferences from "./../pages/DietaryPreferences";
 import LoginNewUser from "./../pages/LoginNewUser";
 import RecipeDetailScreen from "../pages/RecipeDetailScreen";
+import Pantry from "./../pages/Pantry"
+import EditItem from "./../pages/EditItem"
 
 const Stack = createNativeStackNavigator();
 
@@ -57,8 +59,10 @@ const RootStack = () => {
       <Stack.Screen name="Settings" component={Settings} />
       <Stack.Screen name="DietaryPreferences" component={DietaryPreferences} />
       <Stack.Screen name="LoginNewUser" component={LoginNewUser} />
-        
       <Stack.Screen name="RecipeDetailScreen" component={RecipeDetailScreen} />
+      <Stack.Screen name="Pantry" component={Pantry} />
+      <Stack.Screen name="EditItem" component={EditItem} />
+
     </Stack.Navigator>
   );
 };

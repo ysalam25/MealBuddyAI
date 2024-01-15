@@ -55,7 +55,18 @@ export const SearchContainer = styled.View`
   position: relative;
 `;
 
+export const SearchButton = styled.TouchableOpacity`
+  height: 40px;
+  width: 16px;
+  justify-content: center;
+  align-self: center;
+`;
 
+export const SearchButtonIcon = styled.Image`
+  height: 16px; 
+  width: 16px; 
+  align-self: center;
+`;
 
 export const PageTitle = styled.Text`
   font-size: 18px;
@@ -136,20 +147,6 @@ export const StyledButton = styled.TouchableOpacity`
   width: 120px;
 `;
 
-export const SearchButton = styled.TouchableOpacity`
-  height: 40px;
-  width: 16px;
-  justify-content: center;
-  align-self: center;
-`;
-
-export const SearchButtonIcon = styled.Image`
-  height: 16px; 
-  width: 16px; 
-  align-self: center;
-`;
-
-
 export const ButtonText = styled.Text`
   color: ${primary};
   font-size: 16px;
@@ -177,6 +174,11 @@ export const TextLink = styled.TouchableOpacity`
 export const TextLinkContent = styled.Text`
   color: ${link};
   font-size: 15px;
+`;
+
+export const ItemSectionText = styled.Text`
+  color: black;
+  font-size: 16px;
 `;
 
 /***Overlap screen for Filtered Search */

@@ -41,7 +41,7 @@ const Settings = ({ navigation }) => {
 
       navigation.reset({
         index: 0,
-        routes: [{ name: "Login" }],
+        routes: [{ name: "Walkthrough1" }],
       });
     } catch (error) {
       console.log("Error signing out:", error);

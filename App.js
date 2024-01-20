@@ -3,8 +3,11 @@ import { Amplify, API } from "aws-amplify";
 import amplifyconfig from "./src/amplifyconfiguration.json";
 import { NavigationContainer } from "@react-navigation/native";
 import RootStack from "./navigators/RootStack";
+import { TamaguiProvider, Text, Button } from 'tamagui';
+import tamaguiConfig from './tamagui.config'
 
 Amplify.configure(amplifyconfig);
+
 
 export default function App() {
   useEffect(() => {
@@ -23,10 +26,13 @@ export default function App() {
   }, []);
 
   return (
-   
+    <TamaguiProvider config={tamaguiConfig}>
       <NavigationContainer>
+        <Text>
+          Hello World
+        </Text>
         <RootStack />
       </NavigationContainer>
-  
+    </TamaguiProvider>
   );
 }

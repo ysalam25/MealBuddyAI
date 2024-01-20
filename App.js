@@ -75,33 +75,40 @@
 //       );
 // }
 
-import React, { useState, useEffect } from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import * as Font from 'expo-font';
-import { TamaguiProvider, Text, Button } from 'tamagui';
-import tamaguiConfig from './tamagui.config';
-import RootStack from "./navigators/RootStack";
+// function App() {
+//   const [loaded] = useFonts({
+//     Inter: require("@tamagui/font-inter/otf/Inter-Medium.otf"),
+//     InterBold: require("@tamagui/font-inter/otf/Inter-Bold.otf"),
+//   });
 
-export default function App() {
-  const [fontsLoaded, setFontsLoaded] = useState(false);
+//   useEffect(() => {
+//     if (loaded) {
+//       // can hide splash screen here
+//     }
+//   }, [loaded])
 
-  useEffect(() => {
-    async function loadFonts() {
-      await Font.loadAsync({
-        // Load the Inter font
-        'Inter': require("@tamagui/font-inter/otf/Inter-Medium.otf"),
-        'InterBold': require("@tamagui/font-inter/otf/Inter-Bold.otf"),
-      });
-      setFontsLoaded(true);
-    }
+//   if (!loaded) {
+//     return null;
+//   }
 
-    loadFonts();
-  }, []);
+//   return <MyApp />
+// }
 
-  if (!fontsLoaded) {
-    return null; // Or any loading component
-  }
+// export default () => (
+//   <>
+//     <H1>Heading 1</H1>
+//     <H2>Heading 2</H2>
+//     <H3>Heading 3</H3>
+//     <H4>Heading 4</H4>
+//     <H5>Heading 5</H5>
+//     <H6>Heading 6</H6>
+//     <Heading>Heading</Heading>
+//   </>
+// )
 
+
+
+export default function Demo() {
   return (
     <TamaguiProvider config={tamaguiConfig}>
       <NavigationContainer>

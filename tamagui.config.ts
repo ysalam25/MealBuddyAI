@@ -1,12 +1,13 @@
-import { Text, View } from 'react-native'
 import { createTamagui } from 'tamagui' 
 import { config as configBase } from '@tamagui/config'
 import { config } from '@tamagui/config/v2'
+
 
 const tamaguiConfig = createTamagui(config)
 // this makes typescript properly type everything based on the config
 
 type Conf = typeof tamaguiConfig
+
 
 declare module 'tamagui' {
 

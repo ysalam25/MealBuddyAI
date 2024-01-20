@@ -1,11 +1,11 @@
-//  import React, { useEffect } from "react";
-// // import { Amplify, API } from "aws-amplify";
-//  //import amplifyconfig from "./src/amplifyconfiguration.json";
-//  import { NavigationContainer } from "@react-navigation/native";
-//  import RootStack from "./navigators/RootStack";
-// import { TamaguiProvider, Text, Button } from 'tamagui';
-// import tamaguiConfig from './tamagui.config'
-// import { H1, H2, H3, H4, H5, H6, Heading } from 'tamagui'
+ import React, { useEffect } from "react";
+// import { Amplify, API } from "aws-amplify";
+ //import amplifyconfig from "./src/amplifyconfiguration.json";
+ import { NavigationContainer } from "@react-navigation/native";
+ import RootStack from "./navigators/RootStack";
+import { TamaguiProvider, Text, Button } from 'tamagui';
+import tamaguiConfig from './tamagui.config'
+import { H1, H2, H3, H4, H5, H6, Heading } from 'tamagui'
 
 
 // // Amplify.configure(amplifyconfig);
@@ -107,13 +107,29 @@
 // )
 
 
+// export default function Demo() {
+//   return (
+//     <TamaguiProvider config={tamaguiConfig}>
+//       <NavigationContainer style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+//         <Text>
+//           Hello World HEHE
+//         </Text>
+//         <Button onPress={() => console.log('Hello!')}>
+//           Hello World
+//         </Button>
+//         <RootStack />
+//       </NavigationContainer>
+//     </TamaguiProvider>
+//   );
+// }
+
 
 export default function Demo() {
   return (
     <TamaguiProvider config={tamaguiConfig}>
       <NavigationContainer>
         <Text>
-          Hello World
+          Hello World HEHE
         </Text>
         <Button onPress={() => console.log('Hello!')}>
           Hello World

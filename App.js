@@ -1,4 +1,4 @@
-// import React, { useEffect } from "react";
+ import React, { useEffect } from "react";
 // import { Amplify, API } from "aws-amplify";
  //import amplifyconfig from "./src/amplifyconfiguration.json";
  import { NavigationContainer } from "@react-navigation/native";
@@ -37,26 +37,24 @@ import { H1, H2, H3, H4, H5, H6, Heading } from 'tamagui'
 //   );
 // }
 
-import { useFonts } from 'expo-font'
+// function App() {
+//   const [loaded] = useFonts({
+//     Inter: require("@tamagui/font-inter/otf/Inter-Medium.otf"),
+//     InterBold: require("@tamagui/font-inter/otf/Inter-Bold.otf"),
+//   });
 
-function App() {
-  const [loaded] = useFonts({
-    Inter: require("@tamagui/font-inter/otf/Inter-Medium.otf"),
-    InterBold: require("@tamagui/font-inter/otf/Inter-Bold.otf"),
-  });
+//   useEffect(() => {
+//     if (loaded) {
+//       // can hide splash screen here
+//     }
+//   }, [loaded])
 
-  useEffect(() => {
-    if (loaded) {
-      // can hide splash screen here
-    }
-  }, [loaded])
+//   if (!loaded) {
+//     return null;
+//   }
 
-  if (!loaded) {
-    return null;
-  }
-
-  return <MyApp />
-}
+//   return <MyApp />
+// }
 
 // export default () => (
 //   <>

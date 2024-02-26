@@ -1,11 +1,16 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { BarCodeScanner } from 'expo-barcode-scanner';
+import { Camera } from 'expo-camera';
 
-const ScanBarcode = ({ onClose }) => {
+const ScanBarcode = ({ onClose }: { onClose: any }) => {
   return (
     <View style={styles.container}>
-      <BarCodeScanner style={StyleSheet.absoluteFillObject} />
+      <Camera 
+        style={StyleSheet.absoluteFillObject} 
+        onBarCodeScanned={(barcode) => {
+          console.log(barcode);
+        }}
+      />
 
       <TouchableOpacity onPress={onClose} style={styles.closeButton}>
         <Text>Close</Text>

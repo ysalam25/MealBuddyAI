@@ -16,19 +16,19 @@ import {
   ExtraText,
   TextLink,
   TextLinkContent,
-} from "./../components/styles";
+} from "../components/styles";
 
 import { Formik } from "formik";
 import { View, Alert } from "react-native";
-import { Colors } from "./../components/styles";
+import { Colors } from "../components/styles";
 import { Auth } from "@aws-amplify/auth";
 
-const ConfirmEmail = ({ navigation , route}) => {
+const ConfirmEmail = ({ navigation , route}: { navigation: any, route: any }) => {
   const { email } = route.params;
   const [resendLoading, setResendLoading] = useState(false);
   
 
-  const handleVerification = async (values) => {
+  const handleVerification = async (values: { verificationCode: string }) => {
     try {
       await Auth.confirmSignUp(email, values.verificationCode);
       Alert.alert("Success", "Email verification successful. You can now log in.");
@@ -68,6 +68,7 @@ const ConfirmEmail = ({ navigation , route}) => {
               <StyledFormArea>
                 <ExtraText>Please enter the verification code we sent to your email address to complete the verification process.</ExtraText>
                 <MyTextInput
+                label = "Verification Code"
                   placeholder="Verification Code"
                   placeholderTextColor={darkLight}
                   onChangeText={handleChange("verificationCode")}
@@ -102,7 +103,7 @@ const ConfirmEmail = ({ navigation , route}) => {
 // Colors
 const { primary, darkLight } = Colors;
 
-const MyTextInput = ({ label, ...props }) => {
+const MyTextInput = ({ label, ...props }: { label: string, [key: string]: any }) => {
   return (
     <View>
       <StyledTextInput {...props} />

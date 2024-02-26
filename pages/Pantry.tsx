@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styled from "styled-components";
+import styled from "styled-components/native";
 import { StatusBar, Dimensions, Image, Text, StyleSheet, View, TouchableOpacity} from 'react-native';
 import Constants from "expo-constants";
 
@@ -21,7 +21,7 @@ const txtEmptyPantry = "Let's start by filling up your empty pantry. Click the p
 
 const StatusBarHeight = Constants.statusBarHeight;
 
-const PantryScreen = styled.View`
+const PantryScreen = styled(View)`
   border: 2px solid ${Colors.background};
   width: 100%;
   height: 80%;
@@ -29,7 +29,7 @@ const PantryScreen = styled.View`
   flex: 1;
 `;
 
-const ImageWrapper = styled.View`
+const ImageWrapper = styled(View)`
   border: 2px solid ${Colors.background};
   width: 40%;
   height: 52%;
@@ -76,7 +76,7 @@ const Pantry = () => {
             <SearchTextInput
               placeholder="Search items"
               value={searchText}
-              onChangeText={(text) => setSearchText(text)}
+              onChangeText={(text: string) => setSearchText(text)}
             />            
           </SearchTextInputWrapper>
           <SearchButton onPress={handleSearch}>

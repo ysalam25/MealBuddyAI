@@ -2,29 +2,29 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Modal, StyleSheet } from 'react-native';
 import pantryData from '../assets/data/pantry.json';
 
-const SelectPantry = ({ onSelect }) => {
+const SelectPantry = ({ onSelect }: { onSelect: (pantry: any) => void }) => {
   const [modalVisible, setModalVisible] = useState(false);
-  const [selectedPantry, setSelectedPantry] = useState(null);
-
-  const openModal = () => {
-    setModalVisible(true);
-  };
+  const [selectedPantry, setSelectedPantry] = useState(null); // Add this line
 
   const closeModal = () => {
     setModalVisible(false);
   };
 
-  const handlePantrySelection = (pantry) => {
+  const handlePantrySelection = (pantry: any) => {
     setSelectedPantry(pantry);
     onSelect && onSelect(pantry); // Call the onSelect callback with the selected pantry
     closeModal();
+  };
+
+  const openModal = () => {
+    setModalVisible(true);
   };
 
   return (
     <View style={styles.container}>
       <TouchableOpacity onPress={openModal}>
         <Text style={styles.dropdownButton}>
-          {selectedPantry ? selectedPantry.label : 'Select Pantry'}
+          {selectedPantry ? (selectedPantry as any).label : 'Select Pantry'}
         </Text>
       </TouchableOpacity>
 

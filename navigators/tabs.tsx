@@ -9,7 +9,7 @@ import addRecipe from "../pages/AddRecipe";
 
 const Tab = createBottomTabNavigator();
 
-const CustomTabBarButton = ({ children, onPress }) => (
+const CustomTabBarButton = ({ children, onPress }: { children: React.ReactNode, onPress: any }) => (
   <TouchableOpacity
     style={{
       top: 5,
@@ -132,7 +132,7 @@ const Tabs = () => {
               }}
             />
           ),
-          tabBarButton: (props) => <CustomTabBarButton {...props} />,
+          tabBarButton: (props) => <CustomTabBarButton {...props} onPress={() => {}} />,
         }}
       />
 

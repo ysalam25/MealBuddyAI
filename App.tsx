@@ -11,7 +11,7 @@ export default function App() {
     // Function to make the API call
     const fetchDataFromApi = async () => {
       try {
-        const apiResponse = await API.get("mealbuddyapi", "/items");
+        const apiResponse = await API.get("mealbuddyapi", "/items", {});
         console.log("API Response:", apiResponse);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -23,10 +23,8 @@ export default function App() {
   }, []);
 
   return (
-   
       <NavigationContainer>
         <RootStack />
       </NavigationContainer>
-  
   );
 }

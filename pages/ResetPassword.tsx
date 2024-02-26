@@ -23,16 +23,26 @@ import { View } from "react-native";
 import { Colors } from "../components/styles";
 import { Auth } from "@aws-amplify/auth";
 
-const ForgotPassword = ({ navigation }) => {
-    const handleForgotPassword = async (values) => {
-        try {
-          await Auth.forgotPassword(values.email); // Call the auth.forgotPassword function with the email value
-          console.log("Password reset email sent successfully");
-          navigation.navigate("NewPasswordScreen",{email: values.email});
-        } catch (error) {
-          console.log("Error sending password reset email:", error);
-        }
-      };
+interface MyTextInputProps {
+  label: string;
+  placeholder: string;
+  placeholderTextColor: string;
+  onChangeText: (text: string) => void;
+  onBlur: (e: any) => void;
+  value: string;
+  keyboardType: string;
+}
+
+const ForgotPassword = ({ navigation }: { navigation: any }) => {
+    const handleForgotPassword = async (values: { email: string }) => {
+      try {
+        await Auth.forgotPassword(values.email); // Call the auth.forgotPassword function with the email value
+        console.log("Password reset email sent successfully");
+        navigation.navigate("NewPasswordScreen", { email: values.email });
+      } catch (error) {
+        console.log("Error sending password reset email:", error);
+      }
+    };
     return (
         <StyledContainer>
           <StatusBar style="dark" />
@@ -46,6 +56,7 @@ const ForgotPassword = ({ navigation }) => {
                 {({ handleChange, handleBlur, handleSubmit, values }) => (
                   <StyledFormArea>
                     <MyTextInput
+                      label="Email Address"
                       placeholder="Email Address"
                       placeholderTextColor={darkLight}
                       onChangeText={handleChange("email")}
@@ -68,7 +79,7 @@ const ForgotPassword = ({ navigation }) => {
 //Colors
 const { primary, darkLight } = Colors;
 
-const MyTextInput = ({ label, ...props }) => {
+const MyTextInput = ({ label, ...props }: MyTextInputProps) => {
   return (
     <View>
       <StyledTextInput {...props} />

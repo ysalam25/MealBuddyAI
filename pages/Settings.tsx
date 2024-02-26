@@ -1,7 +1,4 @@
 import React from "react";
-import { StatusBar } from "expo-status-bar";
-import TouchableOpacity from "react-native-gesture-handler";
-
 import {
   StyledContainer,
   InnerContainer,
@@ -24,9 +21,8 @@ import {
   StyledSettingButtonText,
 } from "../components/styles";
 
-import { SliderBox } from "react-native-image-slider-box";
 import { Auth } from "aws-amplify";
-const Settings = ({ navigation }) => {
+const Settings = ({ navigation }: { navigation: any }) => {
   // Logic for resetting password
   const handleResetPassword = () => {
     console.log("Reset Password");

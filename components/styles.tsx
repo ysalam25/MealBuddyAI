@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components/native";
 import { View, Image, Text, TextInput, TouchableOpacity ,StyleSheet} from "react-native";
 import Constants from "expo-constants";
 import { SvgXml, Path, LinearGradient, Stop } from "react-native-svg";
@@ -244,7 +244,7 @@ export const CloseButtonText = styled.Text`
 export const CategoryButton = styled.TouchableOpacity`
   border-radius: 12px;
   border: 1px solid #000;
-  background: ${(props) => (props.selected ? Colors.secondary : "#F9F6EE")};
+  background: ${(props: { selected: any; }) => (props.selected ? Colors.secondary : "#F9F6EE")};
   padding: 10px;
   margin: 5px;
 `;
@@ -313,16 +313,22 @@ const stylesCrossSVG = StyleSheet.create({
     position: "absolute",
   },
 });
+
+// Define an interface for your component's props
+interface StarSVGIconProps {
+  isFilled: boolean;
+}
+
 const starIconSvg = `
   <svg xmlns="http://www.w3.org/2000/svg" width="37" height="36" viewBox="0 0 37 36">
     <path d="M17.0184 3.30024C17.4421 2.28142 18.8854 2.28144 19.3092 3.30025L22.7946 11.6801C22.9732 12.1096 23.3772 12.4031 23.8408 12.4403L32.8876 13.1656C33.9876 13.2537 34.4335 14.6264 33.5955 15.3442L26.7028 21.2486C26.3496 21.5512 26.1952 22.0261 26.3032 22.4785L28.4091 31.3066C28.6651 32.38 27.4974 33.2282 26.5558 32.6531L18.8104 27.9223C18.4135 27.6799 17.9142 27.6799 17.5173 27.9223L9.77189 32.6531C8.83023 33.2282 7.6626 32.38 7.91862 31.3066L10.0245 22.4785C10.1324 22.0261 9.97811 21.5512 9.62483 21.2486L2.73212 15.3442C1.89411 14.6264 2.34011 13.2537 3.44001 13.1656L12.4868 12.4403C12.9505 12.4031 13.3544 12.1096 13.5331 11.6801L17.0184 3.30024Z"/>
   </svg>
 `;
-export const StarSVGIcon = ({ isFilled, color }) => (
-    <View style={stylesStarSVG.container}>
-      <SvgXml xml={starIconSvg} width={37} height={36} fill={isFilled ? Colors.secondary : '#DEE1E6'} />
-    </View>
-  );
+export const StarSVGIcon: React.FC<StarSVGIconProps> = ({ isFilled }) => (
+  <View style={stylesStarSVG.container}>
+    <SvgXml xml={starIconSvg} width={37} height={36} fill={isFilled ? Colors.secondary : '#DEE1E6'} />
+  </View>
+);
 
 const stylesStarSVG = StyleSheet.create({
   container: {
@@ -358,6 +364,11 @@ export const WalkthroughStyles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "500",
     marginBottom: 10,
+    color: "#231714",
+  },
+  subtitle: {
+    fontSize: 16,
+    textAlign: "center",
     color: "#231714",
   },
   buttonContainer: {

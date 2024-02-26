@@ -1,10 +1,8 @@
 import React from "react";
-import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
-import slides from "../components/slides";
+import { View, Text, Image } from "react-native";
 import Onboarding from "react-native-onboarding-swiper";
 import { Button } from "react-native-elements";
 import { WalkthroughStyles } from "../components/styles";
-
 import {
   StyledContainer,
   InnerContainer,
@@ -22,9 +20,16 @@ import {
   TextLink,
   TextLinkContent,
   SlideContainer,
-} from "./../components/styles";
+} from "../components/styles";
+import slides from "../components/slides";
+import { StackNavigationProp } from "@react-navigation/stack"; // Assuming you're using a stack navigator
 
-const Walkthrough1 = ({ navigation }) => {
+// Define the props type, including the navigation prop
+type Props = {
+  navigation: StackNavigationProp<any>; // Replace 'any' with your navigation state type if available
+};
+
+const Walkthrough1: React.FC<Props> = ({ navigation }) => {
   const handleSignUp = () => {
     navigation.navigate("Signup");
   };
@@ -34,21 +39,21 @@ const Walkthrough1 = ({ navigation }) => {
   };
 
   const renderSlides = () => {
-    return slides.map((slide) => ({
+    return slides.map((slide, index) => ({
       backgroundColor: "#F9F6EE",
-      image: <Image source={slide.image} style={WalkthroughStyles.image} />,
+      image: <Image source={slide.image} style={WalkthroughStyles.image} key={index} />,
       title: slide.title,
       subtitle: (
-        <View style={WalkthroughStyles.buttonContainer}>
+        <View style={WalkthroughStyles.buttonContainer} key={slide.title}>
           <Button
             title={"Sign Up"}
-            onPress={() => handleSignUp()}
+            onPress={handleSignUp}
             buttonStyle={WalkthroughStyles.button}
             titleStyle={WalkthroughStyles.buttonText}
           />
           <Button
             title={"Log In"}
-            onPress={() => handleLogIn()}
+            onPress={handleLogIn}
             buttonStyle={WalkthroughStyles.button}
             titleStyle={WalkthroughStyles.buttonText}
           />
@@ -56,8 +61,8 @@ const Walkthrough1 = ({ navigation }) => {
             <TextLinkContent>Home</TextLinkContent>
           </TextLink>
           <TextLink onPress={() => navigation.navigate("Pantry")}>
-          <TextLinkContent>Pantry (test)</TextLinkContent>
-        </TextLink>
+            <TextLinkContent>Pantry (test)</TextLinkContent>
+          </TextLink>
         </View>
       ),
       titleStyles: WalkthroughStyles.title,

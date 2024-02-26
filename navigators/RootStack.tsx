@@ -1,23 +1,23 @@
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import { Colors } from "./../components/styles";
+import { Colors } from "../components/styles";
 const { primary, secondary } = Colors;
 
 //pages
-import Login from "./../pages/Login";
-import Signup from "./../pages/Signup";
-import ForgotPassword from "./../pages/ForgotPassword";
-import NewPasswordScreen from "./../pages/NewPasswordScreen";
-import Walkthrough1 from "./../pages/Walkthrough1";
-import Settings from "./../pages/Settings";
-import Tabs from "../navigators/tabs"; 
-import ConfirmEmail from "./../pages/ConfirmEmail";
-import DietaryPreferences from "./../pages/DietaryPreferences";
-import LoginNewUser from "./../pages/LoginNewUser";
+import Login from "../pages/Login";
+import Signup from "../pages/Signup";
+import ForgotPassword from "../pages/ForgotPassword";
+import NewPasswordScreen from "../pages/NewPasswordScreen";
+import Walkthrough1 from "../pages/Walkthrough1";
+import Settings from "../pages/Settings";
+import Tabs from "./tabs"; 
+import ConfirmEmail from "../pages/ConfirmEmail";
+import DietaryPreferences from "../pages/DietaryPreferences";
+import LoginNewUser from "../pages/LoginNewUser";
 import RecipeDetailScreen from "../pages/RecipeDetailScreen";
-import Pantry from "./../pages/Pantry"
-import EditItem from "./../pages/EditItem"
+import Pantry from "../pages/Pantry"
+import EditItem from "../pages/EditItem"
 
 const Stack = createNativeStackNavigator();
 
@@ -31,9 +31,6 @@ const RootStack = () => {
         headerTintColor: "#000",
         headerTransparent: true,
         headerTitle: "",
-        headerLeftContainerStyle: {
-          paddingLeft: 20,
-        },
       }}
       initialRouteName="Walkthrough1"
     >
@@ -48,7 +45,7 @@ const RootStack = () => {
         name="Login"
         component={Login}
         options={({ route }) => ({
-          headerShown: !route.params?.loggedOut,
+          headerShown: !(route.params as { loggedOut?: boolean })?.loggedOut,
         })}
       />
       <Stack.Screen name="Signup" component={Signup} />

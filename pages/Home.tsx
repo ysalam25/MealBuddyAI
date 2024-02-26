@@ -12,14 +12,14 @@ import {
   CrossSVGIcon,
   StarSVGIcon,
   RatingContainer,
-} from "./../components/styles";
+} from "../components/styles";
 import RecommendedForYou from "../components/RecommendedForYou";
 import TrendingNow from "../components/TrendingNow";
 import FlashCard from "../components/FlashCard";
 import SearchBarWithIcon from "../components/SearchBarWithIcon";
 import FilteredRecipes from "../components/FilteredRecipies";
 import { Modal, View, TouchableOpacity } from "react-native";
-import filterData from "../mockData/filterData";
+import filterData from "../mockData/filterData.json";
 import { useNavigation } from "@react-navigation/native";
 
 const Home = () => {
@@ -32,8 +32,8 @@ const Home = () => {
     false,
     false,
   ]);
-  const [selectedCategory, setSelectedCategory] = useState([]);
-  const [selectedCuisine, setSelectedCuisine] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState<string[]>([]);
+  const [selectedCuisine, setSelectedCuisine] = useState<string[]>([]);
 
   // Mock data for recipes
   const [recipes, setRecipes] = useState([
@@ -157,7 +157,7 @@ const Home = () => {
     setShowModal(false);
   };
 
-  const handleStarClick = (index) => {
+  const handleStarClick = (index: number) => {
     setStarStates((prevStars) => {
       const updatedStars = prevStars.map((_, i) => i <= index);
       return updatedStars;
@@ -175,9 +175,9 @@ const Home = () => {
     setShowModal(false);
   };
 
-  const handleCategoryButtonClick = (category, heading) => {
+  const handleCategoryButtonClick = (category: string, heading: string) => {
     if (heading === "Category") {
-      setSelectedCategory((prevSelectedCategories) => {
+      setSelectedCategory((prevSelectedCategories: string[]) => {
         const isCategorySelected = prevSelectedCategories.includes(category);
 
         if (isCategorySelected) {
@@ -265,7 +265,7 @@ const Home = () => {
                     key={index}
                     onPress={() => handleStarClick(index)}
                   >
-                    <StarSVGIcon isFilled={isFilled} color="#9095A0" />
+                    <StarSVGIcon isFilled={isFilled} />
                   </TouchableOpacity>
                 ))}
               </RatingContainer>

@@ -16,16 +16,16 @@ import {
   ExtraText,
   TextLink,
   TextLinkContent,
-} from "./../components/styles";
+} from "../components/styles";
 
 import { Formik } from "formik";
 import { View } from "react-native";
-import { Colors } from "./../components/styles";
+import { Colors } from "../components/styles";
 import { Auth } from "@aws-amplify/auth";
 
-const NewPasswordScreen = ({navigation, route}) => {
+const NewPasswordScreen = ({navigation, route}: {navigation: any, route: any}) => {
     const { email, previousPage } = route.params;
-    const handlePasswordReset = async (values) => {
+    const handlePasswordReset = async (values: { verificationCode: string, password: string }) => {
         try {
           await Auth.forgotPasswordSubmit(
             email,
@@ -51,20 +51,43 @@ const NewPasswordScreen = ({navigation, route}) => {
               <SubTitle>Reset your password</SubTitle>
     
               <Formik
-                initialValues={{ name: "", email: "", password: "", confirmPassword: ""}}
+                initialValues={{ name: "", email: "", password: "", confirmPassword: "", verificationCode: ""}}
                 onSubmit={handlePasswordReset}
               >
                 {({ handleChange, handleBlur, handleSubmit, values }) => (
                   <StyledFormArea>
+                    <Formik
+                      initialValues={{ name: "", email: "", password: "", confirmPassword: "", verificationCode: "" }}
+                      onSubmit={handlePasswordReset}
+                    >
+                      {({ handleChange, handleBlur, handleSubmit, values }) => (
+                        <StyledFormArea>
+                          <MyTextInput
+                            label={"Verification Code"}
+                            placeholder="Verification Code"
+                            placeholderTextColor={darkLight}
+                            onChangeText={handleChange("verificationCode")}
+                            onBlur={handleBlur("verificationCode")}
+                            value={values.verificationCode}
+                            keyboardType="numeric"
+                          />
+                          <MyTextInput
+                            label="Password"
+                            placeholder="Password"
+                            placeholderTextColor={darkLight}
+                            onChangeText={handleChange("password")}
+                            onBlur={handleBlur("password")}
+                            value={values.password}
+                            secureTextEntry={true}
+                          />
+                          <StyledButton onPress={handleSubmit}>
+                            <ButtonText>Submit</ButtonText>
+                          </StyledButton>
+                        </StyledFormArea>
+                      )}
+                    </Formik>
                     <MyTextInput
-                        placeholder="Verification Code"
-                        placeholderTextColor={darkLight}
-                        onChangeText={handleChange("verificationCode")}
-                        onBlur={handleBlur("verificationCode")}
-                        value={values.verificationCode}
-                        keyboardType="numeric"
-                    />
-                    <MyTextInput
+                        label = "Password"
                         placeholder="Password"
                         placeholderTextColor={darkLight}
                         onChangeText={handleChange("password")}
@@ -94,7 +117,7 @@ const NewPasswordScreen = ({navigation, route}) => {
 //Colors
 const { primary, darkLight } = Colors;
 
-const MyTextInput = ({ label, ...props }) => {
+const MyTextInput = ({ label, ...props }: { label: string, [key: string]: any }) => {
   return (
     <View>
       <StyledTextInput {...props} />

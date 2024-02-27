@@ -4,7 +4,7 @@ import { useRoute, useNavigation } from '@react-navigation/native';
 
 import { StyledContainer, InnerContainer, StyledButton, ButtonText, SubTitle, StyledButton2} from "../components/styles";
 import { Colors } from "../components/styles";
-import styled from "styled-components";
+import styled from "styled-components/native";
 import SelectPantry from './SelectPantry';
 
 const ItemScreen = styled.View`
@@ -55,18 +55,18 @@ const EditItem = () => {
     const [inputValue, setInputValue] = useState('');
     const [selectedPantry, setSelectedPantry] = useState(null);
 
-    const handleInputChange = (text) => {
+    const handleInputChange = (text: string) => {
       const numericValue = text.replace(/[^0-9]/g, '');      
       setInputValue(numericValue);
     };
 
-    const handlePantrySelection = (pantry) => {
-        setSelectedPantry(pantry);
-      };
+    const handlePantrySelection = (pantry: any) => {
+      setSelectedPantry(pantry);
+    };
 
-      const handleContinue = () => {
-        // Implement logic for continue button (currently does nothing)
-      };
+    const handleContinue = () => {
+      // Implement logic for continue button (currently does nothing)
+    };
     
       const handleCancel = () => {
         // Close the current screen and return to the previous screen
@@ -86,17 +86,17 @@ const EditItem = () => {
             </ItemField>  
 
             <ItemField>
-                <ItemFieldKey><Text style={{  fontSize: '16px'}}>Category</Text></ItemFieldKey>
-                <ItemFieldValue><ItemTextInput value={data.category} returnKeyType="done"></ItemTextInput></ItemFieldValue>
+              <ItemFieldKey><Text style={{  fontSize: 16 }}>Category</Text></ItemFieldKey>
+              <ItemFieldValue><ItemTextInput value={data.category} returnKeyType="done"></ItemTextInput></ItemFieldValue>
             </ItemField> 
 
             <ItemField>
-                <ItemFieldKey><Text style={{  fontSize: '16px'}}>Units</Text></ItemFieldKey>
-                <ItemFieldValue><ItemTextInput placeholder="e.g. mLs, cups" returnKeyType="done"></ItemTextInput></ItemFieldValue>
+              <ItemFieldKey><Text style={{ fontSize: 16 }}>Units</Text></ItemFieldKey>
+              <ItemFieldValue><ItemTextInput placeholder="e.g. mLs, cups" returnKeyType="done"></ItemTextInput></ItemFieldValue>
             </ItemField>
 
             <ItemField>
-                <ItemFieldKey><Text style={{ fontSize: '16px'}}>Quantity</Text></ItemFieldKey>
+                <ItemFieldKey><Text style={{ fontSize: 16}}>Quantity</Text></ItemFieldKey>
                 <ItemFieldValue>    
                     <ItemTextInput
                         placeholder='e.g. 2'
@@ -109,10 +109,10 @@ const EditItem = () => {
             </ItemField>
 
             <ItemField>
-                <ItemFieldKey><Text style={{  fontSize: '16px'}}>Pantry</Text></ItemFieldKey>
+                <ItemFieldKey><Text style={{  fontSize: 16}}>Pantry</Text></ItemFieldKey>
                 <ItemFieldValue>
                 
-                    <SelectPantry placeholder="Select Pantry" onSelect={handlePantrySelection} />
+                    <SelectPantry  onSelect={handlePantrySelection} />
 
                 
                 </ItemFieldValue>

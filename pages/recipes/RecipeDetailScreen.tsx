@@ -16,7 +16,7 @@ const saveToCookbook = () => {
   // Add your logic for saving the recipe here
 };
 
-const RecipeDetailScreen = ({ route }) => {
+const RecipeDetailScreen = ({ route }: { route: any }) => {
   const { recipe } = route.params;
   const [liked, setLiked] = useState(false);
   const [saved, setSaved] = useState(false);

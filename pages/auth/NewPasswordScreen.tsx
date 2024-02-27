@@ -16,11 +16,11 @@ import {
   ExtraText,
   TextLink,
   TextLinkContent,
-} from "../components/styles";
+} from "../../components/styles";
 
 import { Formik } from "formik";
 import { View } from "react-native";
-import { Colors } from "../components/styles";
+import { Colors } from "../../components/styles";
 import { Auth } from "@aws-amplify/auth";
 
 const NewPasswordScreen = ({navigation, route}: {navigation: any, route: any}) => {

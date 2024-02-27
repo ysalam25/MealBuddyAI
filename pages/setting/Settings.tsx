@@ -19,7 +19,7 @@ import {
   SlideContainer,
   StyledSettingButton,
   StyledSettingButtonText,
-} from "../components/styles";
+} from "../../components/styles";
 
 import { Auth } from "aws-amplify";
 const Settings = ({ navigation }: { navigation: any }) => {

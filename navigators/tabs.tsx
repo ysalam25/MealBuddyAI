@@ -2,10 +2,10 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 
 import Home from "../pages/Home";
-import Settings from "../pages/Settings";
+import Settings from "../pages/setting/Settings";
 import Pantry from "../pages/Pantry";
-import Profile from "../pages/Profile";
-import addRecipe from "../pages/AddRecipe";
+import Profile from "../pages/profile/Profile";
+import addRecipe from "../pages/recipes/AddRecipe";
 
 const Tab = createBottomTabNavigator();
 

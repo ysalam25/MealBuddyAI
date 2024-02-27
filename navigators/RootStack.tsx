@@ -5,17 +5,17 @@ import { Colors } from "../components/styles";
 const { primary, secondary } = Colors;
 
 //pages
-import Login from "../pages/Login";
-import Signup from "../pages/Signup";
-import ForgotPassword from "../pages/ForgotPassword";
-import NewPasswordScreen from "../pages/NewPasswordScreen";
-import Walkthrough1 from "../pages/Walkthrough1";
-import Settings from "../pages/Settings";
+import Login from "../pages/auth/Login";
+import Signup from "../pages/auth/Signup";
+import ForgotPassword from "../pages/auth/ForgotPassword";
+import NewPasswordScreen from "../pages/auth/NewPasswordScreen";
+import Walkthrough1 from "../pages/walkthrough/Walkthrough";
+import Settings from "../pages/setting/Settings";
 import Tabs from "./tabs"; 
-import ConfirmEmail from "../pages/ConfirmEmail";
-import DietaryPreferences from "../pages/DietaryPreferences";
-import LoginNewUser from "../pages/LoginNewUser";
-import RecipeDetailScreen from "../pages/RecipeDetailScreen";
+import ConfirmEmail from "../pages/auth/ConfirmEmail";
+import DietaryPreferences from "../pages/profile/DietaryPreferences";
+import LoginNewUser from "../pages/auth/LoginNewUser";
+import RecipeDetailScreen from "../pages/recipes/RecipeDetailScreen";
 import Pantry from "../pages/Pantry"
 import EditItem from "../pages/EditItem"
 

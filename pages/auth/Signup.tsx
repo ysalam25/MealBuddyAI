@@ -18,7 +18,7 @@ import {
   TextLink,
   TextLinkContent,
   Colors,
-} from "../components/styles";
+} from "../../components/styles";
 
 // Define the types for your component's props
 type SignupProps = {
@@ -72,7 +72,30 @@ const Signup: React.FC<SignupProps> = ({ navigation }) => {
                 onBlur={handleBlur("name")}
                 value={values.name}
               />
-              {/* Other text inputs */}
+              <MyTextInput
+                  placeholder="Email Address"
+                  placeholderTextColor={Colors.darkLight}
+                  onChangeText={handleChange("email")}
+                  onBlur={handleBlur("email")}
+                  value={values.email}
+                  //keyboardType="email-address"
+                />
+                <MyTextInput
+                  placeholder="Password"
+                  placeholderTextColor={Colors.darkLight}
+                  onChangeText={handleChange("password")}
+                  onBlur={handleBlur("password")}
+                  value={values.password}
+                  secureTextEntry={true}
+                />
+                <MyTextInput
+                  placeholder="Confirm Password"
+                  placeholderTextColor={Colors.darkLight}
+                  onChangeText={handleChange("confirmPassword")}
+                  onBlur={handleBlur("confirmPassword")}
+                  value={values.confirmPassword}
+                  secureTextEntry={true}
+                />
               <StyledButton onPress={handleSubmit as any}>
                 <ButtonText>Get Started</ButtonText>
               </StyledButton>

@@ -19,7 +19,7 @@ import {
   ExtraText,
   TextLink,
   TextLinkContent,
-} from "../components/styles";
+} from "../../components/styles";
 import MultiSelect from 'react-native-multiple-select';
 
 const validationSchema = Yup.object().shape({
@@ -33,7 +33,7 @@ const validationSchema = Yup.object().shape({
     .required('Allergies is required'),
 });
 
-const DietaryPreferences = ({ navigation }) => {
+const DietaryPreferences = ({ navigation }: { navigation: any }) => {
   const [selectedPreferences, setSelectedPreferences] = useState([]);
   const [dietaryRestrictions, setDietaryRestrictions] = useState([]);
   const [nutritionGoals, setNutritionGoals] = useState([]);
@@ -51,7 +51,7 @@ const DietaryPreferences = ({ navigation }) => {
 
   ];
 
-  const updateUserDietaryPreferences = async (dietaryPreferences) => {
+  const updateUserDietaryPreferences = async (dietaryPreferences: string[]) => {
     try {
       const user = await Auth.currentAuthenticatedUser();
       await Auth.updateUserAttributes(user, {
@@ -77,7 +77,7 @@ const DietaryPreferences = ({ navigation }) => {
         validationSchema={validationSchema}
         onSubmit={(values) => {
           console.log(values);
-          updateUserDietaryPreferences(values.dietaryPreferences);
+          updateUserDietaryPreferences(values.dietaryRestrictions); // Fix: Change 'values.dietaryPreferences' to 'values.dietaryRestrictions'
           navigation.navigate("Home");
         }}
         

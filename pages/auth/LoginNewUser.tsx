@@ -16,19 +16,19 @@ import {
   ExtraText,
   TextLink,
   TextLinkContent,
-} from "../components/styles";
+} from "../../components/styles";
 
 import { Formik } from "formik";
-import { View } from "react-native";
-import { Colors } from "../components/styles";
+import { View, Text } from "react-native";
+import { Colors } from "../../components/styles";
 import { Auth } from "@aws-amplify/auth";
 
-const Login = ({ navigation }: { navigation: any }) => {
+const LoginNewUser = ({ navigation }: { navigation: any }) => {
   const handleLogin = async (values: { email: string, password: string }) => {
     try {
       const user = await Auth.signIn(values.email, values.password);
       console.log("User logged in:", user);
-      navigation.navigate("Home");
+      navigation.navigate("DietaryPreferences");
     } catch (error) {
       console.log("Error logging in:", error);
     }
@@ -38,7 +38,7 @@ const Login = ({ navigation }: { navigation: any }) => {
       <StatusBar style="dark" />
       <InnerContainer>
         <LoginContainer>
-          <SubTitle>Login</SubTitle>
+          <SubTitle>LoginNew</SubTitle>
           <ExtraView>
             <ExtraText> No account? </ExtraText>
             <TextLink onPress={() => navigation.navigate("Signup")}>
@@ -52,7 +52,7 @@ const Login = ({ navigation }: { navigation: any }) => {
             {({ handleChange, handleBlur, handleSubmit, values }) => (
               <StyledFormArea>
                 <MyTextInput
-                  label="Email"
+                  label = "Email"
                   placeholder="Email"
                   placeholderTextColor={darkLight}
                   onChangeText={handleChange("email")}
@@ -61,7 +61,7 @@ const Login = ({ navigation }: { navigation: any }) => {
                   keyboardType="email-address"
                 />
                 <MyTextInput
-                label = "Password"
+                  label = "Password"
                   placeholder="Password"
                   placeholderTextColor={darkLight}
                   onChangeText={handleChange("password")}
@@ -95,4 +95,4 @@ const MyTextInput = ({ label, ...props }: { label: string, [key: string]: any })
   );
 };
 
-export default Login;
+export default LoginNewUser;

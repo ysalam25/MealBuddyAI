@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text, Image } from "react-native";
 import Onboarding from "react-native-onboarding-swiper";
 import { Button } from "react-native-elements";
-import { WalkthroughStyles } from "../components/styles";
+import { WalkthroughStyles } from "../../components/styles";
 import {
   StyledContainer,
   InnerContainer,
@@ -20,8 +20,8 @@ import {
   TextLink,
   TextLinkContent,
   SlideContainer,
-} from "../components/styles";
-import slides from "../components/slides";
+} from "../../components/styles";
+import slides from "../../components/slides";
 import { StackNavigationProp } from "@react-navigation/stack"; // Assuming you're using a stack navigator
 
 // Define the props type, including the navigation prop
@@ -29,7 +29,7 @@ type Props = {
   navigation: StackNavigationProp<any>; // Replace 'any' with your navigation state type if available
 };
 
-const Walkthrough1: React.FC<Props> = ({ navigation }) => {
+const Walkthrough: React.FC<Props> = ({ navigation }) => {
   const handleSignUp = () => {
     navigation.navigate("Signup");
   };
@@ -84,4 +84,4 @@ const Walkthrough1: React.FC<Props> = ({ navigation }) => {
   );
 };
 
-export default Walkthrough1;
+export default Walkthrough;

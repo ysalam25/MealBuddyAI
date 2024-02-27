@@ -18,7 +18,7 @@ import {
   TextLink,
   TextLinkContent,
   SlideContainer,
-} from "../components/styles";
+} from "../../components/styles";
 
 import { SliderBox } from "react-native-image-slider-box";
 

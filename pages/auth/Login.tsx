@@ -16,19 +16,19 @@ import {
   ExtraText,
   TextLink,
   TextLinkContent,
-} from "../components/styles";
+} from "../../components/styles";
 
 import { Formik } from "formik";
-import { View, Text } from "react-native";
-import { Colors } from "../components/styles";
+import { View } from "react-native";
+import { Colors } from "../../components/styles";
 import { Auth } from "@aws-amplify/auth";
 
-const LoginNewUser = ({ navigation }) => {
-  const handleLogin = async (values) => {
+const Login = ({ navigation }: { navigation: any }) => {
+  const handleLogin = async (values: { email: string, password: string }) => {
     try {
       const user = await Auth.signIn(values.email, values.password);
       console.log("User logged in:", user);
-      navigation.navigate("DietaryPreferences");
+      navigation.navigate("Home");
     } catch (error) {
       console.log("Error logging in:", error);
     }
@@ -38,7 +38,7 @@ const LoginNewUser = ({ navigation }) => {
       <StatusBar style="dark" />
       <InnerContainer>
         <LoginContainer>
-          <SubTitle>LoginNew</SubTitle>
+          <SubTitle>Login</SubTitle>
           <ExtraView>
             <ExtraText> No account? </ExtraText>
             <TextLink onPress={() => navigation.navigate("Signup")}>
@@ -52,6 +52,7 @@ const LoginNewUser = ({ navigation }) => {
             {({ handleChange, handleBlur, handleSubmit, values }) => (
               <StyledFormArea>
                 <MyTextInput
+                  label="Email"
                   placeholder="Email"
                   placeholderTextColor={darkLight}
                   onChangeText={handleChange("email")}
@@ -60,6 +61,7 @@ const LoginNewUser = ({ navigation }) => {
                   keyboardType="email-address"
                 />
                 <MyTextInput
+                label = "Password"
                   placeholder="Password"
                   placeholderTextColor={darkLight}
                   onChangeText={handleChange("password")}
@@ -85,7 +87,7 @@ const LoginNewUser = ({ navigation }) => {
 //Colors
 const { primary, darkLight } = Colors;
 
-const MyTextInput = ({ label, ...props }) => {
+const MyTextInput = ({ label, ...props }: { label: string, [key: string]: any }) => {
   return (
     <View>
       <StyledTextInput {...props} />
@@ -93,4 +95,4 @@ const MyTextInput = ({ label, ...props }) => {
   );
 };
 
-export default LoginNewUser;
+export default Login;

@@ -3,30 +3,13 @@ import { View, Text, Image } from "react-native";
 import Onboarding from "react-native-onboarding-swiper";
 import { Button } from "react-native-elements";
 import { WalkthroughStyles } from "../../components/styles";
-import {
-  StyledContainer,
-  InnerContainer,
-  PageTitle,
-  SubTitle,
-  StyledFormArea,
-  LoginContainer,
-  StyledInputLabel,
-  StyledButton,
-  StyledButton2,
-  StyledTextInput,
-  ButtonText,
-  ExtraView,
-  ExtraText,
-  TextLink,
-  TextLinkContent,
-  SlideContainer,
-} from "../../components/styles";
+import { styles } from "../../components/screen/WalkthroughScreen";
 import slides from "../../components/slides";
-import { StackNavigationProp } from "@react-navigation/stack"; // Assuming you're using a stack navigator
+import { StackNavigationProp } from "@react-navigation/stack"; 
 
-// Define the props type, including the navigation prop
+
 type Props = {
-  navigation: StackNavigationProp<any>; // Replace 'any' with your navigation state type if available
+  navigation: StackNavigationProp<any>; 
 };
 
 const Walkthrough: React.FC<Props> = ({ navigation }) => {
@@ -41,30 +24,9 @@ const Walkthrough: React.FC<Props> = ({ navigation }) => {
   const renderSlides = () => {
     return slides.map((slide, index) => ({
       backgroundColor: "#F9F6EE",
-      image: <Image source={slide.image} style={WalkthroughStyles.image} key={index} />,
+      image: <Image source={slide.image} style={styles.image} key={index} />,
       title: slide.title,
-      subtitle: (
-        <View style={WalkthroughStyles.buttonContainer} key={slide.title}>
-          <Button
-            title={"Sign Up"}
-            onPress={handleSignUp}
-            buttonStyle={WalkthroughStyles.button}
-            titleStyle={WalkthroughStyles.buttonText}
-          />
-          <Button
-            title={"Log In"}
-            onPress={handleLogIn}
-            buttonStyle={WalkthroughStyles.button}
-            titleStyle={WalkthroughStyles.buttonText}
-          />
-          <TextLink onPress={() => navigation.navigate("Home")}>
-            <TextLinkContent>Home</TextLinkContent>
-          </TextLink>
-          <TextLink onPress={() => navigation.navigate("Pantry")}>
-            <TextLinkContent>Pantry (test)</TextLinkContent>
-          </TextLink>
-        </View>
-      ),
+      subtitle: '',
       titleStyles: WalkthroughStyles.title,
       subTitleStyles: WalkthroughStyles.subtitle,
       buttonsContainerStyles: WalkthroughStyles.buttonContainer,
@@ -72,15 +34,33 @@ const Walkthrough: React.FC<Props> = ({ navigation }) => {
   };
 
   return (
-    <Onboarding
-      pages={renderSlides()}
-      showSkip={false}
-      showNext={false}
-      showDone={false}
-      bottomBarHighlight={false}
-      bottomBarHeight={80}
-      containerStyles={WalkthroughStyles.wrapper}
-    />
+    <View style={WalkthroughStyles.wrapper}>
+      <View style={styles.slideHeight}>
+        <Onboarding 
+          pages={renderSlides()}
+          showSkip={false}
+          showNext={false}
+          showDone={false}
+          bottomBarHighlight={false}
+          containerStyles={styles.slideContainer}
+          bottomBarHeight={30}
+        />
+      </View>
+      <View style={styles.buttonContainer}>
+            <Button
+              title={"Sign Up"}
+              onPress={handleSignUp}
+              buttonStyle={WalkthroughStyles.button}
+              titleStyle={WalkthroughStyles.buttonText}
+            />
+            <Button
+              title={"Log In"}
+              onPress={handleLogIn}
+              buttonStyle={WalkthroughStyles.button}
+              titleStyle={WalkthroughStyles.buttonText}
+            />
+      </View>
+    </View>
   );
 };
 

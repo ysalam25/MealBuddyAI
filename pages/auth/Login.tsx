@@ -1,25 +1,8 @@
 import React from "react";
 import { StatusBar } from "expo-status-bar";
-
-import {
-  StyledContainer,
-  InnerContainer,
-  PageTitle,
-  SubTitle,
-  StyledFormArea,
-  LoginContainer,
-  StyledInputLabel,
-  StyledButton,
-  StyledTextInput,
-  ButtonText,
-  ExtraView,
-  ExtraText,
-  TextLink,
-  TextLinkContent,
-} from "../../components/styles";
-
+import { styles } from "../../components/screen/LoginScreen";
 import { Formik } from "formik";
-import { View } from "react-native";
+import { View, Text, TouchableOpacity, TextInput } from "react-native";
 import { Colors } from "../../components/styles";
 import { Auth } from "@aws-amplify/auth";
 
@@ -34,25 +17,27 @@ const Login = ({ navigation }: { navigation: any }) => {
     }
   };
   return (
-    <StyledContainer>
+    <View style = {styles.StyledContainer}>
       <StatusBar style="dark" />
-      <InnerContainer>
-        <LoginContainer>
-          <SubTitle>Login</SubTitle>
-          <ExtraView>
-            <ExtraText> No account? </ExtraText>
-            <TextLink onPress={() => navigation.navigate("Signup")}>
-              <TextLinkContent>Sign Up</TextLinkContent>
-            </TextLink>
-          </ExtraView>
+      <View style={styles.InnerContainer}>
+        <View style ={styles.LoginContainer}>
+            <Text style={styles.SubTitle}>Login</Text>
+          <View style ={styles.ExtraView}>
+            <Text style={styles.ExtraText}> No account? </Text>
+            <Text style={styles.TextLink} onPress={() => navigation.navigate("Signup")}>
+              <Text style={styles.TextLinkContent}>Sign Up</Text>
+            </Text>
+          </View>
+          <View style={styles.StyledFormArea}>
+            
           <Formik
             initialValues={{ email: "", password: "" }}
             onSubmit={handleLogin}
           >
             {({ handleChange, handleBlur, handleSubmit, values }) => (
-              <StyledFormArea>
-                <MyTextInput
-                  label="Email"
+              <View style={styles.StyledFormArea}>
+                <TextInput
+                  style={styles.StyledTextInput}
                   placeholder="Email"
                   placeholderTextColor={darkLight}
                   onChangeText={handleChange("email")}
@@ -60,8 +45,8 @@ const Login = ({ navigation }: { navigation: any }) => {
                   value={values.email}
                   keyboardType="email-address"
                 />
-                <MyTextInput
-                label = "Password"
+                <TextInput
+                  style={styles.StyledTextInput}
                   placeholder="Password"
                   placeholderTextColor={darkLight}
                   onChangeText={handleChange("password")}
@@ -69,30 +54,31 @@ const Login = ({ navigation }: { navigation: any }) => {
                   value={values.password}
                   secureTextEntry={true}
                 />
-                <TextLink onPress={() => navigation.navigate("ForgotPassword")}>
-                  <TextLinkContent>Forgot Password?</TextLinkContent>
-                </TextLink>
-                <StyledButton onPress={handleSubmit}>
-                  <ButtonText>Log In</ButtonText>
-                </StyledButton>
-              </StyledFormArea>
+                <View style={styles.BottomContainer}>
+                  <View style={styles.TextContainer}>
+                    <Text style={styles.TextLink} onPress={() => navigation.navigate("ForgotPassword")}>
+                      <Text style={styles.TextForgotLinkContent}>Forgot Password?</Text>
+                    </Text>
+                  </View>
+                  <View style={styles.ButtonContainer}>
+                    <TouchableOpacity
+                      onPress={() => handleSubmit()}
+                      style={styles.StyledButton}>
+                      <Text style={styles.ButtonText}>Log In</Text>
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </View>
             )}
           </Formik>
-        </LoginContainer>
-      </InnerContainer>
-    </StyledContainer>
+          </View>
+        </View>
+      </View>
+    </View>
   );
 };
 
 //Colors
 const { primary, darkLight } = Colors;
-
-const MyTextInput = ({ label, ...props }: { label: string, [key: string]: any }) => {
-  return (
-    <View>
-      <StyledTextInput {...props} />
-    </View>
-  );
-};
 
 export default Login;

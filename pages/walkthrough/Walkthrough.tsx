@@ -27,14 +27,13 @@ const Walkthrough: React.FC<Props> = ({ navigation }) => {
       image: <Image source={slide.image} style={styles.image} key={index} />,
       title: slide.title,
       subtitle: '',
-      titleStyles: WalkthroughStyles.title,
-      subTitleStyles: WalkthroughStyles.subtitle,
-      buttonsContainerStyles: WalkthroughStyles.buttonContainer,
+      titleStyles: styles.title,
+      subTitleStyles: styles.subtitle,
     }));
   };
 
   return (
-    <View style={WalkthroughStyles.wrapper}>
+    <View style={styles.wrapper}>
       <View style={styles.slideHeight}>
         <Onboarding 
           pages={renderSlides()}
@@ -42,22 +41,23 @@ const Walkthrough: React.FC<Props> = ({ navigation }) => {
           showNext={false}
           showDone={false}
           bottomBarHighlight={false}
+          bottomBarHeight={-50}
           containerStyles={styles.slideContainer}
-          bottomBarHeight={30}
+          
         />
       </View>
       <View style={styles.buttonContainer}>
             <Button
               title={"Sign Up"}
               onPress={handleSignUp}
-              buttonStyle={WalkthroughStyles.button}
-              titleStyle={WalkthroughStyles.buttonText}
+              buttonStyle={styles.button}
+              titleStyle={styles.buttonText}
             />
             <Button
               title={"Log In"}
               onPress={handleLogIn}
-              buttonStyle={WalkthroughStyles.button}
-              titleStyle={WalkthroughStyles.buttonText}
+              buttonStyle={styles.loginButton}
+              titleStyle={styles.buttonBlackText}
             />
       </View>
     </View>

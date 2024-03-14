@@ -3,24 +3,26 @@ import { colors } from '../constants/colors';
 import { Padding, Border, FontFamily, FontSize } from '../constants/font';
 import { Dimensions } from 'react-native';
 
-// Get the dimensions of the screen
 const { width, height } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
     wrapper: {
         flex: 1,
         justifyContent: 'space-evenly',
-        alignItems: 'center',
+        alignContent: 'center',
+        backgroundColor: colors.background,
     },
     slideContainer: {
-        flex: 1,
         alignContent: 'center',
         justifyContent: 'center',
-        paddingBottom: "10%",
+        paddingBottom: "40%",
+        bottom: "8%"
+
         
     },
     slideHeight:{
-        height: height * 0.75,
+        height: height * 0.60,
+
     },
     image: {
         width: width * 0.7,
@@ -30,7 +32,7 @@ export const styles = StyleSheet.create({
     title: {
         fontSize: 20,
         fontWeight: "500",
-        marginBottom: 10,
+        marginBottom: "10%",
         color: "#231714",
     },
     subtitle: {
@@ -42,21 +44,36 @@ export const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'space-around',
         alignItems: 'center',
-        height: height * 0.25,
+        height: height * 0.20,
         backgroundColor: colors.background,
-        gap : height * -0.08,
+        bottom: "3%",
+       // gap: spacing['6'],
     },
     button: {
-        marginHorizontal: 10,
-        paddingVertical: 20,
-        paddingHorizontal: 20,
+        paddingVertical: 15,
+        paddingHorizontal: 10,
         backgroundColor: '#F87D57',
         borderRadius: 5,
-        width: width * 0.4,
+        width: width * 0.35,
         marginBottom: 10,
+    },
+    loginButton: {
+        paddingVertical: 15,
+        paddingHorizontal: 10,
+        backgroundColor: '#FFF',
+        borderRadius: 5,
+        width: width * 0.35,
+        marginBottom: 10,
+        borderColor: '#F87D57',
+        borderWidth: 1,
     },
     buttonText: {
         color: 'white',
+        fontSize: 16,
+        fontWeight: 'bold',
+    },
+    buttonBlackText: {
+        color: '#F87D57',
         fontSize: 16,
         fontWeight: 'bold',
     },

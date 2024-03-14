@@ -355,11 +355,6 @@ export const WalkthroughStyles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  image: {
-    width: 200,
-    height: 200,
-    marginBottom: 0.6,
-  },
   title: {
     fontSize: 20,
     fontWeight: "500",

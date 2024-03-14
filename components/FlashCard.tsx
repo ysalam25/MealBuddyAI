@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from 'axios';
 import {
   View,
   Text,
@@ -12,9 +13,27 @@ import { AntDesign } from "@expo/vector-icons";
 const FlashCardItem = ({ item, navigation }) => {
   const [liked, setLiked] = useState(false);
 
-  const toggleLike = () => {
-    setLiked(!liked);
-  };
+  const FlashCardItem = ({ item, navigation, userId }) => {
+    const [liked, setLiked] = useState(false);
+  
+    const toggleLike = async () => {
+      try {
+        // API call to your backend
+        const response = await axios.post('https://your-backend-api.com/likes', {
+          userId: userId,
+          recipeId: item.id,
+          liked: !liked,
+        });
+  
+        if (response.status === 200) {
+          setLiked(response.data.liked);
+        } else {
+          console.error('Error with status code:', response.status);
+        }
+      } catch (error) {
+        console.error('Error updating like status', error);
+      }
+    };
   const handlePress = () => {
     navigation.navigate("RecipeDetailScreen", { recipe: item });
   };

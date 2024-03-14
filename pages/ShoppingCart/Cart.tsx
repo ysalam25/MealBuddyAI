@@ -1,10 +1,9 @@
 import React from "react";
-import { StatusBar } from "expo-status-bar";
-
 import {
   StyledContainer,
   InnerContainer,
   PageTitle,
+  SettingTitle,
   SubTitle,
   StyledFormArea,
   LoginContainer,
@@ -18,16 +17,17 @@ import {
   TextLink,
   TextLinkContent,
   SlideContainer,
+  StyledSettingButton,
+  StyledSettingButtonText,
 } from "../../components/styles";
 
+const Cart = ({ navigation }: { navigation: any }) => {
 
-import { SliderBox } from "react-native-image-slider-box";
-
-const Profile = ({ }) => {
   return (
     <StyledContainer>
+
     </StyledContainer>
   );
 };
 
-export default Profile;
+export default Cart;

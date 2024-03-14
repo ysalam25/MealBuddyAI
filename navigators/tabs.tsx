@@ -2,10 +2,10 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { View, Text, Image, TouchableOpacity } from "react-native";
 
 import Home from "../pages/Home";
-import Settings from "../pages/setting/Settings";
+import Profile from "../pages/setting/Profile";
 import Pantry from "../pages/Pantry";
-import Profile from "../pages/profile/Profile";
 import addRecipe from "../pages/recipes/AddRecipe";
+import Cart from "../pages/ShoppingCart/Cart";
 
 const Tab = createBottomTabNavigator();
 
@@ -137,6 +137,44 @@ const Tabs = () => {
       />
 
       <Tab.Screen
+        name="Cart"
+        component={Cart}
+        options={{
+          headerTitleAlign: "center",
+          headerTitleStyle: {
+            fontSize: 28,
+          },
+          headerStyle: {
+            height: 100,
+          },
+          tabBarIcon: ({ focused }) => (
+            <View
+              style={{
+                alignItems: "center",
+                justifyContent: "center",
+                top: 10,
+              }}
+            >
+              <Image
+                source={require("../assets/Icons/searchIcon.png")}
+                resizeMode="contain"
+                style={{
+                  width: 20,
+                  height: 20,
+                  tintColor: focused ? "#F87D57" : "#000000",
+                }}
+              />
+              <Text
+                style={{ color: focused ? "#F87D57" : "#000000", fontSize: 12 }}
+              >
+                Cart
+              </Text>
+            </View>
+          ),
+        }}
+      />
+
+      <Tab.Screen
         name="Profile"
         component={Profile}
         options={{
@@ -159,44 +197,6 @@ const Tabs = () => {
                 source={require("../assets/Icons/profileIcon.png")}
                 resizeMode="contain"
                 style={{
-                  width: 20,
-                  height: 20,
-                  tintColor: focused ? "#F87D57" : "#000000",
-                }}
-              />
-              <Text
-                style={{ color: focused ? "#F87D57" : "#000000", fontSize: 12 }}
-              >
-                Profile
-              </Text>
-            </View>
-          ),
-        }}
-      />
-
-      <Tab.Screen
-        name="Settings"
-        component={Settings}
-        options={{
-          headerTitleAlign: "center",
-          headerTitleStyle: {
-            fontSize: 28,
-          },
-          headerStyle: {
-            height: 100,
-          },
-          tabBarIcon: ({ focused }) => (
-            <View
-              style={{
-                alignItems: "center",
-                justifyContent: "center",
-                top: 10,
-              }}
-            >
-              <Image
-                source={require("../assets/Icons/settingIcon.png")}
-                resizeMode="contain"
-                style={{
                   width: 30,
                   height: 25,
                   tintColor: focused ? "#F87D57" : "#000000",
@@ -205,7 +205,7 @@ const Tabs = () => {
               <Text
                 style={{ color: focused ? "#F87D57" : "#000000", fontSize: 12 }}
               >
-                Settings
+                Profile
               </Text>
             </View>
           ),

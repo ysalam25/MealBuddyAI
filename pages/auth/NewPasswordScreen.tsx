@@ -36,7 +36,7 @@ const NewPasswordScreen = ({navigation, route}: {navigation: any, route: any}) =
           if (previousPage === "Login"){
             navigation.navigate("Login");
           }else{
-          navigation.navigate("Settings");
+          navigation.navigate("Profile");
           }
         } catch (error) {
           console.log("Error resetting password:", error);

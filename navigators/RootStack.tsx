@@ -10,7 +10,7 @@ import Signup from "../pages/auth/Signup";
 import ForgotPassword from "../pages/auth/ForgotPassword";
 import NewPasswordScreen from "../pages/auth/NewPasswordScreen";
 import Walkthrough1 from "../pages/walkthrough/Walkthrough";
-import Settings from "../pages/setting/Settings";
+import Profile from "../pages/setting/Profile";
 import Tabs from "./tabs"; 
 import ConfirmEmail from "../pages/auth/ConfirmEmail";
 import DietaryPreferences from "../pages/profile/DietaryPreferences";
@@ -53,7 +53,7 @@ const RootStack = () => {
       <Stack.Screen name="ConfirmEmail" component={ConfirmEmail} />
       <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
       <Stack.Screen name="NewPasswordScreen" component={NewPasswordScreen} />
-      <Stack.Screen name="Settings" component={Settings} />
+      <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name="DietaryPreferences" component={DietaryPreferences} />
       <Stack.Screen name="LoginNewUser" component={LoginNewUser} />
       <Stack.Screen name="RecipeDetailScreen" component={RecipeDetailScreen} />

@@ -22,7 +22,7 @@ import {
 } from "../../components/styles";
 
 import { Auth } from "aws-amplify";
-const Settings = ({ navigation }: { navigation: any }) => {
+const Profile = ({ navigation }: { navigation: any }) => {
   // Logic for resetting password
   const handleResetPassword = () => {
     console.log("Reset Password");
@@ -45,7 +45,7 @@ const Settings = ({ navigation }: { navigation: any }) => {
   };
   return (
     <StyledContainer>
-      <SettingTitle>Settings</SettingTitle>
+      <SettingTitle>Profile</SettingTitle>
       <StyledSettingButton onPress={handleResetPassword}>
         <StyledSettingButtonText>Reset Password</StyledSettingButtonText>
       </StyledSettingButton>
@@ -56,4 +56,4 @@ const Settings = ({ navigation }: { navigation: any }) => {
   );
 };
 
-export default Settings;
+export default Profile;

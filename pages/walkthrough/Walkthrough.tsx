@@ -20,6 +20,9 @@ const Walkthrough: React.FC<Props> = ({ navigation }) => {
   const handleLogIn = () => {
     navigation.navigate("Login");
   };
+  const handleGoHome = () => {
+    navigation.navigate("Home"); // Replace "Home" with the actual name of your home screen route
+  };
 
   const renderSlides = () => {
     return slides.map((slide, index) => ({
@@ -59,7 +62,14 @@ const Walkthrough: React.FC<Props> = ({ navigation }) => {
               buttonStyle={styles.loginButton}
               titleStyle={styles.buttonBlackText}
             />
+              <Button
+    title={"Home"}
+    onPress={handleGoHome}
+    buttonStyle={styles.button} // You can create a new style or use existing ones
+    titleStyle={styles.buttonText}
+  />
       </View>
+      
     </View>
   );
 };

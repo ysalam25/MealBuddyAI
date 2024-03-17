@@ -1,19 +1,29 @@
-import React from "react";
+import React, {useState} from "react";
 import { StatusBar } from "expo-status-bar";
 import { styles } from "../../components/screen/LoginScreen";
 import { Formik } from "formik";
-import { View, Text, TouchableOpacity, TextInput } from "react-native";
+import { View, Text, TouchableOpacity, TextInput, Image } from "react-native";
 import { Colors } from "../../components/styles";
 import { Auth } from "@aws-amplify/auth";
 
 const Login = ({ navigation }: { navigation: any }) => {
+  const [error, setError] = useState<string>(""); // Explicitly type 'error' as 'string'
   const handleLogin = async (values: { email: string, password: string }) => {
     try {
       const user = await Auth.signIn(values.email, values.password);
       console.log("User logged in:", user);
       navigation.navigate("Home");
-    } catch (error) {
-      console.log("Error logging in:", error);
+    } catch (error: any) { 
+      if (error.message == 'Username cannot be empty') {
+        setError(error.message );
+      } else if (values.email == '') {
+        setError(error.message);
+      } else if (values.password == '' && values.email != '') {
+        setError( "Password cannot be empty.");
+      }else {
+        setError(error.message);
+      }
+      
     }
   };
   return (
@@ -60,6 +70,14 @@ const Login = ({ navigation }: { navigation: any }) => {
                       <Text style={styles.TextForgotLinkContent}>Forgot Password?</Text>
                     </Text>
                   </View>
+                  
+                  {error && (
+                  <View style={styles.ErrorContainer}>
+                    <Image source={require('../../assets/Icons/errorIcon.png')} style={styles.ErrorIcon} />
+                    <Text style={styles.ErrorText}>{error}</Text>
+                  </View>
+                )}
+                  
                   <View style={styles.ButtonContainer}>
                     <TouchableOpacity
                       onPress={() => handleSubmit()}

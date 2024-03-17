@@ -2,12 +2,13 @@ import React from "react";
 import { StatusBar } from "expo-status-bar";
 
 import { Formik } from "formik";
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, Image} from "react-native";
 import { Colors } from "../../components/styles";
 import { Auth } from "@aws-amplify/auth";
 import { styles } from "../../components/screen/ForgotPassword";
 
 const ForgotPassword = ({ navigation }: { navigation: any }) => {
+  const[error, setError] = React.useState<string>("");
   const handleForgotPassword = async (values: { email: string }) => {
     try {
       await Auth.forgotPassword(values.email); // Call the auth.forgotPassword function with the email value
@@ -17,8 +18,16 @@ const ForgotPassword = ({ navigation }: { navigation: any }) => {
         email: values.email,
         previousPage: navigation.state,
       });
-    } catch (error) {
-      console.log("Error sending password reset email:", error);
+    } catch (error: any) {
+      if(error.message === "Username/client id combination not found.") {
+        setError("User not found");
+      } else if (error.message === "User is not confirmed.") {
+        setError("User not confirmed");
+      } else if (error.message === "User does not exist.") {
+        setError("User does not exist");
+      } else if (values.email === "") {
+        setError("Email cannot be empty");
+      }
     }
   };
   return (
@@ -26,7 +35,8 @@ const ForgotPassword = ({ navigation }: { navigation: any }) => {
       <StatusBar style="dark" />
       <View style={styles.InnerContainer}>
         <View style={styles.ResetContainer}>
-          <Text style={styles.SubTitle}>Resets your password</Text>
+          <Text style={styles.SubTitle}>Reset your password</Text>
+          <Text style={styles.ExtraText}>Enter your email address</Text>
           <Formik
             initialValues={{ email: "" }}
             onSubmit={handleForgotPassword}
@@ -42,11 +52,17 @@ const ForgotPassword = ({ navigation }: { navigation: any }) => {
                   value={values.email}
                   keyboardType="email-address"
                 />
+                {error && (
+                  <View style={styles.ErrorContainer}>
+                    <Image source={require('../../assets/Icons/errorIcon.png')} style={styles.ErrorIcon} />
+                    <Text style={styles.ErrorText}>{error}</Text>
+                  </View>
+                )}
                 <View style={styles.ButtonContainer}>
                   <TouchableOpacity
                     onPress={() => handleSubmit()}
                     style={styles.StyledButton}>
-                    <Text style={styles.ButtonText}>Log In</Text>
+                    <Text style={styles.ButtonText}>Send</Text>
                   </TouchableOpacity>
                 </View>
               </View>

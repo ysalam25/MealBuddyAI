@@ -31,8 +31,9 @@ const RootStack = () => {
         headerTintColor: "#000",
         headerTransparent: true,
         headerTitle: "",
+        headerBackButtonMenuEnabled: true,
       }}
-      initialRouteName="Walkthrough1"
+      initialRouteName="Walkthrough"
     >
       <Stack.Screen
         name="Home"

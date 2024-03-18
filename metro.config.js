@@ -1,10 +1,25 @@
+const { getDefaultConfig } = require('metro-config');
 const exclusionList = require('metro-config/src/defaults/exclusionList');
 
-// exclusionList is a function that takes an array of regexes and combines
-// them with the default exclusions to return a single regex.
+module.exports = (async () => {
+  const {
+    resolver: { sourceExts, assetExts }
+  } = await getDefaultConfig();
 
-module.exports = {
-  resolver: {
-    blockList: exclusionList([/#current-cloud-backend\/.*/])
-  }
-};
+  return {
+    transformer: {
+      babelTransformerPath: require.resolve('react-native-svg-transformer'),
+      getTransformOptions: async () => ({
+        transform: {
+          experimentalImportSupport: false,
+          inlineRequires: false,
+        },
+      }),
+    },
+    resolver: {
+      assetExts: assetExts.filter(ext => ext !== 'svg'),
+      sourceExts: [...sourceExts, 'svg'],
+      blockList: exclusionList([/#current-cloud-backend\/.*/]),
+    },
+  };
+})();

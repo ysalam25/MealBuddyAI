@@ -1,26 +1,23 @@
 import React, { useState } from "react";
 import {
-  StyledContainer,
-  OverlappingScreen,
-  OverlappingContent,
-  OverlappingTitle,
-  CategoryButton,
+  styles, CategoryButton,
   CategoryContainer,
   CategoryButtonText,
   ApplyContainer,
   FilterButton,
   CrossSVGIcon,
   StarSVGIcon,
-  RatingContainer,
-} from "../components/styles";
-import RecommendedForYou from "../components/RecommendedForYou";
-import TrendingNow from "../components/TrendingNow";
+  RatingContainer
+} from "../components/screen/HomeScreen";
+import { StyleSheet } from 'react-native';
+import { StatusBar } from "expo-status-bar";
 import FlashCard from "../components/FlashCard";
 import SearchBarWithIcon from "../components/SearchBarWithIcon";
 import FilteredRecipes from "../components/FilteredRecipies";
-import { Modal, View, TouchableOpacity } from "react-native";
+import { Modal, View, TouchableOpacity, ScrollView, Text } from "react-native";
 import filterData from "../mockData/filterData.json";
 import { useNavigation } from "@react-navigation/native";
+
 
 const Home = () => {
   const [showModal, setShowModal] = useState(false);
@@ -208,81 +205,95 @@ const Home = () => {
   );
 
   return (
-    <StyledContainer>
-      <SearchBarWithIcon onPress={handleSearchBarClick} />
+    <View style={styles.StyledContainer}>
+      <StatusBar style="dark" />
+      <View style={styles.InnerContainer}>
+        <SearchBarWithIcon onPress={handleSearchBarClick} />
+        <View style={styles.RecipeContainer}>
+          <ScrollView>
+            {/* Conditionally render the FilteredRecipes component */}
+            {selectedCategory.length > 0 || selectedCuisine.length > 0 || starStates.filter((isFilled) => isFilled).length > 0 ? (
+              <FilteredRecipes recipes={filteredRecipes} />
+            ) : (
+              <>
+                <FlashCard
+                  title="Recommended for you"
+                  items={recommendedItems}
+                  navigation={navigation}
+                />
+                <FlashCard
+                  title="Trending now"
+                  items={trendingItems}
+                  navigation={navigation}
+                />
+              </>
+            )}
 
-      {/* Conditionally render the FilteredRecipes component */}
-      {selectedCategory.length > 0 || selectedCuisine.length > 0 || starStates.filter((isFilled) => isFilled).length > 0 ? (
-        <FilteredRecipes recipes={filteredRecipes} />
-      ) : (
-        <>
-          <FlashCard
-            title="Recommended for you"
-            items={recommendedItems}
-            navigation={navigation}
-          />
-          <FlashCard
-            title="Trending now"
-            items={trendingItems}
-            navigation={navigation}
-          />
-        </>
-      )}
-
-      <Modal visible={showModal} animationType="slide" transparent={true}>
-        <View
-          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-        >
-          <OverlappingScreen>
-            <OverlappingContent>
-              <TouchableOpacity onPress={closeModal}>
-                <CrossSVGIcon />
-              </TouchableOpacity>
-              {filterData.map((item, index) => (
-                <React.Fragment key={index}>
-                  <OverlappingTitle>{item.heading}</OverlappingTitle>
-                  <CategoryContainer>
-                    {item.choices.map((choice, choiceIndex) => (
-                      <CategoryButton
-                        key={choiceIndex}
-                        onPress={() => handleCategoryButtonClick(choice, item.heading)}
-                        selected={
-                          item.heading === "Category"
-                            ? selectedCategory.includes(choice)
-                            : selectedCuisine.includes(choice)
-                        }
-                      >
-                        <CategoryButtonText>{choice}</CategoryButtonText>
-                      </CategoryButton>
-                    ))}
-                  </CategoryContainer>
-                </React.Fragment>
-              ))}
-              <OverlappingTitle>Rating</OverlappingTitle>
-              <RatingContainer>
-                {starStates.map((isFilled, index) => (
-                  <TouchableOpacity
-                    key={index}
-                    onPress={() => handleStarClick(index)}
-                  >
-                    <StarSVGIcon isFilled={isFilled} />
-                  </TouchableOpacity>
-                ))}
-              </RatingContainer>
-              <ApplyContainer>
-                <FilterButton onPress={handleReset}>
-                  <CategoryButtonText>Reset</CategoryButtonText>
-                </FilterButton>
-                <FilterButton onPress={handleApply}>
-                  <CategoryButtonText>Apply</CategoryButtonText>
-                </FilterButton>
-              </ApplyContainer>
-            </OverlappingContent>
-          </OverlappingScreen>
+          </ScrollView>
         </View>
-      </Modal>
-    </StyledContainer>
+        <Modal visible={showModal} animationType="slide" transparent={true}>
+          <View
+            style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+          >
+            <View style={styles.OverlappingScreen}>
+              <View style={styles.OverlappingContent}>
+                <TouchableOpacity onPress={closeModal}>
+                  <CrossSVGIcon />
+                </TouchableOpacity>
+                {filterData.map((item, index) => (
+                  <React.Fragment key={index}>
+                    <Text style={styles.OverlappingTitle}>{item.heading}</Text>
+                    <CategoryContainer>
+                      {item.choices.map((choice, choiceIndex) => (
+                        <CategoryButton
+                          key={choiceIndex}
+                          onPress={() => handleCategoryButtonClick(choice, item.heading)}
+                          selected={
+                            item.heading === "Category"
+                              ? selectedCategory.includes(choice)
+                              : selectedCuisine.includes(choice)
+                          }
+                        >
+                          <CategoryButtonText>{choice}</CategoryButtonText>
+                        </CategoryButton>
+                      ))}
+                    </CategoryContainer>
+                  </React.Fragment>
+                ))}
+                <Text style={styles.OverlappingTitle}>Rating</Text>
+                <RatingContainer>
+                  {starStates.map((isFilled, index) => (
+                    <TouchableOpacity
+                      key={index}
+                      onPress={() => handleStarClick(index)}
+                    >
+                      <StarSVGIcon isFilled={isFilled} />
+                    </TouchableOpacity>
+                  ))}
+                </RatingContainer>
+                <ApplyContainer>
+                  <FilterButton onPress={handleReset}>
+                    <CategoryButtonText>Reset</CategoryButtonText>
+                  </FilterButton>
+                  <FilterButton onPress={handleApply}>
+                    <CategoryButtonText>Apply</CategoryButtonText>
+                  </FilterButton>
+                </ApplyContainer>
+              </View>
+            </View>
+          </View>
+        </Modal>
+      </View>
+    </View>
   );
 };
+
+
+
+const styles1 = StyleSheet.create({
+  container: {
+    padding: 8,
+  },
+});
 
 export default Home;

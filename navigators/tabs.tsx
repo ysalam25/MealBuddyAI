@@ -2,7 +2,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { View, Text, Image, TouchableOpacity, Dimensions } from "react-native";
 
 import Home from "../pages/Home";
-import Profile from "../pages/setting/Profile";
+import Profile from "../pages/profile/Profile";
 import Pantry from "../pages/Pantry";
 import addRecipe from "../pages/recipes/AddRecipe";
 import Cart from "../pages/ShoppingCart/Cart";
@@ -49,12 +49,13 @@ const Tabs = () => {
       }}
     >
       <Tab.Screen
-        name="Home"
+        name="HomeScreen"
         component={Home}
         options={{
           headerTitleAlign: "center",
           headerTitleStyle: {
-            fontSize: 28,
+            fontSize: 20,
+            fontWeight:"700",
           },
           headerStyle: {
             backgroundColor: colors.background, 
@@ -94,7 +95,8 @@ const Tabs = () => {
         options={{
           headerTitleAlign: "center",
           headerTitleStyle: {
-            fontSize: 24,
+            fontSize: 20,
+            fontWeight:"700",
           },
           headerStyle: {
             backgroundColor: colors.background, 
@@ -153,7 +155,8 @@ const Tabs = () => {
         options={{
           headerTitleAlign: "center",
           headerTitleStyle: {
-            fontSize: 28,
+            fontSize: 20,
+            fontWeight:"700",
           },
           headerStyle: {
             backgroundColor: colors.background,

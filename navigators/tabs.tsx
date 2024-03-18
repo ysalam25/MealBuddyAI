@@ -1,6 +1,6 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { View, Text, Image, TouchableOpacity } from "react-native";
 import React, { useState } from 'react';
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { View, Text, Image, TouchableOpacity, Dimensions } from "react-native";
 import AddRecipeOptions from "../components/AddRecipeOptions";
 
 import Home from "../pages/Home";
@@ -11,11 +11,18 @@ import Cart from "../pages/ShoppingCart/Cart";
 import { colors } from "../components/constants/colors";
 import { Dimensions } from "react-native";
 const Tab = createBottomTabNavigator();
-
+type CustomTabBarButtonProps = {
+  onPress: () => void;
+  children: React.ReactNode;
+};
+type TabBarIconProps = {
+  focused: boolean;
+  // You can add other properties here if needed, like 'color' or 'size'
+};
 const { height } = Dimensions.get('window');
 const tabBarHeight = height * 0.1;
 
-const CustomTabBarButton = ({ children, onPress }: { children: React.ReactNode, onPress: any }) => (
+const CustomTabBarButton: React.FC<CustomTabBarButtonProps> = ({ children, onPress }) => (
   <TouchableOpacity
     style={{
       justifyContent: "center",
@@ -26,14 +33,33 @@ const CustomTabBarButton = ({ children, onPress }: { children: React.ReactNode, 
   >
     <View
       style={{
-        width: tabBarHeight * 0.75, 
-        height: tabBarHeight * 0.75, 
-        borderRadius: tabBarHeight * 0.4375, 
+        width: 60, // Set the width as needed
+        height: 60, // Set the height as needed
+        borderRadius: 30, // This will make it a circle
       }}
     >
       {children}
     </View>
   </TouchableOpacity>
+);
+const HomeIcon: React.FC<TabBarIconProps> = ({ focused }) => (
+  <View style={{
+    alignItems: "center",
+    justifyContent: "center",
+  }}>
+    <Image
+      source={require("../assets/Icons/homeIcon.png")}
+      resizeMode="contain"
+      style={{
+        width: 20,
+        height: 20,
+        tintColor: focused ? "#F87D57" : "#000000",
+      }}
+    />
+    <Text style={{ color: focused ? "#F87D57" : "#000000", fontSize: 12 }}>
+      Home
+    </Text>
+  </View>
 );
 
 const Tabs = () => {

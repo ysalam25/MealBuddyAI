@@ -20,7 +20,7 @@ const Walkthrough: React.FC<Props> = ({ navigation }) => {
     navigation.navigate("Login");
   };
   const handleGoHome = () => {
-    navigation.navigate("Home"); // Replace "Home" with the actual name of your home screen route
+    navigation.navigate("Home"); 
   };
 
   const renderSlides = () => {

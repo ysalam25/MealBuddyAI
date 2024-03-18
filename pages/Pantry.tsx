@@ -34,15 +34,11 @@ const ImageWrapper = styled(View)`
   width: 40%;
   height: 52%;
 `;
-//  height:${screenHeight}px;
-
-
-// temp text style *** switch to the main text to match
 
 const styles = StyleSheet.create({
   text: {
-    marginTop: 10, // Adjust the margin top to move it higher up
-    fontSize: 16, // Adjust the font size as needed
+    marginTop: 10, 
+    fontSize: 16,
     width: '50%',
     textAlign: 'center',
   },

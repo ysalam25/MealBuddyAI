@@ -18,6 +18,7 @@ import LoginNewUser from "../pages/auth/LoginNewUser";
 import RecipeDetailScreen from "../pages/recipes/RecipeDetailScreen";
 import Pantry from "../pages/Pantry"
 import EditItem from "../pages/EditItem"
+import AddItem from "../pages/AddItem";
 
 const Stack = createNativeStackNavigator();
 
@@ -59,7 +60,6 @@ const RootStack = () => {
       <Stack.Screen name="RecipeDetailScreen" component={RecipeDetailScreen} />
       <Stack.Screen name="Pantry" component={Pantry} />
       <Stack.Screen name="EditItem" component={EditItem} />
-
     </Stack.Navigator>
   );
 };

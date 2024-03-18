@@ -3,6 +3,7 @@ import styled from "styled-components/native";
 import { Modal, View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
 import { useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 import { StyledContainer, InnerContainer, StyledButton, StyledButton2, ButtonText, SubTitle, ItemSectionText} from "../components/styles";
 import iconCamera from "../assets/icon-add-camera.png";
@@ -19,10 +20,16 @@ const ItemScreen = styled.View`
   flex: 1;
 `;
 
-const AddItem = ({ isVisible, onClose }) => {
-  const [hasPermission, setHasPermission] = useState(null);
-  const [scannedData, setScannedData] = useState(null);
-  const navigation = useNavigation(); // Get the navigation object
+interface AddItemProps {
+  isVisible: boolean;
+  onClose: () => void;
+}
+
+
+const AddItem: React.FC<AddItemProps> = ({ isVisible, onClose }) => {
+  const [hasPermission, setHasPermission] = useState<boolean | null>(null);
+  const [scannedData, setScannedData] = useState<string | null>(null);
+  const navigation = useNavigation();
 
   const requestCameraPermission = async () => {
     const { status } = await BarCodeScanner.requestPermissionsAsync();
@@ -30,13 +37,10 @@ const AddItem = ({ isVisible, onClose }) => {
   };
 
   const handleContinue = () => {
-    // Navigate to the EditItem screen with the data parameter
+    // Correctly typed navigate call
     navigation.navigate('EditItem', { data: barcodes[scannedData], header: "Add Grocery Item" });
-    
-    // Close the AddItem window
     onClose();
   };
-
   const handleRequest = () => {
     console.log("request to add new item barcode")
   };

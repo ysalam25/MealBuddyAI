@@ -9,7 +9,7 @@ import Pantry from "../pages/Pantry";
 import addRecipe from "../pages/recipes/AddRecipe";
 import Cart from "../pages/ShoppingCart/Cart";
 import { colors } from "../components/constants/colors";
-
+import { Dimensions } from "react-native";
 const Tab = createBottomTabNavigator();
 
 const { height } = Dimensions.get('window');

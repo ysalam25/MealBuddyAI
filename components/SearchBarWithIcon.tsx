@@ -7,7 +7,7 @@ import {
   StyleSheet,
 } from "react-native";
 
-const SearchBarWithIcon = ({ onPress }) => {
+const SearchBarWithIcon = ({ onPress }: { onPress: () => void }) => {
   return (
     <View style={styles.container}>
       <View style={styles.searchContainer}>
@@ -40,32 +40,35 @@ const styles = StyleSheet.create({
     alignItems: "center",
     marginHorizontal: 16,
     marginBottom: 50,
+    marginLeft: 0,
+    marginRight: 0,
+    
   },
   searchContainer: {
     flexDirection: "row",
     alignItems: "center",
     flex: 1,
-    backgroundColor: "#FFF", // Background color for the search bar
+    backgroundColor: "#FFF", 
     borderRadius: 10,
     borderWidth: 1,
     borderColor: "gray",
-    marginRight: 8, // Space between search bar and pantry icon
+    marginRight: 8, 
   },
   searchInput: {
     flex: 1,
     height: 40,
-    paddingLeft: 10, // Space for the search icon inside the bar
-    paddingRight: 10, // Space before the pantry icon on the right
+    paddingLeft: 10, 
+    paddingRight: 10, 
   },
   searchIcon: {
-    marginLeft: 10, // Space from the left edge of the search bar
+    marginLeft: 10, 
     width: 20,
     height: 20,
-    tintColor: "gray", // Icon color, you can adjust as needed
+    tintColor: "gray",
   },
   pantryIcon: {
     padding: 10,
-    backgroundColor: "#FFF", // Background color for the pantry icon
+    backgroundColor: "#FFF", 
     borderRadius: 10,
     borderWidth: 1,
     borderColor: "gray",
@@ -73,7 +76,7 @@ const styles = StyleSheet.create({
   icon: {
     width: 20,
     height: 20,
-    tintColor: "gray", // Icon color, you can adjust as needed
+    tintColor: "gray", 
   },
 });
 

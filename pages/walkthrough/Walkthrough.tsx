@@ -2,7 +2,6 @@ import React from "react";
 import { View, Text, Image } from "react-native";
 import Onboarding from "react-native-onboarding-swiper";
 import { Button } from "react-native-elements";
-import { WalkthroughStyles } from "../../components/styles";
 import { styles } from "../../components/screen/WalkthroughScreen";
 import slides from "../../components/slides";
 import { StackNavigationProp } from "@react-navigation/stack"; 
@@ -65,7 +64,7 @@ const Walkthrough: React.FC<Props> = ({ navigation }) => {
               <Button
     title={"Home"}
     onPress={handleGoHome}
-    buttonStyle={styles.button} // You can create a new style or use existing ones
+    buttonStyle={styles.button} 
     titleStyle={styles.buttonText}
   />
       </View>

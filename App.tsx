@@ -8,7 +8,7 @@ Amplify.configure(amplifyconfig);
 
 export default function App() {
   useEffect(() => {
-    // Function to make the API call
+
     const fetchDataFromApi = async () => {
       try {
         const apiResponse = await API.get("mealbuddyapi", "/items", {});

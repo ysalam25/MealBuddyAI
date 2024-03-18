@@ -9,16 +9,16 @@ import Login from "../pages/auth/Login";
 import Signup from "../pages/auth/Signup";
 import ForgotPassword from "../pages/auth/ForgotPassword";
 import NewPasswordScreen from "../pages/auth/NewPasswordScreen";
-import Walkthrough1 from "../pages/walkthrough/Walkthrough";
-import Profile from "../pages/setting/Profile";
+import Walkthrough from "../pages/walkthrough/Walkthrough";
+import Profile from "../pages/profile/Profile";
 import Tabs from "./tabs"; 
 import ConfirmEmail from "../pages/auth/ConfirmEmail";
 import LoginNewUser from "../pages/auth/LoginNewUser";
 import RecipeDetailScreen from "../pages/recipes/RecipeDetailScreen";
 import Pantry from "../pages/Pantry"
 import EditItem from "../pages/EditItem"
-import Avatar from "../pages/setting/Avatar";
-import DietaryPreferences from "../pages/setting/DietaryPreferences";
+import Avatar from "../pages/profile/Avatar";
+import DietaryPreferences from "../pages/profile/DietaryPreferences";
 
 const Stack = createNativeStackNavigator();
 
@@ -34,7 +34,7 @@ const RootStack = () => {
         headerTitle: "",
         headerBackButtonMenuEnabled: true,
       }}
-      initialRouteName="Walkthrough1"
+      initialRouteName="Walkthrough"
     >
       <Stack.Screen
         name="Home"
@@ -51,7 +51,7 @@ const RootStack = () => {
         })}
       />
       <Stack.Screen name="Signup" component={Signup} />
-      <Stack.Screen name="Walkthrough1" component={Walkthrough1} />
+      <Stack.Screen name="Walkthrough" component={Walkthrough} />
       <Stack.Screen name="ConfirmEmail" component={ConfirmEmail} />
       <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
       <Stack.Screen name="NewPasswordScreen" component={NewPasswordScreen} />

@@ -23,7 +23,7 @@ export const styles = StyleSheet.create({
         alignItems: "center",
         height: "70%",
         justifyContent: "space-evenly",
-        gap: -40,
+        gap: -20,
     },
     ExtraView:{
         flexDirection: "row",
@@ -51,7 +51,7 @@ export const styles = StyleSheet.create({
         textDecorationLine: "underline",
     },
     TextForgotLinkContent:{
-        color: colors.darkLight,
+        color: colors.ink,
         fontSize: 15,
     },
     StyledFormArea:{
@@ -80,14 +80,18 @@ export const styles = StyleSheet.create({
         marginBottom: 10,
     },
     StyledButton:{
-        padding: "4%",
-        width: width / 3,
-        height: 40,
+        padding: "3%",
+        paddingVertical: 15,
+        paddingHorizontal: 10,
+        width: width * 0.35,
         backgroundColor: colors.secondary,
         justifyContent: "center",
         alignItems: "center",
-        borderRadius: 5,
-        marginTop: 5,
+        borderRadius: 12,
+        marginBottom: 10,
+        borderColor: '#F87D57',
+        borderWidth: 1,
+        height: height * 0.06,
     },
     ButtonText:{
         color: colors.primary,
@@ -101,11 +105,34 @@ export const styles = StyleSheet.create({
     ButtonContainer:{
         justifyContent: "center",
         alignItems: "center",
+        bottom: "5%",
 
     },
     BottomContainer:{
-        justifyContent: "space-around",
+        justifyContent: "space-evenly",
         alignItems: "center",
-        height: height / 8,
+        height: height / 7,
+        gap: 20,
+        top: "8%",
+    },
+    ErrorText:{
+        fontSize: 14,
+        marginBottom: 10,
+     
+        textAlign: "center",
+    },
+    ErrorContainer:{
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        marginBottom: 10,
+    },
+    ErrorIcon:{
+        width: 20,
+        height: 20,
+        marginRight: 5,
+        flexDirection: "row",
+        marginBottom: 10,
+       // marginTop: -5,
     },
 })

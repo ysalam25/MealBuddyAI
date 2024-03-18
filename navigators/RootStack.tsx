@@ -9,16 +9,17 @@ import Login from "../pages/auth/Login";
 import Signup from "../pages/auth/Signup";
 import ForgotPassword from "../pages/auth/ForgotPassword";
 import NewPasswordScreen from "../pages/auth/NewPasswordScreen";
-import Walkthrough1 from "../pages/walkthrough/Walkthrough";
-import Profile from "../pages/setting/Profile";
+import Walkthrough from "../pages/walkthrough/Walkthrough";
+import Profile from "../pages/profile/Profile";
 import Tabs from "./tabs"; 
 import ConfirmEmail from "../pages/auth/ConfirmEmail";
-import DietaryPreferences from "../pages/profile/DietaryPreferences";
 import LoginNewUser from "../pages/auth/LoginNewUser";
 import RecipeDetailScreen from "../pages/recipes/RecipeDetailScreen";
 import Pantry from "../pages/Pantry"
 import EditItem from "../pages/EditItem"
 import AddItem from "../pages/AddItem";
+import Avatar from "../pages/profile/Avatar";
+import DietaryPreferences from "../pages/profile/DietaryPreferences";
 
 const Stack = createNativeStackNavigator();
 
@@ -32,8 +33,9 @@ const RootStack = () => {
         headerTintColor: "#000",
         headerTransparent: true,
         headerTitle: "",
+        headerBackButtonMenuEnabled: true,
       }}
-      initialRouteName="Walkthrough1"
+      initialRouteName="Walkthrough"
     >
       <Stack.Screen
         name="Home"
@@ -50,7 +52,7 @@ const RootStack = () => {
         })}
       />
       <Stack.Screen name="Signup" component={Signup} />
-      <Stack.Screen name="Walkthrough1" component={Walkthrough1} />
+      <Stack.Screen name="Walkthrough" component={Walkthrough} />
       <Stack.Screen name="ConfirmEmail" component={ConfirmEmail} />
       <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
       <Stack.Screen name="NewPasswordScreen" component={NewPasswordScreen} />
@@ -60,6 +62,7 @@ const RootStack = () => {
       <Stack.Screen name="RecipeDetailScreen" component={RecipeDetailScreen} />
       <Stack.Screen name="Pantry" component={Pantry} />
       <Stack.Screen name="EditItem" component={EditItem} />
+      <Stack.Screen name="Avatar" component={Avatar} />
     </Stack.Navigator>
   );
 };

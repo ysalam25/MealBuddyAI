@@ -7,9 +7,17 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
+import { Dimensions } from 'react-native';
+
+// Get the screen width
+const screenWidth = Dimensions.get('window').width;
+
+// Calculate dynamic margins based on the screen width
+const dynamicMargin = screenWidth;
+
 
 //flash cards
-const FlashCardItem = ({ item, navigation }) => {
+const FlashCardItem = ({ item, navigation }: { item: any, navigation: any }) => {
   const [liked, setLiked] = useState(false);
 
   const toggleLike = () => {
@@ -23,7 +31,7 @@ const FlashCardItem = ({ item, navigation }) => {
     <TouchableOpacity onPress={handlePress} activeOpacity={0.7}>
       <View style={styles.itemContainer}>
         <Text style={styles.itemTitle}>{item.title}</Text>
-        {item.attributes.map((attribute, attrIndex) => (
+        {item.attributes.map((attribute: any, attrIndex: any) => (
           <Text key={attrIndex} style={styles.itemAttribute}>
             {attribute}
           </Text>
@@ -43,9 +51,9 @@ const FlashCardItem = ({ item, navigation }) => {
   );
 };
 
-const FlashCard = ({ title, items, navigation }) => {
+const FlashCard = ({ title, items, navigation }: { title: string, items: any[], navigation: any }) => {
   return (
-    <View style={styles.container}>
+    <View>
       <View style={styles.headerContainer}>
         <Text style={styles.header}>{title}</Text>
         <Text style={styles.viewAllText}>View All</Text>
@@ -54,6 +62,7 @@ const FlashCard = ({ title, items, navigation }) => {
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.itemsList}
+        style={{ overflow: 'visible' }}
       >
         {items.map((item, index) => (
           <FlashCardItem key={index} item={item} navigation={navigation} />
@@ -64,15 +73,14 @@ const FlashCard = ({ title, items, navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  container: {
-    paddingHorizontal: 16,
-    paddingTop: 16,
-  },
+
   headerContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    paddingRight: 16,
+    paddingRight: 20,
+    marginRight: -16,
+    //marginLeft: -16,
   },
   header: {
     fontSize: 18,
@@ -91,10 +99,10 @@ const styles = StyleSheet.create({
   itemsList: {
     flexDirection: "row",
     paddingVertical: 16,
-    paddingHorizontal: 16,
   },
   itemContainer: {
     width: "auto",
+    height: "50%",
     flexGrow: 1,
     flexShrink: 1,
     marginRight: 16,
@@ -107,7 +115,6 @@ const styles = StyleSheet.create({
     elevation: 3,
     justifyContent: "center",
     alignItems: "flex-start",
-    height: 150,
   },
   itemTitle: {
     fontWeight: "bold",
@@ -118,7 +125,7 @@ const styles = StyleSheet.create({
   likeButton: {
     flexDirection: "row",
     marginTop: 8,
-    paddingHorizontal: 10, // Increased horizontal padding for a wider button
+    paddingHorizontal: 10,
     paddingVertical: 8,
     backgroundColor: "#FFD1DC",
     borderRadius: 8,

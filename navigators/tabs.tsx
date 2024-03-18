@@ -1,29 +1,32 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { View, Text, Image, TouchableOpacity } from "react-native";
+import { View, Text, Image, TouchableOpacity, Dimensions } from "react-native";
 
 import Home from "../pages/Home";
 import Profile from "../pages/setting/Profile";
 import Pantry from "../pages/Pantry";
 import addRecipe from "../pages/recipes/AddRecipe";
 import Cart from "../pages/ShoppingCart/Cart";
+import { colors } from "../components/constants/colors";
 
 const Tab = createBottomTabNavigator();
+
+const { height } = Dimensions.get('window');
+const tabBarHeight = height * 0.1;
 
 const CustomTabBarButton = ({ children, onPress }: { children: React.ReactNode, onPress: any }) => (
   <TouchableOpacity
     style={{
-      top: 5,
       justifyContent: "center",
       alignItems: "center",
+      bottom: 5,
     }}
     onPress={onPress}
   >
     <View
       style={{
-        width: 60,
-        height: 60,
-        borderRadius: 35,
-        backgroundColor: "#F87D57",
+        width: tabBarHeight * 0.75, 
+        height: tabBarHeight * 0.75, 
+        borderRadius: tabBarHeight * 0.4375, 
       }}
     >
       {children}
@@ -34,13 +37,15 @@ const Tabs = () => {
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarShowLabel: false,
+      tabBarShowLabel: false,
         tabBarStyle: {
           position: "absolute",
-          backgroundColor: "#ffff",
-          height: 80,
-          paddingBottom: 15,
+          backgroundColor: colors.background,
+          height: "13%",
+          paddingBottom: "5%",
+          borderTopWidth: 0,
         },
+       
       }}
     >
       <Tab.Screen
@@ -49,30 +54,33 @@ const Tabs = () => {
         options={{
           headerTitleAlign: "center",
           headerTitleStyle: {
-            fontSize: 24,
+            fontSize: 28,
           },
           headerStyle: {
-            height: 80,
-          },
+            backgroundColor: colors.background, 
+        },
+       headerTransparent: true,
+          
           tabBarIcon: ({ focused }) => (
             <View
               style={{
                 alignItems: "center",
                 justifyContent: "center",
-                top: 10,
+                
               }}
             >
               <Image
                 source={require("../assets/Icons/homeIcon.png")}
                 resizeMode="contain"
                 style={{
-                  width: 20,
+                  width: 25,
                   height: 20,
+                  bottom: "10%",
                   tintColor: focused ? "#F87D57" : "#000000",
                 }}
               />
               <Text
-                style={{ color: focused ? "#F87D57" : "#000000", fontSize: 12 }}
+                style={{ color: focused ? "#F87D57" : "#000000", fontSize: 12, fontWeight: "600"}}
               >
                 Home
               </Text>
@@ -86,17 +94,19 @@ const Tabs = () => {
         options={{
           headerTitleAlign: "center",
           headerTitleStyle: {
-            fontSize: 28,
+            fontSize: 24,
           },
           headerStyle: {
-            height: 100,
-          },
+            backgroundColor: colors.background, 
+        },
+        headerTransparent: true,
+
           tabBarIcon: ({ focused }) => (
             <View
               style={{
                 alignItems: "center",
                 justifyContent: "center",
-                top: 10,
+               
               }}
             >
               <Image
@@ -105,11 +115,12 @@ const Tabs = () => {
                 style={{
                   width: 20,
                   height: 20,
+                  bottom: "10%",
                   tintColor: focused ? "#F87D57" : "#000000",
                 }}
               />
               <Text
-                style={{ color: focused ? "#F87D57" : "#000000", fontSize: 12 }}
+                style={{ color: focused ? "#F87D57" : "#000000", fontSize: 12 , fontWeight: "600"}}
               >
                 Pantry
               </Text>
@@ -126,9 +137,9 @@ const Tabs = () => {
               source={require("../assets/Icons/addIcon.png")}
               resizeMode="contain"
               style={{
-                width: 30,
-                height: 30,
-                tintColor: "#fff",
+                width: 50,
+                height: 50,
+                
               }}
             />
           ),
@@ -145,14 +156,16 @@ const Tabs = () => {
             fontSize: 28,
           },
           headerStyle: {
-            height: 100,
+            backgroundColor: colors.background,
           },
+          headerTransparent: true,
+         
           tabBarIcon: ({ focused }) => (
             <View
               style={{
                 alignItems: "center",
                 justifyContent: "center",
-                top: 10,
+                
               }}
             >
               <Image
@@ -161,11 +174,12 @@ const Tabs = () => {
                 style={{
                   width: 20,
                   height: 20,
+                  bottom: "10%",
                   tintColor: focused ? "#F87D57" : "#000000",
                 }}
               />
               <Text
-                style={{ color: focused ? "#F87D57" : "#000000", fontSize: 12 }}
+                style={{ color: focused ? "#F87D57" : "#000000", fontSize: 12, fontWeight: "600"}}
               >
                 Cart
               </Text>
@@ -180,30 +194,32 @@ const Tabs = () => {
         options={{
           headerTitleAlign: "center",
           headerTitleStyle: {
-            fontSize: 28,
+            fontSize: 20,
+            fontWeight:"700",
           },
           headerStyle: {
-            height: 100,
+            backgroundColor: colors.background,
           },
+          headerTransparent: true,
           tabBarIcon: ({ focused }) => (
             <View
               style={{
                 alignItems: "center",
                 justifyContent: "center",
-                top: 10,
               }}
             >
               <Image
                 source={require("../assets/Icons/profileIcon.png")}
                 resizeMode="contain"
                 style={{
-                  width: 30,
-                  height: 25,
+                  width: 23,
+                  height: 23,
+                  bottom: "10%",
                   tintColor: focused ? "#F87D57" : "#000000",
                 }}
               />
               <Text
-                style={{ color: focused ? "#F87D57" : "#000000", fontSize: 12 }}
+                style={{ color: focused ? "#F87D57" : "#000000", fontSize: 12 , fontWeight: "600"}}
               >
                 Profile
               </Text>

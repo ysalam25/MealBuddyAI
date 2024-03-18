@@ -13,11 +13,12 @@ import Walkthrough1 from "../pages/walkthrough/Walkthrough";
 import Profile from "../pages/setting/Profile";
 import Tabs from "./tabs"; 
 import ConfirmEmail from "../pages/auth/ConfirmEmail";
-import DietaryPreferences from "../pages/profile/DietaryPreferences";
 import LoginNewUser from "../pages/auth/LoginNewUser";
 import RecipeDetailScreen from "../pages/recipes/RecipeDetailScreen";
 import Pantry from "../pages/Pantry"
 import EditItem from "../pages/EditItem"
+import Avatar from "../pages/setting/Avatar";
+import DietaryPreferences from "../pages/setting/DietaryPreferences";
 
 const Stack = createNativeStackNavigator();
 
@@ -33,7 +34,7 @@ const RootStack = () => {
         headerTitle: "",
         headerBackButtonMenuEnabled: true,
       }}
-      initialRouteName="Walkthrough"
+      initialRouteName="Walkthrough1"
     >
       <Stack.Screen
         name="Home"
@@ -60,6 +61,7 @@ const RootStack = () => {
       <Stack.Screen name="RecipeDetailScreen" component={RecipeDetailScreen} />
       <Stack.Screen name="Pantry" component={Pantry} />
       <Stack.Screen name="EditItem" component={EditItem} />
+      <Stack.Screen name="Avatar" component={Avatar} />
 
     </Stack.Navigator>
   );

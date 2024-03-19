@@ -1,0 +1,56 @@
+{
+    "pantry": [
+        {
+            "item": "Pasta",
+            "quantity": 2,
+            "unit": "boxes"
+        },
+        {
+            "item": "Rice",
+            "quantity": 1,
+            "unit": "bag"
+        },
+        {
+            "item": "Canned Beans",
+            "quantity": 3,
+            "unit": "cans"
+        },
+        {
+            "item": "Oatmeal",
+            "quantity": 1,
+            "unit": "box"
+        },
+        {
+            "item": "Peanut Butter",
+            "quantity": 1,
+            "unit": "jar"
+        }
+    ],
+    "fridge": [
+        {
+            "item": "Milk",
+            "quantity": 1,
+            "unit": "gallon"
+        },
+        {
+            "item": "Eggs",
+            "quantity": 12,
+            "unit": "eggs"
+        },
+        {
+            "item": "Cheese",
+            "quantity": 1,
+            "unit": "block"
+        },
+        {
+            "item": "Carrots",
+            "quantity": 1,
+            "unit": "bag"
+        },
+        {
+            "item": "Apples",
+            "quantity": 6,
+            "unit": "apples"
+        }
+    ]
+}

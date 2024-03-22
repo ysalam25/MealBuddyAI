@@ -20,6 +20,7 @@ import EditItem from "../pages/EditItem"
 import AddItem from "../pages/AddItem";
 import Avatar from "../pages/profile/Avatar";
 import DietaryPreferences from "../pages/profile/DietaryPreferences";
+import OnboardingPage1 from "../pages/profile/OnboardingPage1";
 
 const Stack = createNativeStackNavigator();
 
@@ -57,6 +58,7 @@ const RootStack = () => {
       <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
       <Stack.Screen name="NewPasswordScreen" component={NewPasswordScreen} />
       <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen name="OnboardingPage1" component={OnboardingPage1} options={{ headerShown: false }} />
       <Stack.Screen 
   name="DietaryPreferences" 
   component={DietaryPreferences} 

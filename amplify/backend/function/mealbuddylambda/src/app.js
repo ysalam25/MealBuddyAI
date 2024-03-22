@@ -40,6 +40,12 @@ app.get('/items/*', function(req, res) {
   res.json({success: 'get call succeed!', url: req.url});
 });
 
+app.get('/goals', function(req, res) {
+  // Add your code here
+  res.json({success: 'test', url: req.url});
+});
+
+
 /****************************
 * Example post method *
 ****************************/

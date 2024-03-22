@@ -7,26 +7,7 @@ import  Constants  from 'expo-constants';
 const { width, height } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
-    StyledContainer:{
-        flex: 1,
-        padding: 25,
-        paddingTop: Constants.statusBarHeight + 20,
-        backgroundColor: colors.background,
-        justifyContent: "space-between",
-       
-    },
-    InnerContainer:{
-        flex: 1,
-        width: "100%",
-        alignItems: "center",
-        justifyContent: "flex-start"
-    },
-    LoginContainer:{
-        alignItems: "center",
-        height: "70%",
-        justifyContent: "space-evenly",
-        gap: -20,
-    },
+
     ExtraView:{
         flexDirection: "row",
         alignItems: "center",
@@ -37,12 +18,6 @@ export const styles = StyleSheet.create({
         alignItems: "center",
         fontSize: 15,
         fontWeight: "500",
-    },
-    SubTitle:{
-        alignItems: "center",
-        fontSize: 24,
-        marginBottom: 20,
-        fontWeight: "bold",
     },
     TextLink:{
         alignItems: "center",
@@ -81,33 +56,16 @@ export const styles = StyleSheet.create({
         marginVertical: 3,
         marginBottom: 10,
     },
-    StyledButton:{
-        padding: "3%",
-        paddingVertical: 15,
-        paddingHorizontal: 10,
-        width: width * 0.35,
-        backgroundColor: colors.secondary,
-        justifyContent: "center",
-        alignItems: "center",
-        borderRadius: 12,
-        marginBottom: 10,
-        borderColor: '#F87D57',
-        borderWidth: 1,
-        height: height * 0.06,
-    },
-    ButtonText:{
-        color: colors.primary,
-        fontSize: 16,
-        fontWeight: "bold",
-    },
     TextContainer:{
         justifyContent: "center",
         alignItems: "center",
     },
     ButtonContainer:{
-        justifyContent: "center",
-        alignItems: "center",
-        bottom: "5%",
+        //justifyContent: "center",
+       // alignItems: "center",
+        //bottom: "5%",
+        width: "50%",
+        top: height * 0.2,
 
     },
     BottomContainer:{
@@ -116,6 +74,20 @@ export const styles = StyleSheet.create({
         height: height / 7,
         gap: 20,
         top: "8%",
+    },
+    skipButton:{
+        backgroundColor: "#FFF",
+        borderColor: '#F87D57',
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 15,
+        height: height * 0.07,
+        width: '100%',
+        marginTop: 20,
+        paddingVertical: 15,
+        paddingHorizontal: 10,
+        marginBottom: 10,
+        borderWidth: 1,
     },
     ErrorText:{
         fontSize: 14,
@@ -137,4 +109,92 @@ export const styles = StyleSheet.create({
         marginBottom: 10,
        // marginTop: -5,
     },
+    SelectionContainer:{
+        flexDirection: "column",
+        // justifyContent: "space-evenly",
+        // alignItems: "center",
+        width: width * 1.1,
+        // marginBottom: 20,
+        paddingHorizontal: 60,
+    },
+    StyledContainer: {
+        flex: 1,
+        paddingTop: Constants.statusBarHeight,
+        backgroundColor: colors.background,
+        paddingHorizontal: width * 0.05,
+      },
+      InnerContainer: {
+        width: '100%',
+        alignItems: 'center',
+      },
+      SubTitle: {
+        fontSize: 23,
+        fontWeight: '500',
+        color: colors.ink,
+        alignSelf: 'flex-start',
+        paddingBottom: 5,
+        paddingHorizontal: 10,
+        paddingTop: 25,
+        marginBottom: 10,
+      },
+      MultiSelectContainer: {
+        width: '100%',
+        borderRadius: 15,
+        padding: 10,
+        paddingTop: 0,
+        zIndex: 1000,
+      
+      },
+      MultiSelectContainer1: {
+        width: '100%',
+        borderRadius: 15,
+        padding: 10,
+        paddingTop: 0,
+        zIndex: 999,
+      
+      },
+      MultiSelectContainer2: {
+        width: '100%',
+        borderRadius: 15,
+        padding: 10,
+        paddingTop: 0,
+        zIndex: 998,
+      
+      },
+      StyledButton: {
+        backgroundColor: colors.secondary,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 15,
+        height: height * 0.07,
+        width: '100%',
+        marginTop: 20,
+      },
+      ButtonText: {
+        color: colors.primary,
+        fontSize: 16,
+        fontWeight: 'bold',
+      },
+      SkipButtonText: {
+        color: colors.secondary,
+        fontSize: 16,
+        fontWeight: 'bold',
+      },
+      SelectContainer:{
+        height: 54,
+        paddingLeft: 20,
+        paddingRight: 10,
+        borderWidth: 1,
+        borderColor: colors.ink,
+        borderRadius: 15,
+      },
+      RowContainer:{
+        height: 60,
+        borderRadius: 15,
+        paddingTop: 10,
+        paddingBottom: 10,
+      },
+      ListContainer:{
+        height: 180,
+      },
 });

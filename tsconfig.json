@@ -3,6 +3,6 @@
   "compilerOptions": {
     "strict": true,
     "resolveJsonModule": true,
-    "jsx":"react"
+    "jsx":"react-native"
   }
 }

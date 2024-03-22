@@ -7,20 +7,20 @@ import RootStack from "./navigators/RootStack";
 Amplify.configure(amplifyconfig);
 
 export default function App() {
-  useEffect(() => {
+  // useEffect(() => {
 
-    const fetchDataFromApi = async () => {
-      try {
-        const apiResponse = await API.get("mealbuddyapi", "/items", {});
-        console.log("API Response:", apiResponse);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
+  //   const fetchDataFromApi = async () => {
+  //     try {
+  //       const apiResponse = await API.get("mealbuddyapi", "/items", {});
+  //       console.log("API Response:", apiResponse);
+  //     } catch (error) {
+  //       console.error("Error fetching data:", error);
+  //     }
+  //   };
 
-    // Call the API function
-    fetchDataFromApi();
-  }, []);
+  //   // Call the API function
+  //   fetchDataFromApi();
+  // }, []);
 
   return (
       <NavigationContainer>

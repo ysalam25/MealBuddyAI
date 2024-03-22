@@ -11,9 +11,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
       "permissions": ["CAMERA"]
@@ -22,8 +20,9 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff",
-        "permissions": ["CAMERA"]
-      }
+        "permissions": ["CAMERA", "RECORD_AUDIO"]
+      },
+      "permissions": ["CAMERA", "RECORD_AUDIO"]
     },
     "web": {
       "favicon": "./assets/favicon.png"

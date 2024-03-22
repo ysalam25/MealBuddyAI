@@ -20,6 +20,8 @@ import EditItem from "../pages/EditItem"
 import AddItem from "../pages/AddItem";
 import Avatar from "../pages/profile/Avatar";
 import DietaryPreferences from "../pages/profile/DietaryPreferences";
+import CameraScreen from "../components/CameraScreen";
+import EnterFoodItemScreen from "../components/EnterFoodItemScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -63,6 +65,8 @@ const RootStack = () => {
       <Stack.Screen name="Pantry" component={Pantry} />
       <Stack.Screen name="EditItem" component={EditItem} />
       <Stack.Screen name="Avatar" component={Avatar} />
+      <Stack.Screen name="CameraScreen" component={CameraScreen} />
+      <Stack.Screen name="EnterFoodItemScreen" component={EnterFoodItemScreen} />
     </Stack.Navigator>
   );
 };

@@ -10,16 +10,22 @@ import {
 import iconCamera from "../assets/icon-add-camera.png";
 import iconPlus from "../assets/icon-add-plus.png";
 import { useNavigation } from "@react-navigation/native";
+import * as Permissions from "expo-permissions";
 
 const AddRecipeOptions = ({ isVisible, onClose }) => {
   const navigation = useNavigation();
 
   const handleScanWithCamera = async () => {
-    console.log("Scan with Cam");
+    const { status } = await Permissions.askAsync(Permissions.CAMERA);
+    if (status === "granted") {
+      navigation.navigate("CameraScreen");
+    } else {
+      console.log("Camera permission denied");
+    }
   };
 
-  const handleEnterDetailsManually = () => {
-    console.log("Entering details manually");
+  const handleEnterDetailsManually = async () => {
+    navigation.navigate("EnterFoodItemScreen");
   };
 
   return (
@@ -27,13 +33,13 @@ const AddRecipeOptions = ({ isVisible, onClose }) => {
       <TouchableOpacity
         style={styles.overlay}
         activeOpacity={1}
-        onPressOut={onClose}
+        onPress={onClose}
       >
         <View style={styles.popup} onStartShouldSetResponder={() => true}>
           <TouchableOpacity
             style={styles.optionButton}
             onPress={handleScanWithCamera}
-            activeOpacity={0.7} 
+            activeOpacity={0.7}
           >
             <Image source={iconCamera} style={styles.icon} />
             <Text>Scan with camera</Text>
@@ -56,7 +62,7 @@ const styles = StyleSheet.create({
   overlay: {
     flex: 1,
     justifyContent: "flex-end",
-    backgroundColor: "rgba(0, 0, 0, 0.5)", 
+    backgroundColor: "rgba(0, 0, 0, 0.5)",
   },
   popup: {
     backgroundColor: "white",
@@ -67,24 +73,24 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    justifyContent: "flex-end", 
-    alignItems: "center", 
-    marginBottom: 80, 
+    justifyContent: "flex-end",
+    alignItems: "center",
+    marginBottom: 80,
   },
   optionButton: {
     backgroundColor: "white",
-    elevation: 2, 
+    elevation: 2,
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     shadowOffset: {
       width: 0,
       height: 2,
     },
-    borderRadius: 8, 
-    paddingVertical: 10, 
-    paddingHorizontal: 20, 
-    marginVertical: 5, 
-    width: 150, 
+    borderRadius: 8,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    marginVertical: 5,
+    width: 150,
   },
   icon: {
     width: 30,

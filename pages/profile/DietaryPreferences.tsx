@@ -4,6 +4,7 @@ import * as Yup from 'yup';
 import { Button, View, TouchableOpacity, Text } from 'react-native';
 import { Formik, Field } from 'formik';
 import { Auth } from 'aws-amplify';
+import {styles} from '../../components/screen/DietaryPreferenceScreen'
 import {
   StyledContainer,
   InnerContainer,
@@ -64,9 +65,9 @@ const DietaryPreferences = ({ navigation }: { navigation: any }) => {
 
 
   return (
-    <StyledContainer>
-    <InnerContainer>
-      <SubTitle> What are your dietary preferences?</SubTitle>
+    <View style={styles.StyledContainer}>
+    <View style={styles.InnerContainer}>
+      <Text style={styles.SubTitle}> What are your Preferences</Text>
       <Formik
         initialValues={{
           dietaryRestrictions: [],
@@ -142,8 +143,8 @@ const DietaryPreferences = ({ navigation }: { navigation: any }) => {
           </>
         )}
       </Formik>
-    </InnerContainer>
-    </StyledContainer>
+    </View>
+    </View>
   );
 };
 

@@ -35,7 +35,7 @@ const Signup: React.FC<SignupProps> = ({ navigation }) => {
       });
       console.log("User signed up:", user);
       Alert.alert("Success", "Sign up successful. Please check your email for verification.");
-      navigation.navigate("ConfirmEmail", { email: values.email });
+      navigation.navigate("ConfirmEmail", { email: values.email, password: values.password, name: values.name});
     } catch (error: any) {
       // console.log("Error signing up:", error);
       // Alert.alert("Error", "An error occurred while signing up. Please try again.");

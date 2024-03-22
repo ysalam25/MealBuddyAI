@@ -7,18 +7,19 @@ import { Colors } from "../../components/styles";
 import { Auth } from "@aws-amplify/auth";
 
 const ConfirmEmail = ({ navigation, route }: { navigation: any, route: any }) => {
-  const { email } = route.params;
+  const { email, password, name } = route.params;
   const [resendLoading, setResendLoading] = useState(false);
 
 
   const handleVerification = async (values: { verificationCode: string }) => {
     try {
       await Auth.confirmSignUp(email, values.verificationCode);
-      Alert.alert("Success", "Email verification successful. You can now log in.");
-      navigation.navigate("LoginNewUser");
+      await Auth.signIn(email, password);
+      Alert.alert("Success", "Email verification successful. You are now signed in.");
+      navigation.navigate("DietaryPreferences", { name: name });
     } catch (error) {
       console.log("Error verifying email:", error);
-      Alert.alert("Error", "An error occurred while verifying your email. Please try again.");
+      Alert.alert("Error", "An error occurred while verifying your email or signing in. Please try again.");
     }
   };
 

@@ -20,7 +20,10 @@ const Walkthrough: React.FC<Props> = ({ navigation }) => {
     navigation.navigate("Login");
   };
   const handleGoHome = () => {
-    navigation.navigate("Home"); 
+    navigation.navigate("DietaryPreferences"); 
+  };
+  const handleGoPreferences = () => {
+    navigation.navigate("DietaryPreferences"); 
   };
 
   const renderSlides = () => {
@@ -62,7 +65,7 @@ const Walkthrough: React.FC<Props> = ({ navigation }) => {
               titleStyle={styles.buttonBlackText}
             />
               <Button
-    title={"Home"}
+    title={"DietaryPre"}
     onPress={handleGoHome}
     buttonStyle={styles.button} 
     titleStyle={styles.buttonText}

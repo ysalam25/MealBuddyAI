@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { BottomTabBarButtonProps } from '@react-navigation/bottom-tabs';
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { View, Text, Image, TouchableOpacity, Dimensions } from "react-native";
-import AddRecipeOptions from "../components/AddRecipeOptions";
-
+import { useNavigation } from "@react-navigation/native";
 import Home from "../pages/Home";
 import Profile from "../pages/profile/Profile";
 import Pantry from "../pages/Pantry";
@@ -11,59 +11,42 @@ import Cart from "../pages/ShoppingCart/Cart";
 import { colors } from "../components/constants/colors";
 
 const Tab = createBottomTabNavigator();
-type CustomTabBarButtonProps = {
-  onPress: () => void;
-  children: React.ReactNode;
-};
-type TabBarIconProps = {
-  focused: boolean;
-  // You can add other properties here if needed, like 'color' or 'size'
-};
+
 const { height } = Dimensions.get('window');
 const tabBarHeight = height * 0.1;
 
-const CustomTabBarButton: React.FC<CustomTabBarButtonProps> = ({ children, onPress }) => (
-  <TouchableOpacity
-    style={{
-      justifyContent: "center",
-      alignItems: "center",
-      bottom: 5,
-    }}
-    onPress={onPress}
-  >
-    <View
-      style={{
-        width: 60, // Set the width as needed
-        height: 60, // Set the height as needed
-        borderRadius: 30, // This will make it a circle
-      }}
-    >
-      {children}
-    </View>
-  </TouchableOpacity>
-);
-const HomeIcon: React.FC<TabBarIconProps> = ({ focused }) => (
-  <View style={{
-    alignItems: "center",
-    justifyContent: "center",
-  }}>
-    <Image
-      source={require("../assets/Icons/homeIcon.png")}
-      resizeMode="contain"
-      style={{
-        width: 20,
-        height: 20,
-        tintColor: focused ? "#F87D57" : "#000000",
-      }}
-    />
-    <Text style={{ color: focused ? "#F87D57" : "#000000", fontSize: 12 }}>
-      Home
-    </Text>
-  </View>
-);
+type CustomTabBarButtonProps = {
+  onPress?: () => void;
+};
 
-const Tabs = () => {
-  const [isAddRecipeVisible, setAddRecipeVisible] = useState(false);
+const CustomTabBarButton: React.FC = () => {
+  const navigation = useNavigation();
+
+  return (
+    <TouchableOpacity
+      style={{
+        justifyContent: 'center',
+        alignItems: 'center',
+        bottom: 5,
+        width: 60,
+        height: 60,
+      }}
+      onPress={() => navigation.navigate('AddRecipeOptions')}
+    >
+      <Image
+        source={require('../assets/Icons/addIcon.png')}
+        resizeMode="contain"
+        style={{
+          width: 50,
+          height: 50,
+        }}
+      />
+    </TouchableOpacity>
+  );
+};
+
+
+const Tabs: React.FC = () => {
   return (
     <React.Fragment>
         <Tab.Navigator
@@ -161,7 +144,6 @@ const Tabs = () => {
           ),
         }}
       />
-
       <Tab.Screen
         name="addRecipe"
         component={addRecipe}
@@ -173,13 +155,10 @@ const Tabs = () => {
               style={{
                 width: 50,
                 height: 50,
-                
               }}
             />
           ),
-          tabBarButton: (props) => (
-            <CustomTabBarButton {...props} onPress={() => setAddRecipeVisible(true)} />
-          ),
+          tabBarButton: () => <CustomTabBarButton />
         }}
       />
 
@@ -266,10 +245,6 @@ const Tabs = () => {
       />
     </Tab.Navigator>
 
-    <AddRecipeOptions
-    isVisible={isAddRecipeVisible}
-    onClose={() => setAddRecipeVisible(false)}
-    />
     </React.Fragment>
   );
 };

@@ -3,9 +3,9 @@ import { Amplify, API } from "aws-amplify";
 import amplifyconfig from "./src/amplifyconfiguration.json";
 import { NavigationContainer } from "@react-navigation/native";
 import RootStack from "./navigators/RootStack";
-import { Button, Text, TextInput, StyleSheet, SafeAreaView } from "react-native";
+import { Button, Text, TextInput, StyleSheet, SafeAreaView, GestureResponderEvent } from "react-native";
 import axios from 'axios';
-import { PantryProvider } from "./src/services/PantryState";
+
 
 Amplify.configure(amplifyconfig);
 
@@ -58,8 +58,12 @@ export default function App() {
     },
   });
 
+  function handleFetchResponse(event: GestureResponderEvent): void {
+    throw new Error("Function not implemented.");
+  }
+
   return (
-    <PantryProvider>
+
       <SafeAreaView style={styles.container}>
         <NavigationContainer>
           <RootStack />
@@ -73,6 +77,6 @@ export default function App() {
         <Button title="Get Response" onPress={handleFetchResponse} />
         <Text style={styles.responseText}>{response}</Text>
       </SafeAreaView>
-    </PantryProvider>
+
   );
 }

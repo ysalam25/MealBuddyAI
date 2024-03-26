@@ -51,6 +51,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
+    "@types/dotenv": "^8.2.0",
     "@types/react-native-onboarding-swiper": "^1.1.9"
   },
   "private": true

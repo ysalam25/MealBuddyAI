@@ -1,3 +1,7 @@
+import axios from 'axios';
+import { API_URL, OPENAI_API_KEY } from '@env'; 
+
+
 // Example in a Node.js server
 const express = require('express');
 const axios = require('axios');

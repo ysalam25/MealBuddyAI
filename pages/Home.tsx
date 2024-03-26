@@ -25,8 +25,7 @@ import { generateRecipe } from '../src/services/openaiService';
 import Config from "react-native-config";
 import { API } from "aws-amplify";
 import axios from "axios";
-//import { usePantry } from '../services/PantryState';
-import { usePantry } from './src/services/PantryState.ts'
+
 
 
 interface Recipe {
@@ -365,4 +364,8 @@ interface TrendingItem {
 };
 
 export default Home;
+
+function usePantry() {
+  throw new Error("Function not implemented.");
+}
 

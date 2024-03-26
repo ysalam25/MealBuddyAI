@@ -101,7 +101,7 @@ const Pantry = () => {
         
         <AddItem isVisible={isModalVisible} onClose={toggleModal}>
 
-
+</SearchButton>
       </AddItem>
       
       
@@ -111,3 +111,4 @@ const Pantry = () => {
 };
 
 export default Pantry;
+</AddItem>

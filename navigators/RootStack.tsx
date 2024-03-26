@@ -17,9 +17,13 @@ import LoginNewUser from "../pages/auth/LoginNewUser";
 import RecipeDetailScreen from "../pages/recipes/RecipeDetailScreen";
 import Pantry from "../pages/Pantry"
 import EditItem from "../pages/EditItem"
-import AddItem from "../pages/AddItem";
 import Avatar from "../pages/profile/Avatar";
 import DietaryPreferences from "../pages/profile/DietaryPreferences";
+import CameraScreen from "../components/CameraScreen";
+import EnterFoodItemScreen from "../components/EnterFoodItemScreen";
+import ItemDetailsScreen from "../components/ItemDetailsScreen";
+import AddRecipeOptions from "../components/AddRecipeOptions";
+import AddItem from "../pages/AddItem";
 import OnboardingPage1 from "../pages/profile/OnboardingPage1";
 
 const Stack = createNativeStackNavigator();
@@ -69,6 +73,11 @@ const RootStack = () => {
       <Stack.Screen name="Pantry" component={Pantry} />
       <Stack.Screen name="EditItem" component={EditItem} />
       <Stack.Screen name="Avatar" component={Avatar} />
+      <Stack.Screen name="CameraScreen" component={CameraScreen} />
+      <Stack.Screen name="EnterFoodItemScreen" component={EnterFoodItemScreen} />
+      <Stack.Screen name="ItemDetailsScreen" component={ItemDetailsScreen} />
+      <Stack.Screen name="AddRecipeOptions" component={AddRecipeOptions} />
+
     </Stack.Navigator>
   );
 };

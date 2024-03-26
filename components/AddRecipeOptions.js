@@ -1,94 +1,74 @@
 import React from "react";
-import {
-  View,
-  TouchableOpacity,
-  Text,
-  Image,
-  Modal,
-  StyleSheet,
-} from "react-native";
+import { View, TouchableOpacity, Text, Image, StyleSheet } from "react-native";
 import iconCamera from "../assets/icon-add-camera.png";
 import iconPlus from "../assets/icon-add-plus.png";
 import { useNavigation } from "@react-navigation/native";
+import * as Permissions from "expo-permissions";
 
-const AddRecipeOptions = ({ isVisible, onClose }) => {
+const AddRecipeOptions = () => {
   const navigation = useNavigation();
 
   const handleScanWithCamera = async () => {
-    console.log("Scan with Cam");
+    const { status } = await Permissions.askAsync(Permissions.CAMERA);
+    if (status === "granted") {
+      navigation.navigate("CameraScreen");
+    } else {
+      console.log("Camera permission denied");
+    }
   };
 
-  const handleEnterDetailsManually = () => {
-    console.log("Entering details manually");
+  const handleEnterDetailsManually = async () => {
+    navigation.navigate("EnterFoodItemScreen");
   };
 
   return (
-    <Modal transparent={true} visible={isVisible} onRequestClose={onClose}>
+    <View style={styles.container}>
       <TouchableOpacity
-        style={styles.overlay}
-        activeOpacity={1}
-        onPressOut={onClose}
+        style={styles.optionButton}
+        onPress={handleScanWithCamera}
+        activeOpacity={0.7}
       >
-        <View style={styles.popup} onStartShouldSetResponder={() => true}>
-          <TouchableOpacity
-            style={styles.optionButton}
-            onPress={handleScanWithCamera}
-            activeOpacity={0.7} 
-          >
-            <Image source={iconCamera} style={styles.icon} />
-            <Text>Scan with camera</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.optionButton}
-            onPress={handleEnterDetailsManually}
-            activeOpacity={0.7}
-          >
-            <Image source={iconPlus} style={styles.icon} />
-            <Text>Enter details manually</Text>
-          </TouchableOpacity>
-        </View>
+        <Image source={iconCamera} style={styles.icon} />
+        <Text>Scan with camera</Text>
       </TouchableOpacity>
-    </Modal>
+      <TouchableOpacity
+        style={styles.optionButton}
+        onPress={handleEnterDetailsManually}
+        activeOpacity={0.7}
+      >
+        <Image source={iconPlus} style={styles.icon} />
+        <Text>Enter details manually</Text>
+      </TouchableOpacity>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
-  overlay: {
-    flex: 1,
-    justifyContent: "flex-end",
-    backgroundColor: "rgba(0, 0, 0, 0.5)", 
-  },
-  popup: {
-    backgroundColor: "white",
-    padding: 16,
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    alignItems: "center",
-  },
   container: {
     flex: 1,
-    justifyContent: "flex-end", 
-    alignItems: "center", 
-    marginBottom: 80, 
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#fff",
   },
   optionButton: {
     backgroundColor: "white",
-    elevation: 2, 
+    elevation: 2,
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     shadowOffset: {
       width: 0,
       height: 2,
     },
-    borderRadius: 8, 
-    paddingVertical: 10, 
-    paddingHorizontal: 20, 
-    marginVertical: 5, 
-    width: 150, 
+    borderRadius: 8,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    marginVertical: 5,
+    width: 150,
+    alignItems: "center",
   },
   icon: {
-    width: 30,
-    height: 30,
+    width: 45, // Increased by 50%
+    height: 45, // Increased by 50%
     marginBottom: 10,
   },
 });

@@ -1,0 +1,77 @@
+[
+    {
+        "description": "Aim to increase the consumption of whole, unprocessed foods while reducing reliance on highly processed and refined foods.",
+        "goal_id": 26161,
+        "name": "Whole Foodie"
+    },
+    {
+        "description": "Increasing the intake of healthy fats (monounsaturated and polyunsaturated fats) while minimizing saturated and trans fats.",
+        "goal_id": 11791,
+        "name": "Healthy Fatty"
+    },
+    {
+        "description": "Aim to provide a type of diet that includes fish and other seafood but excludes other types of meat such as poultry, beef, and pork. Supplement with fish and shellfish.",
+        "goal_id": 28045,
+        "name": "Pescatarian"
+    },
+    {
+        "description": "A dietary approach that emphasizes the consumption of uncooked, unprocessed, and often organic foods.",
+        "goal_id": 7471,
+        "name": "Raw Food"
+    },
+    {
+        "description": "Limit the intake of added sugars and set goals for reducing sugar consumption from processed foods and beverages.",
+        "goal_id": 13220,
+        "name": "Mindfully Sweet"
+    },
+    {
+        "description": "Adhere to ketogenic or low-carb dietary patterns, ensuring sufficient healthy fats and minimal carbohydrate intake.",
+        "goal_id": 4008,
+        "name": "Keto or Low-Carb Devotee"
+    },
+    {
+        "description": "Excludes all forms of dairy products.",
+        "goal_id": 832,
+        "name": "Dairy-free"
+    },
+    {
+        "description": "Aim to consume a wide variety of ingredients from multiple food groups.",
+        "goal_id": 14097,
+        "name": "Diverse Eater"
+    },
+    {
+        "description": "Based on the traditional dietary patterns of countries bordering the Mediterranean Sea. It includes fruits, vegetables, whole grains, fish, and olive oil while limiting red meat and dairy.",
+        "goal_id": 13516,
+        "name": "Mediterranean Diet"
+    },
+    {
+        "description": "Promote a healthy gut microbiome, including prebiotics and probiotics.",
+        "goal_id": 330,
+        "name": "Gut Health"
+    },
+    {
+        "description": "Prioritize heart and brain health by including foods that support healthy cholesterol levels and blood pressure.",
+        "goal_id": 4126,
+        "name": "Heart and Brain Healthy"
+    },
+    {
+        "description": "Prioritize the intake of essential vitamins and minerals through a varied and nutrient-dense diet.",
+        "goal_id": 27133,
+        "name": "Micronutrient Intake"
+    },
+    {
+        "description": "Vegetarian, includes dairy products (lacto) and eggs (ovo). Individuals following this diet abstain from all forms of meat, including fish and poultry. Lacto-ovo vegetarians obtain their protein from plant sources, dairy, and eggs.",
+        "goal_id": 159,
+        "name": "Lacto-Ovo-Tarian"
+    },
+    {
+        "description": "Use low-cost, basic ingredients to create a nutritional diet.",
+        "goal_id": 25409,
+        "name": "Budget Friendly"
+    },
+    {
+        "description": "Equal ratios of carbohydrates, proteins, and fats to achieve a balanced diet.",
+        "goal_id": 6938,
+        "name": "Balanced Macros"
+    }
+]

@@ -4,5 +4,6 @@
     "jsx": "react",
     "strict": true,
     "resolveJsonModule": true,
+    "jsx":"react-native"
   }
 }

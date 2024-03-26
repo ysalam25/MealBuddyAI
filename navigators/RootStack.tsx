@@ -5,19 +5,22 @@ import { Colors } from "../components/styles";
 const { primary, secondary } = Colors;
 
 //pages
-import Login from "../pages/Login";
-import Signup from "../pages/Signup";
-import ForgotPassword from "../pages/ForgotPassword";
-import NewPasswordScreen from "../pages/NewPasswordScreen";
-import Walkthrough1 from "../pages/Walkthrough1";
-import Settings from "../pages/Settings";
+import Login from "../pages/auth/Login";
+import Signup from "../pages/auth/Signup";
+import ForgotPassword from "../pages/auth/ForgotPassword";
+import NewPasswordScreen from "../pages/auth/NewPasswordScreen";
+import Walkthrough from "../pages/walkthrough/Walkthrough";
+import Profile from "../pages/profile/Profile";
 import Tabs from "./tabs"; 
-import ConfirmEmail from "../pages/ConfirmEmail";
-import DietaryPreferences from "../pages/DietaryPreferences";
-import LoginNewUser from "../pages/LoginNewUser";
-import RecipeDetailScreen from "../pages/RecipeDetailScreen";
+import ConfirmEmail from "../pages/auth/ConfirmEmail";
+import LoginNewUser from "../pages/auth/LoginNewUser";
+import RecipeDetailScreen from "../pages/recipes/RecipeDetailScreen";
 import Pantry from "../pages/Pantry"
 import EditItem from "../pages/EditItem"
+import AddItem from "../pages/AddItem";
+import Avatar from "../pages/profile/Avatar";
+import DietaryPreferences from "../pages/profile/DietaryPreferences";
+import OnboardingPage1 from "../pages/profile/OnboardingPage1";
 
 const Stack = createNativeStackNavigator();
 
@@ -31,8 +34,9 @@ const RootStack = () => {
         headerTintColor: "#000",
         headerTransparent: true,
         headerTitle: "",
+        headerBackButtonMenuEnabled: true,
       }}
-      initialRouteName="Walkthrough1"
+      initialRouteName="Walkthrough"
     >
       <Stack.Screen
         name="Home"
@@ -49,17 +53,22 @@ const RootStack = () => {
         })}
       />
       <Stack.Screen name="Signup" component={Signup} />
-      <Stack.Screen name="Walkthrough1" component={Walkthrough1} />
+      <Stack.Screen name="Walkthrough" component={Walkthrough} />
       <Stack.Screen name="ConfirmEmail" component={ConfirmEmail} />
       <Stack.Screen name="ForgotPassword" component={ForgotPassword} />
       <Stack.Screen name="NewPasswordScreen" component={NewPasswordScreen} />
-      <Stack.Screen name="Settings" component={Settings} />
-      <Stack.Screen name="DietaryPreferences" component={DietaryPreferences} />
+      <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen name="OnboardingPage1" component={OnboardingPage1} options={{ headerShown: false }} />
+      <Stack.Screen 
+  name="DietaryPreferences" 
+  component={DietaryPreferences} 
+  options={{ headerShown: false }}
+/>
       <Stack.Screen name="LoginNewUser" component={LoginNewUser} />
       <Stack.Screen name="RecipeDetailScreen" component={RecipeDetailScreen} />
       <Stack.Screen name="Pantry" component={Pantry} />
       <Stack.Screen name="EditItem" component={EditItem} />
-
+      <Stack.Screen name="Avatar" component={Avatar} />
     </Stack.Navigator>
   );
 };

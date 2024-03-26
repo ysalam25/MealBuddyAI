@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "name": "Vegetarian"
+    },
+    {
+        "id": 2,
+        "name": "Dairy-Free"
+    },
+    {
+        "id": 3,
+        "name": "Organic"
+    },
+    {
+        "id": 4,
+        "name": "Keto"
+    },
+    {
+        "id": 5,
+        "name": "Vegan"
+    },
+    {
+        "id": 6,
+        "name": "Lacto-Ovo-Tarian"
+    },
+    {
+        "id": 7,
+        "name": "Halal"
+    },
+    {
+        "id": 8,
+        "name": "Gluten-Free"
+    },
+    {
+        "id": 9,
+        "name": "Pescatarian"
+    },
+    {
+        "id": 10,
+        "name": "Low-Carb"
+    },
+    {
+        "id": 11,
+        "name": "Kosher"
+    },
+    {
+        "id": 12,
+        "name": "Paleo"
+    }
+]

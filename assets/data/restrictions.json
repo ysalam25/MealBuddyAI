@@ -1,0 +1,42 @@
+[
+        {
+            "id": 1,
+            "name": "Peanuts"
+        },
+        {
+            "id": 2,
+            "name": "Tree Nuts"
+        },
+        {
+            "id": 3,
+            "name": "Shellfish"
+        },
+        {
+            "id": 4,
+            "name": "Fish"
+        },
+        {
+            "id": 5,
+            "name": "Eggs"
+        },
+        {
+            "id": 6,
+            "name": "Soy"
+        },
+        {
+            "id": 7,
+            "name": "Wheat"
+        },
+        {
+            "id": 8,
+            "name": "Milk"
+        },
+        {
+            "id": 9,
+            "name": "Sesame"
+        },
+        {
+            "id": 10,
+            "name": "Sulfites"
+        }
+]

@@ -21,6 +21,7 @@
     "aws-amplify": "^5.3.12",
     "axios": "^1.6.8",
     "deprecated-react-native-prop-types": "^5.0.0",
+    "dotenv": "^16.4.5",
     "expo": "^49.0.21",
     "expo-barcode-scanner": "~12.5.3",
     "expo-camera": "~13.4.4",

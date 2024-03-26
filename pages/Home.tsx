@@ -21,9 +21,14 @@ import FilteredRecipes from "../components/FilteredRecipies";
 import { Modal, View, TouchableOpacity } from "react-native";
 import filterData from "../mockData/filterData.json";
 import { useNavigation } from "@react-navigation/native";
-import { generateRecipe } from '../services/openaiService';
-import axios from "axios";
+import { generateRecipe } from '../src/services/openaiService';
 import Config from "react-native-config";
+import { API } from "aws-amplify";
+import axios from "axios";
+//import { usePantry } from '../services/PantryState';
+import { usePantry } from './src/services/PantryState.ts'
+
+
 interface Recipe {
   id: number;
   title: string;
@@ -45,7 +50,7 @@ const Home = () => {
 interface TrendingItem {
   title: string;
   attributes: string[];
-  preparationTime: string;
+  preparationTime: string; 
   cookingTime: string;
   totalTime: string;
 }
@@ -54,16 +59,30 @@ interface TrendingItem {
   useEffect(() => {
     // Fetch initial trending recipes or other content on mount
     const fetchTrendingItems = async () => {
-      // Replace with the actual URL or local file
-      const response = await axios.get('path/to/trendingItems.json');
-      setTrendingItems(response.data);
+      try {
+        const response = await fetch('/api/trendingItems');
+        const data = await response.json();
+        setTrendingItems(data);
+      } catch (error) {
+        console.error("Error fetching trending items:", error);
+      }
     };
     fetchTrendingItems();
   }, []);
+
   
   const handleSearchSubmit = async (searchQuery: string) => {
+
+    const pantryItems = usePantry(); // Use the usePantry hook to get the pantry items
+
     try {
-      const prompt = `Given the dietary preferences ${searchQuery}, what is a good recipe?`;
+      // Create a list of ingredients from the pantry items
+      const pantryIngredients = pantryItems.map((item: { name: string }) => item.name).join(', ');
+
+      // Construct the prompt with dietary preferences and available ingredients
+      const prompt = `Given the dietary preferences ${searchQuery} and available ingredients ${pantryIngredients}, what is a good recipe?`;
+
+      // Generate the recipe with the constructed prompt
       const recipeText = await generateRecipe(prompt);
       console.log('Generated recipe:', recipeText);
       // Now process the recipeText and update your state or UI accordingly
@@ -73,7 +92,7 @@ interface TrendingItem {
   };
   
   
-  
+
   useEffect(() => {
     const fetchRecipes = async () => {
       try {

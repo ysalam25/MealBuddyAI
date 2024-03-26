@@ -32,7 +32,7 @@ const validationSchema = Yup.object().shape({
     .required('Allergies is required'),
 });
 
-const DietaryPreferences = ({ navigation }) => {
+const DietaryPreferences = ({ navigation }: { navigation: any }) => {
   const [selectedPreferences, setSelectedPreferences] = useState([]);
   const [dietaryRestrictions, setDietaryRestrictions] = useState([]);
   const [nutritionGoals, setNutritionGoals] = useState([]);

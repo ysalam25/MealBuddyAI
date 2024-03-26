@@ -12,39 +12,8 @@ import nutrition from '../../assets/data/nutrition-goals.json'
 import dietss from '../../assets/data/diet.json'
 import restrctions from '../../assets/data/restrictions.json'
 
-// const validationSchema = Yup.object().shape({
-//   dietaryRestrictions: Yup.string()
-//     .required('Dietary Restrictions is required'),
-//   nutritionGoals: Yup.string()
-//     .required('Nutrition Goals is required'),
-//   dislikes: Yup.string()
-//     .required('Dislikes is required'),
-//   allergies: Yup.string()
-//     .required('Allergies is required'),
-// });
-
-// const validationSchema = Yup.object().shape({
-//   diets: Yup.array()
-//     .typeError('')
-//     .min(1, 'At least one diet must be selected')
-//     .required('Diet is required'),
-//   nutritionGoals: Yup.array()
-//     .typeError('')
-//     .min(1, 'At least one nutrition goal must be selected')
-//     .required('Nutrition Goals is required'),
-//   allergies: Yup.array()
-//     .typeError('')
-//     .min(1, 'At least one allergy must be selected')
-//     .required('Allergies is required'),
-// });
-
-const validate = (values) => {
-  let errors = {
-    diets: '',
-    nutritionGoals: '',
-    allergies: '',
-  };
-
+const validate = (values: any) => {
+  const errors: any = {};
   // Validate diets
   if (!values.diets || values.diets.length === 0) {
     errors.diets = 'At least one diet must be selected';
@@ -53,11 +22,6 @@ const validate = (values) => {
   // Validate nutritionGoals
   if (!values.nutritionGoals || values.nutritionGoals.length === 0) {
     errors.nutritionGoals = 'At least one nutrition goal must be selected';
-  }
-
-  // Validate allergies
-  if (!values.allergies || values.allergies.length === 0) {
-    errors.allergies = 'At least one allergy must be selected';
   }
 
   return errors;
@@ -149,13 +113,15 @@ const DietaryPreferences = ({ navigation,route }: { navigation: any, route:any }
           validate={validate}
           onSubmit={(values) => {
             console.log(values);
+            //api call to update user dietary preferences
+            
             //updateUserDietaryPreferences(values.dietaryRestrictions);
             navigation.navigate("Home");
           }}
 
         >
 
-          {({ handleChange, handleBlur, handleSubmit, values, setFieldValue, errors,}) => (
+          {({ handleChange, handleBlur, handleSubmit, values, setFieldValue, errors, setFieldTouched}) => (
             <>
               <Text style={styles.SubTitle}>Add Your Current Diet:</Text>
               <View style={styles.MultiSelectContainer}>
@@ -165,9 +131,11 @@ const DietaryPreferences = ({ navigation,route }: { navigation: any, route:any }
                   setOpen={() => setIsOpen(!isOpen)}
                   value={currentValue}
                   items={dietss.map((diet) => ({ label: diet.name, value: diet.name }))}
-                  setValue={(val) => {
-                    setCurrentValue(val);
-                    setFieldValue('diets', val);
+                  setValue={(callback) => {
+                    const newValue = callback(currentValue); // Correctly compute the new value
+                    setCurrentValue(newValue); // Update local state
+                    console.log('Selected diets:', newValue);
+                    setFieldValue('diets', newValue);
                   }}
                   maxHeight={200}
                   autoScroll
@@ -198,7 +166,11 @@ const DietaryPreferences = ({ navigation,route }: { navigation: any, route:any }
                   setOpen={() => setIsOpen1(!isOpen1)}
                   value={currentValue1}
                   items={nutrition.map((goal) => ({ label: goal.name, value: goal.name }))}
-                  setValue={(val) => {setCurrentValue1(val); setFieldValue('nutritionGoals', val);
+                  setValue={(callback) => {
+                    const newValue = callback(currentValue1); // Correctly compute the new value
+                    setCurrentValue1(newValue); // Update local state
+                    console.log('Selected goals', newValue);
+                    setFieldValue('nutritionGoals', newValue);
                   }}
                   maxHeight={200}
                   autoScroll
@@ -231,7 +203,12 @@ const DietaryPreferences = ({ navigation,route }: { navigation: any, route:any }
                   setOpen={() => setIsOpen2(!isOpen2)}
                   value={currentValue2}
                   items={restrctions.map((goal) => ({ label: goal.name, value: goal.name }))}
-                  setValue={(val) => {setCurrentValue2(val); setFieldValue('allergies', val);}}
+                  setValue={(callback) => {
+                    const newValue = callback(currentValue2);
+                    setCurrentValue2(newValue); 
+                    console.log('Selected allergy:', newValue);
+                    setFieldValue('allergies', newValue);
+                  }}
                   maxHeight={200}
                   autoScroll
 
@@ -257,7 +234,7 @@ const DietaryPreferences = ({ navigation,route }: { navigation: any, route:any }
               </View>
 
               <View style={styles.ButtonContainer}>
-                <TouchableOpacity style={styles.StyledButton} onPress={() => handleSubmit()}>
+                <TouchableOpacity style={styles.StyledButton} onPress={() => {handleSubmit(); console.log(values)}}>
                   <Text style={styles.ButtonText}>Submit</Text>
                 </TouchableOpacity>
               </View>

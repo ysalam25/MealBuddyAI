@@ -7,8 +7,8 @@ import { Auth } from 'aws-amplify';
 import { styles } from '../../components/screen/DietaryPreferenceScreen'
 
 const OnboardingPage1 = ({ navigation,route }: { navigation: any, route:any }) => {
-  const name  = "Yusra"; //remove
- // const {name} = route.params; //use this
+  //const name  = "Yusra"; //remove
+ const {name} = route.params; //use this
 
   return (
     <View style={styles.StyledContainer1}>

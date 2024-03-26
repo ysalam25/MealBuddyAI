@@ -25,7 +25,7 @@ const Walkthrough: React.FC<Props> = ({ navigation }) => {
   const handleGoPreferences = () => {
     navigation.navigate("DietaryPreferences"); 
   };
-
+  
   const renderSlides = () => {
     return slides.map((slide, index) => ({
       backgroundColor: "#F9F6EE",

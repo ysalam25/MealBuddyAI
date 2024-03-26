@@ -8,16 +8,47 @@ const { width, height } = Dimensions.get('window');
 
 export const styles = StyleSheet.create({
 
+    StyledContainer1:{
+        flex: 1,
+        paddingTop: Constants.statusBarHeight,
+        backgroundColor: colors.background,
+        paddingHorizontal: width * 0.05,
+        justifyContent: 'center',
+      },
+      InnerContainer1:{
+        width: '100%',
+        top: "-10%",
+        alignItems: 'center',
+       
+      },
+      SubTitle1:{
+        fontSize: 24,
+        fontWeight: '400',
+        color: colors.ink,
+        alignSelf: 'flex-start',
+        paddingBottom: 5,
+        paddingLeft: 5,
+        paddingTop: 20,
+        marginBottom: 10,
+      },
+
+      ExtraText:{
+        fontSize: 16,
+        fontWeight: '300',
+        color: colors.ink,
+        paddingBottom: 5,
+        paddingLeft: 5,
+        marginBottom: 10,
+        marginRight: 10,
+        alignSelf: 'flex-start',
+        textAlign: 'auto',
+      },
+
     ExtraView:{
         flexDirection: "row",
         alignItems: "center",
         padding: 10,
-        top: "-10%",  
-    },
-    ExtraText:{
-        alignItems: "center",
-        fontSize: 15,
-        fontWeight: "500",
+        top: "-5%",  
     },
     TextLink:{
         alignItems: "center",
@@ -61,12 +92,16 @@ export const styles = StyleSheet.create({
         alignItems: "center",
     },
     ButtonContainer:{
-        //justifyContent: "center",
-       // alignItems: "center",
-        //bottom: "5%",
         width: "50%",
         top: height * 0.2,
 
+    },
+    ErrorContainer:{
+        flexDirection: "row",
+        justifyContent: "center",
+        alignItems: "center",
+        marginBottom: 5,
+        height: 20,
     },
     BottomContainer:{
         justifyContent: "space-evenly",
@@ -91,15 +126,8 @@ export const styles = StyleSheet.create({
     },
     ErrorText:{
         fontSize: 14,
-        marginBottom: 10,
-     
+        marginTop: 5,
         textAlign: "center",
-    },
-    ErrorContainer:{
-        flexDirection: "row",
-        justifyContent: "center",
-        alignItems: "center",
-        marginBottom: 10,
     },
     ErrorIcon:{
         width: 20,
@@ -107,14 +135,10 @@ export const styles = StyleSheet.create({
         marginRight: 5,
         flexDirection: "row",
         marginBottom: 10,
-       // marginTop: -5,
     },
     SelectionContainer:{
         flexDirection: "column",
-        // justifyContent: "space-evenly",
-        // alignItems: "center",
         width: width * 1.1,
-        // marginBottom: 20,
         paddingHorizontal: 60,
     },
     StyledContainer: {
@@ -124,6 +148,7 @@ export const styles = StyleSheet.create({
         paddingHorizontal: width * 0.05,
       },
       InnerContainer: {
+        top: height * 0.03,
         width: '100%',
         alignItems: 'center',
       },
@@ -143,7 +168,6 @@ export const styles = StyleSheet.create({
         padding: 10,
         paddingTop: 0,
         zIndex: 1000,
-      
       },
       MultiSelectContainer1: {
         width: '100%',
@@ -172,8 +196,8 @@ export const styles = StyleSheet.create({
       },
       ButtonText: {
         color: colors.primary,
-        fontSize: 16,
-        fontWeight: 'bold',
+        fontSize: 18,
+        fontWeight: '600',
       },
       SkipButtonText: {
         color: colors.secondary,
@@ -196,5 +220,11 @@ export const styles = StyleSheet.create({
       },
       ListContainer:{
         height: 180,
+      },
+      ButtonContainer1:{
+        justifyContent: 'center',
+        alignItems: 'center',
+        top: height * 0.3,
+        width: '50%',
       },
 });

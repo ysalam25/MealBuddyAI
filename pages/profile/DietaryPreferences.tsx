@@ -12,16 +12,56 @@ import nutrition from '../../assets/data/nutrition-goals.json'
 import dietss from '../../assets/data/diet.json'
 import restrctions from '../../assets/data/restrictions.json'
 
-const validationSchema = Yup.object().shape({
-  dietaryRestrictions: Yup.string()
-    .required('Dietary Restrictions is required'),
-  nutritionGoals: Yup.string()
-    .required('Nutrition Goals is required'),
-  dislikes: Yup.string()
-    .required('Dislikes is required'),
-  allergies: Yup.string()
-    .required('Allergies is required'),
-});
+// const validationSchema = Yup.object().shape({
+//   dietaryRestrictions: Yup.string()
+//     .required('Dietary Restrictions is required'),
+//   nutritionGoals: Yup.string()
+//     .required('Nutrition Goals is required'),
+//   dislikes: Yup.string()
+//     .required('Dislikes is required'),
+//   allergies: Yup.string()
+//     .required('Allergies is required'),
+// });
+
+// const validationSchema = Yup.object().shape({
+//   diets: Yup.array()
+//     .typeError('')
+//     .min(1, 'At least one diet must be selected')
+//     .required('Diet is required'),
+//   nutritionGoals: Yup.array()
+//     .typeError('')
+//     .min(1, 'At least one nutrition goal must be selected')
+//     .required('Nutrition Goals is required'),
+//   allergies: Yup.array()
+//     .typeError('')
+//     .min(1, 'At least one allergy must be selected')
+//     .required('Allergies is required'),
+// });
+
+const validate = (values) => {
+  let errors = {
+    diets: '',
+    nutritionGoals: '',
+    allergies: '',
+  };
+
+  // Validate diets
+  if (!values.diets || values.diets.length === 0) {
+    errors.diets = 'At least one diet must be selected';
+  }
+
+  // Validate nutritionGoals
+  if (!values.nutritionGoals || values.nutritionGoals.length === 0) {
+    errors.nutritionGoals = 'At least one nutrition goal must be selected';
+  }
+
+  // Validate allergies
+  if (!values.allergies || values.allergies.length === 0) {
+    errors.allergies = 'At least one allergy must be selected';
+  }
+
+  return errors;
+};
 
 const DietaryPreferences = ({ navigation,route }: { navigation: any, route:any }) => {
   const { name } = route.params;
@@ -40,8 +80,6 @@ const DietaryPreferences = ({ navigation,route }: { navigation: any, route:any }
   const [allergies, setAllergies] = useState([]);
   const [isOpen2, setIsOpen2] = useState(false);
   const [currentValue2, setCurrentValue2] = useState([]);
-
-
 
 
   /////////////UNCOMMENT WHEN USING IT BUT FOR NOW USE THE DATA UNDER ASSESTS
@@ -107,7 +145,8 @@ const DietaryPreferences = ({ navigation,route }: { navigation: any, route:any }
             nutritionGoals: [],
             allergies: [],
           }}
-          validationSchema={validationSchema}
+         
+          validate={validate}
           onSubmit={(values) => {
             console.log(values);
             //updateUserDietaryPreferences(values.dietaryRestrictions);
@@ -116,16 +155,20 @@ const DietaryPreferences = ({ navigation,route }: { navigation: any, route:any }
 
         >
 
-          {({ handleChange, handleBlur, handleSubmit, values, setFieldValue }) => (
+          {({ handleChange, handleBlur, handleSubmit, values, setFieldValue, errors,}) => (
             <>
               <Text style={styles.SubTitle}>Add Your Current Diet:</Text>
               <View style={styles.MultiSelectContainer}>
                 <DropDownPicker
                   open={isOpen}
+                  multiple={true}
                   setOpen={() => setIsOpen(!isOpen)}
                   value={currentValue}
                   items={dietss.map((diet) => ({ label: diet.name, value: diet.name }))}
-                  setValue={(val) => setCurrentValue(val)}
+                  setValue={(val) => {
+                    setCurrentValue(val);
+                    setFieldValue('diets', val);
+                  }}
                   maxHeight={200}
                   autoScroll
 
@@ -133,7 +176,7 @@ const DietaryPreferences = ({ navigation,route }: { navigation: any, route:any }
                   placeholderStyle={{ color: colors.ink }}
                   showArrowIcon={true}
 
-                  multiple={true}
+                  
                   mode="BADGE"
                   listMode='FLATLIST'
                   searchable={true}
@@ -143,6 +186,9 @@ const DietaryPreferences = ({ navigation,route }: { navigation: any, route:any }
                   searchTextInputStyle={{height: 40}}
 
                 />
+                <View style={styles.ErrorContainer}>
+                {errors.diets && <Text style={styles.ErrorText}>{errors.diets}</Text>}
+                </View>
               </View>
 
               <Text style={styles.SubTitle}>Set Your Nutrition Goals:</Text>
@@ -152,35 +198,8 @@ const DietaryPreferences = ({ navigation,route }: { navigation: any, route:any }
                   setOpen={() => setIsOpen1(!isOpen1)}
                   value={currentValue1}
                   items={nutrition.map((goal) => ({ label: goal.name, value: goal.name }))}
-                  setValue={(val) => setCurrentValue1(val)}
-                  maxHeight={200}
-                  autoScroll
-
-                  placeholder='Select Your Goals'
-                  placeholderStyle={{ color: colors.ink }}
-                  showArrowIcon={true}
-
-                  multiple={true}
-                  mode="BADGE"
-                  listMode='FLATLIST'
-                  searchable={true}
-                  badgeDotColors={"#FFF"}
-                  badgeColors={"#FFE7A0"}
-
-                  searchTextInputStyle={{height: 40}}
-
-                  zIndex={1000}
-
-                /></View>
-
-              <Text style={styles.SubTitle}>Set Your Dietary Restrictions:</Text>
-              <View style={styles.MultiSelectContainer2}>
-                <DropDownPicker
-                  open={isOpen2}
-                  setOpen={() => setIsOpen2(!isOpen2)}
-                  value={currentValue2}
-                  items={restrctions.map((goal) => ({ label: goal.name, value: goal.name }))}
-                  setValue={(val) => setCurrentValue2(val)}
+                  setValue={(val) => {setCurrentValue1(val); setFieldValue('nutritionGoals', val);
+                  }}
                   maxHeight={200}
                   autoScroll
 
@@ -200,14 +219,46 @@ const DietaryPreferences = ({ navigation,route }: { navigation: any, route:any }
                   zIndex={1000}
 
                 />
+                <View style={styles.ErrorContainer}>
+                {errors.nutritionGoals && <Text style={styles.ErrorText}>{errors.nutritionGoals}</Text>}
+                </View>
+                </View>
+
+              <Text style={styles.SubTitle}>Set Your Dietary Restrictions:</Text>
+              <View style={styles.MultiSelectContainer2}>
+                <DropDownPicker
+                  open={isOpen2}
+                  setOpen={() => setIsOpen2(!isOpen2)}
+                  value={currentValue2}
+                  items={restrctions.map((goal) => ({ label: goal.name, value: goal.name }))}
+                  setValue={(val) => {setCurrentValue2(val); setFieldValue('allergies', val);}}
+                  maxHeight={200}
+                  autoScroll
+
+                  placeholder='Select Your Goals'
+                  placeholderStyle={{ color: colors.ink }}
+                  showArrowIcon={true}
+
+                  multiple={true}
+                  mode="BADGE"
+                  listMode='FLATLIST'
+                  searchable={true}
+                  badgeDotColors={"#FFF"}
+                  badgeColors={"#FFE7A0"}
+
+                  searchTextInputStyle={{height: 40}}
+
+                  zIndex={1000}
+
+                />
+                <View style={styles.ErrorContainer}>
+                {errors.allergies && <Text style={styles.ErrorText}>{errors.allergies}</Text>}
+                </View>
               </View>
 
               <View style={styles.ButtonContainer}>
                 <TouchableOpacity style={styles.StyledButton} onPress={() => handleSubmit()}>
                   <Text style={styles.ButtonText}>Submit</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.skipButton} onPress={() => navigation.navigate('Home')}>
-                  <Text style={styles.SkipButtonText}>Skip</Text>
                 </TouchableOpacity>
               </View>
             </>

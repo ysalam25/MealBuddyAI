@@ -1,9 +1,20 @@
 import React from "react";
-import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Image,
+  ScrollView,
+  Button,
+} from "react-native";
 
-const ItemDetailsScreen = ({ route }) => {
+const ItemDetailsScreen = ({ route, navigation}) => {
   const { itemData } = route.params;
   const imageUrl = itemData.image_url;
+
+  const navigateHome = () => {
+    navigation.navigate("Home");
+  };
   return (
     <ScrollView style={styles.container}>
       <View style={styles.detailBox}>
@@ -23,10 +34,10 @@ const ItemDetailsScreen = ({ route }) => {
             <Text>Fiber: {itemData.nutriments.fiber} g</Text>
             <Text>Proteins: {itemData.nutriments.proteins} g</Text>
             <Text>Salt: {itemData.nutriments.salt} g</Text>
-
           </>
         )}
       </View>
+      <Button title="Home" onPress={navigateHome} />
     </ScrollView>
   );
 };
@@ -35,7 +46,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    paddingTop: 80, 
+    paddingTop: 80,
   },
   detailBox: {
     padding: 10,

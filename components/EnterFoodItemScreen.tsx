@@ -1,43 +1,54 @@
 import React from "react";
-import { View, TextInput, Button, Text, StyleSheet, ScrollView } from "react-native";
+import { View, TextInput, Button, Text, StyleSheet, ScrollView, Alert } from "react-native";
 import { Formik, FormikProps } from "formik";
 import * as Yup from "yup";
 
-interface FoodItem {
-  name: string;
-  barcode: string;
-  brand: string;
-  ingredient: number;
-}
-
-const FoodItemSchema = Yup.object().shape({
-  name: Yup.string().required("Required"),
-  barcode: Yup.string().required("Required").length(13, "Barcode must be exactly 13 characters long"),
-  brand: Yup.string().required("Required"),
-  ingredient: Yup.number().required("Required"),
+const BarcodeSchema = Yup.object().shape({
+  barcode: Yup.string().required("Barcode is required").length(13, "Barcode must be exactly 13 characters long"),
 });
 
 interface EnterFoodItemScreenProps {
   navigation: {
-    goBack: () => void;
+    navigate: (screenName: string, params: any) => void;
   };
 }
 
 const EnterFoodItemScreen: React.FC<EnterFoodItemScreenProps> = ({ navigation }) => {
+
+  const handleSubmit = async (values: { barcode: string }) => {
+    try {
+      const response = await fetch(`https://world.openfoodfacts.org/api/v0/product/${values.barcode}.json`);
+      const data = await response.json();
+      if (data.status === 1) {
+        navigation.navigate("ItemDetailsScreen", { itemData: data.product });
+      } else {
+        Alert.alert("Item not found", "No item found with this barcode.");
+      }
+    } catch (error) {
+      Alert.alert("Error", "An error occurred while fetching item data.");
+    }
+  };
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <Formik
-        initialValues={{ name: "", barcode: "", brand: "", ingredient: 0 }}
-        validationSchema={FoodItemSchema}
-        onSubmit={(values: FoodItem) => {
-          console.log(values);
-          navigation.goBack();
-        }}
+        initialValues={{ barcode: "" }}
+        validationSchema={BarcodeSchema}
+        onSubmit={handleSubmit}
       >
-        {({ handleChange, handleBlur, handleSubmit, values, errors, touched }: FormikProps<FoodItem>) => (
+        {({ handleChange, handleBlur, handleSubmit, values, errors, touched }: FormikProps<{ barcode: string }>) => (
           <View style={styles.formContainer}>
-            {/* TextInput and Text components... */}
-
+            <TextInput
+              style={styles.input}
+              onChangeText={handleChange("barcode")}
+              onBlur={handleBlur("barcode")}
+              value={values.barcode}
+              placeholder="Barcode"
+              keyboardType="numeric"
+            />
+            {touched.barcode && errors.barcode ? (
+              <Text style={styles.errorText}>{errors.barcode}</Text>
+            ) : null}
             <Button onPress={handleSubmit as any} title="Submit" />
           </View>
         )}
@@ -45,7 +56,6 @@ const EnterFoodItemScreen: React.FC<EnterFoodItemScreenProps> = ({ navigation })
     </ScrollView>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     flexGrow: 1,

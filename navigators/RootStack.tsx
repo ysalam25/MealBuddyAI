@@ -22,6 +22,7 @@ import Avatar from "../pages/profile/Avatar";
 import DietaryPreferences from "../pages/profile/DietaryPreferences";
 import CameraScreen from "../components/CameraScreen";
 import EnterFoodItemScreen from "../components/EnterFoodItemScreen";
+import ItemDetailsScreen from "../components/ItemDetailsScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -67,6 +68,7 @@ const RootStack = () => {
       <Stack.Screen name="Avatar" component={Avatar} />
       <Stack.Screen name="CameraScreen" component={CameraScreen} />
       <Stack.Screen name="EnterFoodItemScreen" component={EnterFoodItemScreen} />
+      <Stack.Screen name="ItemDetailsScreen" component={ItemDetailsScreen} />
     </Stack.Navigator>
   );
 };

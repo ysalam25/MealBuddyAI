@@ -1,10 +1,31 @@
-import pandas as pd 
+
+
+# clean the dataset, the csv file
+import pandas as pd
+
+# # Load the dataset
+# file_path = '/Users/ameena/Desktop/app/dataset/epi_r.csv'
+# data = pd.read_csv(file_path)
+
+# # Let's take a peek
+# print(data.head())
+
+# # Summary stats for numerical features
+# print(data.describe())
+
+# # Check for missing values
+# print(data.isnull().sum())
+
+
+
+
 
 # Make sure to use the correct path to your JSON file
 file_path = '/Users/ameena/Desktop/app/dataset/full_format_recipes.json'
 with open(file_path) as f:
     data = pd.read_json(f)
 
+# The dataset is in JSON format, so we can use the read_json method from pandas to load it
 data = pd.read_json('/Users/ameena/Desktop/app/dataset/full_format_recipes.json')
 
 # Get an overview of the dataset

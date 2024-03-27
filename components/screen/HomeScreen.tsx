@@ -41,9 +41,10 @@ export const styles = StyleSheet.create({
         fontWeight: "500",
     },
     SubTitle:{
-        alignItems: "center",
+        textAlign: "center",
         fontSize: 24,
-        marginBottom: 20,
+        marginTop: 5,
+        marginBottom: -10,
         fontWeight: "bold",
     },
     TextLink:{
@@ -194,6 +195,8 @@ export const styles = StyleSheet.create({
       
 
 });
+
+import React from 'react';
 
 export const CrossSVGIcon = () => (
     <View style={stylesCrossSVG.container}>

@@ -154,7 +154,7 @@ const Profile = ({ navigation }: { navigation: any }) => {
             <Text style={styles.sectionTitle}>My Recipes</Text>
             <TouchableOpacity
               onPress={() => {
-                // handle onPress
+                navigation.navigate("ComingSoon")
               }}
               style={styles.row}>
               <View style={[styles.rowIcon, { backgroundColor: colors.secondary }]}>
@@ -175,7 +175,7 @@ const Profile = ({ navigation }: { navigation: any }) => {
             </TouchableOpacity>  
             <TouchableOpacity
               onPress={() => {
-                // handle onPress
+                navigation.navigate("ComingSoon")
               }}
               style={styles.row}>
               <View style={[styles.rowIcon, { backgroundColor: colors.secondary }]}>
@@ -196,7 +196,7 @@ const Profile = ({ navigation }: { navigation: any }) => {
             </TouchableOpacity>  
             <TouchableOpacity
               onPress={() => {
-                // handle onPress
+                navigation.navigate("ComingSoon")
               }}
               style={styles.row}>
               <View style={[styles.rowIcon, { backgroundColor: colors.secondary }]}>
@@ -217,7 +217,7 @@ const Profile = ({ navigation }: { navigation: any }) => {
             </TouchableOpacity>  
             <TouchableOpacity
               onPress={() => {
-                // handle onPress
+                navigation.navigate("ComingSoon")
               }}
               style={styles.row}>
               <View style={[styles.rowIcon, { backgroundColor: colors.secondary }]}>

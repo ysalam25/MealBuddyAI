@@ -66,6 +66,7 @@ const Tabs: React.FC = () => {
         name="HomeScreen"
         component={Home}
         options={{
+          headerShown: false,
           headerTitleAlign: "center",
           headerTitleStyle: {
             fontSize: 20,
@@ -166,6 +167,7 @@ const Tabs: React.FC = () => {
         name="Cart"
         component={Cart}
         options={{
+          headerShown: false,
           headerTitleAlign: "center",
           headerTitleStyle: {
             fontSize: 0,

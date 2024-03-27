@@ -207,6 +207,7 @@ const Home = () => {
   return (
     <View style={styles.StyledContainer}>
       <StatusBar style="dark" />
+      <Text style={styles.SubTitle}>Home</Text>
       <View style={styles.InnerContainer}>
         <SearchBarWithIcon onPress={handleSearchBarClick} />
         <View style={styles.RecipeContainer}>

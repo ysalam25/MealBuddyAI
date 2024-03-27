@@ -184,6 +184,18 @@ export const styles = StyleSheet.create({
         height: 50,
         backgroundColor: colors.secondary, // Use the secondary color for button background
     },
+    button1: {
+        borderRadius: 20,
+        paddingVertical: 10,
+        paddingHorizontal: 20,
+        elevation: 2,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 15,
+        width: 'auto', 
+        height: 50,
+        backgroundColor: colors.secondary, // Use the secondary color for button background
+    },
     buttonClose: {
         backgroundColor: colors.primary, // Assuming primary color is suitable for a "close" or "verify" action
     },

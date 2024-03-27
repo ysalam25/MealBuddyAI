@@ -57,7 +57,7 @@ const DietaryPreferences = ({ navigation,route }: { navigation: any, route:any }
       console.log('Nutrition Goals:', response.body);
       const goalsArray = response.body;
       setGoals(goalsArray.map((goal: any) => ({ 
-        label: goal.goal_id.toString(), 
+        label: goal.name, 
         name: goal.name,
       })));
     } catch (error) {
@@ -76,7 +76,7 @@ const DietaryPreferences = ({ navigation,route }: { navigation: any, route:any }
       console.log('Allergy Response:', response.body);
       const AllergyArray = response.body;
       setAllergies(AllergyArray.map((preference: string, index: number) => ({
-        id: index.toString(), 
+        id: preference, 
         name: preference, 
       })));
     } catch (error) {
@@ -98,7 +98,7 @@ const DietaryPreferences = ({ navigation,route }: { navigation: any, route:any }
       console.log('Dietary Preference:', response.body);
       const dietaryPreferences = response.body;
       setDiet(dietaryPreferences.map((preference: string, index: number) => ({
-        label: index.toString(), 
+        label: preference, 
         name: preference, 
       })));
     } catch (error) {

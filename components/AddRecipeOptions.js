@@ -1,13 +1,33 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import { View, TouchableOpacity, Text, Image, StyleSheet } from "react-native";
 import iconCamera from "../assets/icon-add-camera.png";
 import iconPlus from "../assets/icon-add-plus.png";
 import { useNavigation } from "@react-navigation/native";
 import * as Permissions from "expo-permissions";
+import { colors } from "./constants/colors";
+import { Auth } from "aws-amplify";
 
 const AddRecipeOptions = () => {
   const navigation = useNavigation();
+  const [userName, setUserName] = React.useState("");
+  const [userId, setId] = React.useState("");
+  const [user, setUser] = React.useState(null);
 
+  useEffect(() => {
+    const fetchSessionAndUser = async () => {
+      try {
+        const session = await Auth.currentSession();
+        const user = await Auth.currentAuthenticatedUser();
+        setUser(user);
+        setUserName(user.attributes.name);
+        setId(user.attributes.sub);
+      } catch (error) {
+        console.log('error fetching session and user', error);
+      }
+    };
+
+    fetchSessionAndUser();
+  }, []);
   const handleScanWithCamera = async () => {
     const { status } = await Permissions.askAsync(Permissions.CAMERA);
     if (status === "granted") {
@@ -18,7 +38,7 @@ const AddRecipeOptions = () => {
   };
 
   const handleEnterDetailsManually = async () => {
-    navigation.navigate("EnterFoodItemScreen");
+    navigation.navigate("PantryUser", { userId: userId});
   };
 
   return (
@@ -48,7 +68,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#fff",
+    backgroundColor: colors.background,
   },
   optionButton: {
     backgroundColor: "white",

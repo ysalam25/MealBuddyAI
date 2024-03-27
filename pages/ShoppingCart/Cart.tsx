@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { colors } from "../../components/constants/colors";
 
 type RootStackParamList = {
   Cart: undefined; 
@@ -85,14 +86,17 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: '#FFF',
+    backgroundColor: colors.background,
     paddingTop: 50,
     paddingHorizontal: 20,
+    
   },
   pageTitle: {
     fontSize: 24,
     fontWeight: 'bold',
+    marginTop: 20,
     marginBottom: 20,
+    textAlign: 'center',
   },
   subTitle: {
     fontSize: 18,
@@ -108,14 +112,14 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 10,
   },
-  checkbox: {
-    width: 20,
-    height: 20, 
-    borderRadius: 10, 
-    borderWidth: 1,
-    borderColor: '#000',
-    marginRight: 10,
-  },
+  // checkbox: {
+  //   width: 20,
+  //   height: 20, 
+  //   borderRadius: 10, 
+  //   borderWidth: 1,
+  //   borderColor: '#000',
+  //   marginRight: 10,
+  // },
   itemTextContainer: {
     flexDirection: 'column',
   },

@@ -119,7 +119,7 @@ const DietaryRestrictions = ({ navigation, route }) => {
                     maxHeight={200}
                     autoScroll
 
-                    placeholder='Select Your Diet'
+                    placeholder='Select Your allergy'
                     placeholderStyle={{ color: colors.ink }}
                     showArrowIcon={true}
 

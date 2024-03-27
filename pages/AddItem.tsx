@@ -38,7 +38,7 @@ const AddItem: React.FC<AddItemProps> = ({ isVisible, onClose }) => {
 
   const handleContinue = () => {
     // Correctly typed navigate call
-    navigation.navigate('EditItem', { data: barcodes[scannedData], header: "Add Grocery Item" });
+    //navigation.navigate('EditItem', { data: barcodes[scannedData], header: "Add Grocery Item" });
     onClose();
   };
   const handleRequest = () => {

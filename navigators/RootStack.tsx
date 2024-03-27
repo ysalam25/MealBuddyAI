@@ -30,7 +30,8 @@ import ChangePassword from "../pages/profile/ChangePassword";
 import CurrentDiet from "../pages/profile/CurrentDiet";
 import DietaryRestrctions from "../pages/profile/DietaryRestrictions";
 import NutritionGoals from "../pages/profile/NutritionGoals";
-
+import PantryUser from "../components/PantryUser";
+import ComingSoon from "../pages/profile/ComingSoon";
 
 const Stack = createNativeStackNavigator();
 
@@ -82,12 +83,15 @@ const RootStack = () => {
       <Stack.Screen name="EnterFoodItemScreen" component={EnterFoodItemScreen} />
       <Stack.Screen name="ItemDetailsScreen" component={ItemDetailsScreen} />
       <Stack.Screen name="AddRecipeOptions" component={AddRecipeOptions} />
+      <Stack.Screen name="PantryUser" component={PantryUser} />
+      
        <Stack.Screen name="CurrentDiet" component={CurrentDiet} />
       <Stack.Screen name="DietaryRestrictions" component={DietaryRestrctions} /> 
       <Stack.Screen name="NutritionGoals" component={NutritionGoals} /> 
       <Stack.Screen name="EditName" component={EditName} />
       <Stack.Screen name="EditEmail" component={EditEmail} />
       <Stack.Screen name="ChangePassword" component={ChangePassword} />
+      <Stack.Screen name="ComingSoon" component={ComingSoon} /> 
 
     </Stack.Navigator>
   );

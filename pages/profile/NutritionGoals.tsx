@@ -118,7 +118,7 @@ const NutritionGoals = ({ navigation , route}) => {
                   maxHeight={200}
                   autoScroll
 
-                  placeholder='Select Your Diet'
+                  placeholder='Select Your Goals'
                   placeholderStyle={{ color: colors.ink }}
                   showArrowIcon={true}
 

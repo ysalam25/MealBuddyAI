@@ -64,12 +64,12 @@ const Walkthrough: React.FC<Props> = ({ navigation }) => {
               buttonStyle={styles.loginButton}
               titleStyle={styles.buttonBlackText}
             />
-              <Button
+              {/* <Button
     title={"DietaryPre"}
     onPress={handleGoHome}
     buttonStyle={styles.button} 
     titleStyle={styles.buttonText}
-  />
+  /> */}
       </View>
       
     </View>

@@ -8,9 +8,9 @@ import { styles } from '../../components/screen/DietaryPreferenceScreen'
 import DropDownPicker from 'react-native-dropdown-picker';
 import { API } from 'aws-amplify';
 import { colors } from '../../components/constants/colors';
-import nutrition from '../../assets/data/nutrition-goals.json'
-import dietss from '../../assets/data/diet.json'
-import restrctions from '../../assets/data/restrictions.json'
+// import nutrition from '../../assets/data/nutrition-goals.json'
+// import dietss from '../../assets/data/diet.json'
+// import restrctions from '../../assets/data/restrictions.json'
 
 const validate = (values: any) => {
   const errors: any = {};
@@ -50,62 +50,65 @@ const DietaryPreferences = ({ navigation,route }: { navigation: any, route:any }
 
   /////////////UNCOMMENT WHEN USING IT BUT FOR NOW USE THE DATA UNDER ASSESTS
 
-  // const fetchNutritionGoals = async () => {
-  //   try {
-  //     const apiName = 'mealbuddyapi'; 
-  //     const response = await API.get(apiName, '/goals', {});
-  //     console.log('Nutrition Goals:', response.body);
-  //     const goalsArray = response.body;
-  //     setGoals(goalsArray.map((goal: any) => ({ 
-  //       id: goal.goal_id.toString(), 
-  //       name: goal.name,
-  //     })));
-  //   } catch (error) {
-  //     console.error('Error fetching nutrition goals:', error);
-  //   }
-  // };
+  const fetchNutritionGoals = async () => {
+    try {
+      const apiName = 'mealbuddyapi'; 
+      const response = await API.get(apiName, '/goals', {});
+      console.log('Nutrition Goals:', response.body);
+      const goalsArray = response.body;
+      setGoals(goalsArray.map((goal: any) => ({ 
+        label: goal.goal_id.toString(), 
+        name: goal.name,
+      })));
+    } catch (error) {
+      console.error('Error fetching nutrition goals:', error);
+    }
+  };
 
-  // useEffect(() => {
-  //   fetchNutritionGoals();
-  // }, []);
+  useEffect(() => {
+    fetchNutritionGoals();
+  }, []);
 
-  // const fetchAllergies= async () => {
-  //   try {
-  //     const apiName = 'mealbuddyapi'; 
-  //     const response = await API.get(apiName, '/allergies', {});
-  //     console.log('Allergy Response:', response.body);
-  //     const AllergyArray = response.body;
-  //     setAllergies(AllergyArray.map((preference: string, index: number) => ({
-  //       id: index.toString(), 
-  //       name: preference, 
-  //     })));
-  //   } catch (error) {
-  //     console.error('Error fetching allergies:', error);
-  //   }
-  // };
+  const fetchAllergies= async () => {
+    try {
+      const apiName = 'mealbuddyapi'; 
+      const response = await API.get(apiName, '/allergies', {});
+      console.log('Allergy Response:', response.body);
+      const AllergyArray = response.body;
+      setAllergies(AllergyArray.map((preference: string, index: number) => ({
+        id: index.toString(), 
+        name: preference, 
+      })));
+    } catch (error) {
+      console.error('Error fetching allergies:', error);
+    }
+  };
+  useEffect(() => {
+    fetchAllergies();
+  }, []);
 
-  // useEffect(() => {
-  //   fetchNutritionGoals();
-  // }, []);
+  useEffect(() => {
+    fetchNutritionGoals();
+  }, []);
 
-  //  const fetchDietaryRestrictions = async () => {
-  //   try {
-  //     const apiName = 'mealbuddyapi'; 
-  //     const response = await API.get(apiName, '/diets', {});
-  //     console.log('Dietary Preference:', response.body);
-  //     const dietaryPreferences = response.body;
-  //     setDiet(dietaryPreferences.map((preference: string, index: number) => ({
-  //       id: index.toString(), 
-  //       name: preference, 
-  //     })));
-  //   } catch (error) {
-  //     console.error('Error fetching nutrition goals:', error);
-  //   }
-  // };
+   const fetchDietaryRestrictions = async () => {
+    try {
+      const apiName = 'mealbuddyapi'; 
+      const response = await API.get(apiName, '/diets', {});
+      console.log('Dietary Preference:', response.body);
+      const dietaryPreferences = response.body;
+      setDiet(dietaryPreferences.map((preference: string, index: number) => ({
+        label: index.toString(), 
+        name: preference, 
+      })));
+    } catch (error) {
+      console.error('Error fetching nutrition goals:', error);
+    }
+  };
 
-  // useEffect(() => {
-  //   fetchDietaryRestrictions();
-  // }, []);
+  useEffect(() => {
+    fetchDietaryRestrictions();
+  }, []);
 
   const updateUserPreference = async (user_id: string, diets:any, goals:any, allergy:any ) => {
     setLoading(true); 
@@ -171,9 +174,8 @@ const DietaryPreferences = ({ navigation,route }: { navigation: any, route:any }
                   multiple={true}
                   setOpen={() => setIsOpen(!isOpen)}
                   value={currentValue}
-                  items={dietss.map((diet) => ({ label: diet.name, value: diet.name }))}
+                  items={diet.map((diet: { label: string, name: string }) => ({ label: diet.label, value: diet.name }))}
                   setValue={(selectedValues) => {
-                    // This will now correctly log the selected values array
                     setCurrentValue(selectedValues);
                     setFieldValue('diets', selectedValues); // Update the local state
                    
@@ -206,7 +208,7 @@ const DietaryPreferences = ({ navigation,route }: { navigation: any, route:any }
                   open={isOpen1}
                   setOpen={() => setIsOpen1(!isOpen1)}
                   value={currentValue1}
-                  items={nutrition.map((goal) => ({ label: goal.name, value: goal.name }))}
+                  items={goals.map((goal: { label: string, name: string }) => ({ label: goal.label, value: goal.name }))}
                   setValue={(newValue) => {
                     setCurrentValue1(newValue); // Update local state
                     setFieldValue('nutritionGoals', newValue);
@@ -241,7 +243,7 @@ const DietaryPreferences = ({ navigation,route }: { navigation: any, route:any }
                   open={isOpen2}
                   setOpen={() => setIsOpen2(!isOpen2)}
                   value={currentValue2}
-                  items={restrctions.map((goal) => ({ label: goal.name, value: goal.name }))}
+                  items={allergies.map((goal: { name: string }) => ({ label: goal.name, value: goal.name }))}
                   setValue={(newValue) => {
                     setCurrentValue2(newValue); 
                     setFieldValue('allergies', newValue);

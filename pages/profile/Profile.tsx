@@ -1,62 +1,4 @@
-// import React from "react";
-// import {
-//   StyledContainer,
-//   InnerContainer,
-//   PageTitle,
-//   SettingTitle,
-//   SubTitle,
-//   StyledFormArea,
-//   LoginContainer,
-//   StyledInputLabel,
-//   StyledButton,
-//   StyledButton2,
-//   StyledTextInput,
-//   ButtonText,
-//   ExtraView,
-//   ExtraText,
-//   TextLink,
-//   TextLinkContent,
-//   SlideContainer,
-//   StyledSettingButton,
-//   StyledSettingButtonText,
-// } from "../../components/styles";
-
-// import { Auth } from "aws-amplify";
-// const Profile = ({ navigation }: { navigation: any }) => {
-//   // Logic for resetting password
-//   const handleResetPassword = () => {
-//     console.log("Reset Password");
-//     navigation.navigate("ForgotPassword");
-//   };
-
-//   // Logic for logging out
-//   const handleLogout = async () => {
-//     try {
-//       await Auth.signOut();
-//       console.log("Sign out successful");
-
-//       navigation.reset({
-//         index: 0,
-//         routes: [{ name: "Walkthrough1" }],
-//       });
-//     } catch (error) {
-//       console.log("Error signing out:", error);
-//     }
-//   };
-//   return (
-//     <StyledContainer>
-//       <SettingTitle>Profile</SettingTitle>
-//       <StyledSettingButton onPress={handleResetPassword}>
-//         <StyledSettingButtonText>Reset Password</StyledSettingButtonText>
-//       </StyledSettingButton>
-//       <StyledSettingButton onPress={handleLogout}>
-//         <StyledSettingButtonText>Logout</StyledSettingButtonText>
-//       </StyledSettingButton>
-//     </StyledContainer>
-//   );
-// };
-
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import {
   StyleSheet,
   SafeAreaView,
@@ -71,13 +13,48 @@ import { colors } from '../../components/constants/colors';
 import FeatherIcon from 'react-native-vector-icons/Feather';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { Auth } from "aws-amplify";
+import { useIsFocused } from '@react-navigation/native';
 
 const Profile = ({ navigation }: { navigation: any }) => {
+  const isFocused = useIsFocused();
   const [form, setForm] = useState({
     darkMode: false,
     emailNotifications: true,
     pushNotifications: false,
   });
+  const [user, setUser] = useState(null);
+  const [userName, setUserName] = useState('');
+  const [id, setId] = useState('');
+  useEffect(() => {
+    const fetchSessionAndUser = async () => {
+      try {
+        const session = await Auth.currentSession();
+        const user = await Auth.currentAuthenticatedUser();
+        setUser(user);
+        setUserName(user.attributes.name);
+        setId(user.attributes.sub);
+      } catch (error) {
+        console.log('error fetching session and user', error);
+      }
+    };
+
+    fetchSessionAndUser();
+  }, []);
+
+  useEffect(() => {
+    if (isFocused) {
+      const fetchUserAttributes = async () => {
+        try {
+          const user = await Auth.currentAuthenticatedUser();
+          setUserName(user.attributes.name);
+        } catch (error) {
+          console.log('error fetching user attributes', error);
+        }
+      };
+      fetchUserAttributes();
+    }
+  }, [isFocused]);
+
   const handleResetPassword = () => {
         console.log("Reset Password");
         navigation.navigate("ForgotPassword");
@@ -90,74 +67,28 @@ const Profile = ({ navigation }: { navigation: any }) => {
         
               navigation.reset({
                 index: 0,
-                routes: [{ name: "Walkthrough1" }],
+                routes: [{ name: "Walkthrough" }],
               });
             } catch (error) {
               console.log("Error signing out:", error);
             }
           };
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }}>
+    <View style={{ flex: 1, backgroundColor: colors.background }}>
       <View style={styles.container}>
         <View style={styles.profile}>
-          <TouchableOpacity
-            onPress={() => {
-              // handle onPress
-            }}>
-            <View style={styles.profileAvatarWrapper}>
-              <Image
-                alt=""
-                source={{
-                  uri: 'https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2.5&w=256&h=256&q=80',
-                }}
-                style={styles.profileAvatar} />
-
-              <TouchableOpacity
-                onPress={() => {
-                  navigation.navigate('Avatar');
-                }}>
-                <View style={styles.profileAction}>
-                  <FeatherIcon
-                    color="#fff"
-                    name="edit-3"
-                    size={15} />
-                </View>
-              </TouchableOpacity>
-            </View>
-          </TouchableOpacity>
 
           <View>
-            <Text style={styles.profileName}>John Doe</Text>
+            <Text style={styles.profileName}>{userName}</Text>
           </View>
         </View>
-
-        <ScrollView>
+<SafeAreaView style={{flex:1}}>
+        <ScrollView contentContainerStyle={{ paddingBottom: "50%" }}>
           <View style={styles.section}>
             <Text style={styles.sectionTitle}>Preferences</Text>
-
             <TouchableOpacity
               onPress={() => {
-                // handle onPress
-              }}
-              style={styles.row}>
-              <View style={[styles.rowIcon, { backgroundColor: colors.secondary }]}>
-                <FeatherIcon color="#fff" name="edit-3" size={20} />
-              </View>
-
-              <Text style={styles.rowLabel}>Edit Profile</Text>
-
-              <View style={styles.rowSpacer} />
-
-              <FeatherIcon
-                color="#C6C6C6"
-                name="chevron-right"
-                size={20} />
-            </TouchableOpacity>
-
-
-            <TouchableOpacity
-              onPress={() => {
-                // handle onPress
+                navigation.navigate("CurrentDiet", { userId: id })
               }}
               style={styles.row}>
               <View style={[styles.rowIcon, { backgroundColor: colors.secondary }]}>
@@ -178,7 +109,7 @@ const Profile = ({ navigation }: { navigation: any }) => {
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
-                // handle onPress
+                navigation.navigate("NutritionGoals", { userId: id })
               }}
               style={styles.row}>
               <View style={[styles.rowIcon, { backgroundColor: colors.secondary}]}>
@@ -199,7 +130,7 @@ const Profile = ({ navigation }: { navigation: any }) => {
             </TouchableOpacity>
             <TouchableOpacity
               onPress={() => {
-                // handle onPress
+                navigation.navigate("DietaryRestrictions", { userId: id })
               }}
               style={styles.row}>
               <View style={[styles.rowIcon, { backgroundColor: colors.secondary }]}>
@@ -217,17 +148,109 @@ const Profile = ({ navigation }: { navigation: any }) => {
                 color="#C6C6C6"
                 name="chevron-right"
                 size={20} />
-            </TouchableOpacity>
+            </TouchableOpacity>  
+          </View>
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>My Recipes</Text>
             <TouchableOpacity
               onPress={() => {
                 // handle onPress
               }}
               style={styles.row}>
-              <View style={[styles.rowIcon, { backgroundColor:colors.secondary }]}>
-                <MaterialCommunityIcons color="#fff" name="heart-off-outline" size={20} />
+              <View style={[styles.rowIcon, { backgroundColor: colors.secondary }]}>
+                <MaterialCommunityIcons
+                  color="#fff"
+                  name="food-apple-outline"
+                  size={20} />
               </View>
 
-              <Text style={styles.rowLabel}>Dislikes</Text>
+              <Text style={styles.rowLabel}>Cooked</Text>
+
+              <View style={styles.rowSpacer} />
+
+              <FeatherIcon
+                color="#C6C6C6"
+                name="chevron-right"
+                size={20} />
+            </TouchableOpacity>  
+            <TouchableOpacity
+              onPress={() => {
+                // handle onPress
+              }}
+              style={styles.row}>
+              <View style={[styles.rowIcon, { backgroundColor: colors.secondary }]}>
+                <MaterialCommunityIcons
+                  color="#fff"
+                  name="food-apple-outline"
+                  size={20} />
+              </View>
+
+              <Text style={styles.rowLabel}>Favourites</Text>
+
+              <View style={styles.rowSpacer} />
+
+              <FeatherIcon
+                color="#C6C6C6"
+                name="chevron-right"
+                size={20} />
+            </TouchableOpacity>  
+            <TouchableOpacity
+              onPress={() => {
+                // handle onPress
+              }}
+              style={styles.row}>
+              <View style={[styles.rowIcon, { backgroundColor: colors.secondary }]}>
+                <MaterialCommunityIcons
+                  color="#fff"
+                  name="food-apple-outline"
+                  size={20} />
+              </View>
+
+              <Text style={styles.rowLabel}>Cookbook</Text>
+
+              <View style={styles.rowSpacer} />
+
+              <FeatherIcon
+                color="#C6C6C6"
+                name="chevron-right"
+                size={20} />
+            </TouchableOpacity>  
+            <TouchableOpacity
+              onPress={() => {
+                // handle onPress
+              }}
+              style={styles.row}>
+              <View style={[styles.rowIcon, { backgroundColor: colors.secondary }]}>
+                <MaterialCommunityIcons
+                  color="#fff"
+                  name="food-apple-outline"
+                  size={20} />
+              </View>
+
+              <Text style={styles.rowLabel}>Cook Later</Text>
+
+              <View style={styles.rowSpacer} />
+
+              <FeatherIcon
+                color="#C6C6C6"
+                name="chevron-right"
+                size={20} />
+            </TouchableOpacity>  
+            </View>
+
+          <View style={styles.section}>
+            <Text style={styles.sectionTitle}>General</Text>
+
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("EditName", { name: userName, userId: id });
+              }}
+              style={styles.row}>
+              <View style={[styles.rowIcon, { backgroundColor: colors.secondary }]}>
+                <FeatherIcon color="#fff" name="edit-3" size={20} />
+              </View>
+
+              <Text style={styles.rowLabel}>Edit Name</Text>
 
               <View style={styles.rowSpacer} />
 
@@ -236,15 +259,29 @@ const Profile = ({ navigation }: { navigation: any }) => {
                 name="chevron-right"
                 size={20} />
             </TouchableOpacity>
-            
-          </View>
-
-          <View style={styles.section}>
-            <Text style={styles.sectionTitle}>General</Text>
 
             <TouchableOpacity
               onPress={() => {
-                handleResetPassword();
+                navigation.navigate("EditEmail", { name: userName, userId: id });
+              }}
+              style={styles.row}>
+              <View style={[styles.rowIcon, { backgroundColor: colors.secondary }]}>
+                <FeatherIcon color="#fff" name="mail" size={20} />
+              </View>
+
+              <Text style={styles.rowLabel}>Edit Email</Text>
+
+              <View style={styles.rowSpacer} />
+
+              <FeatherIcon
+                color="#C6C6C6"
+                name="chevron-right"
+                size={20} />
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={() => {
+                navigation.navigate("ChangePassword");
               }}
               style={styles.row}>
               <View style={[styles.rowIcon, { backgroundColor: colors.secondary }]}>
@@ -279,8 +316,9 @@ const Profile = ({ navigation }: { navigation: any }) => {
             </TouchableOpacity>
           </View>
         </ScrollView>
+        </SafeAreaView>
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -323,7 +361,7 @@ const styles = StyleSheet.create({
   },
   profileName: {
     marginTop: 20,
-    fontSize: 19,
+    fontSize:34,
     fontWeight: '600',
     color: '#414d63',
     textAlign: 'center',

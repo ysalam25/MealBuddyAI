@@ -208,6 +208,7 @@ const Tabs: React.FC = () => {
         name="Profile"
         component={Profile}
         options={{
+          headerShown: false,
           headerTitleAlign: "center",
           headerTitleStyle: {
             fontSize: 20,

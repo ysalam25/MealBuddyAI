@@ -24,8 +24,42 @@ export const styles = StyleSheet.create({
         height: "70%",
         top: "10%",
        // justifyContent: "center",
-        //gap: 10,
+        gap: 10,
     },
+
+    /** Row */
+    row: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        height: 50,
+        width : width * 0.9,
+        backgroundColor: 'rgba(202, 178, 179, 0.3)',
+        borderColor: "#D1D5DB",
+        borderRadius: 8,
+        marginBottom: 12,
+        paddingLeft: 12,
+        paddingRight: 12,
+      },
+      rowIcon: {
+        width: 32,
+        height: 32,
+        borderRadius: 9999,
+        marginRight: 12,
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+      },
+      rowLabel: {
+        fontSize: 20,
+        fontWeight: '400',
+        color: '#0c0c0c',
+      },
+      rowSpacer: {
+        flexGrow: 1,
+        flexShrink: 1,
+        flexBasis: 0,
+      },
     ExtraView:{
         flexDirection: "row",
         alignItems: "center",
@@ -41,10 +75,17 @@ export const styles = StyleSheet.create({
     SubTitle:{
         alignItems: "center",
         fontSize: 24,
-        marginBottom: 40,
         fontWeight: "bold",
-        alignSelf: "center",
+        textAlign: "left",
     },
+    sectionTitle: {
+        paddingVertical: 12,
+        fontSize: 12,
+        fontWeight: '600',
+        color: colors.ink,
+        textTransform: 'uppercase',
+        letterSpacing: 1.1,
+      },
     TextLink:{
         textAlign: "left",
         fontWeight: "300",

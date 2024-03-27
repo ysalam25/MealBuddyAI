@@ -36,7 +36,7 @@ const ForgotPassword = ({ navigation }: { navigation: any }) => {
       <View style={styles.InnerContainer}>
         <View style={styles.ResetContainer}>
           <Text style={styles.SubTitle}>Reset your password</Text>
-          <Text style={styles.ExtraText}>Enter your email address</Text>
+          <Text style={styles.sectionTitle}>Enter your email address</Text>
           <Formik
             initialValues={{ email: "" }}
             onSubmit={handleForgotPassword}

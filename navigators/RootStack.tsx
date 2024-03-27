@@ -17,7 +17,6 @@ import LoginNewUser from "../pages/auth/LoginNewUser";
 import RecipeDetailScreen from "../pages/recipes/RecipeDetailScreen";
 import Pantry from "../pages/Pantry"
 import EditItem from "../pages/EditItem"
-import Avatar from "../pages/profile/Avatar";
 import DietaryPreferences from "../pages/profile/DietaryPreferences";
 import CameraScreen from "../components/CameraScreen";
 import EnterFoodItemScreen from "../components/EnterFoodItemScreen";
@@ -25,6 +24,13 @@ import ItemDetailsScreen from "../components/ItemDetailsScreen";
 import AddRecipeOptions from "../components/AddRecipeOptions";
 import AddItem from "../pages/AddItem";
 import OnboardingPage1 from "../pages/profile/OnboardingPage1";
+import EditName from "../pages/profile/EditName";
+import EditEmail from "../pages/profile/EditEmail";
+import ChangePassword from "../pages/profile/ChangePassword";
+import CurrentDiet from "../pages/profile/CurrentDiet";
+import DietaryRestrctions from "../pages/profile/DietaryRestrictions";
+import NutritionGoals from "../pages/profile/NutritionGoals";
+
 
 const Stack = createNativeStackNavigator();
 
@@ -72,11 +78,16 @@ const RootStack = () => {
       <Stack.Screen name="RecipeDetailScreen" component={RecipeDetailScreen} />
       <Stack.Screen name="Pantry" component={Pantry} />
       <Stack.Screen name="EditItem" component={EditItem} />
-      <Stack.Screen name="Avatar" component={Avatar} />
       <Stack.Screen name="CameraScreen" component={CameraScreen} />
       <Stack.Screen name="EnterFoodItemScreen" component={EnterFoodItemScreen} />
       <Stack.Screen name="ItemDetailsScreen" component={ItemDetailsScreen} />
       <Stack.Screen name="AddRecipeOptions" component={AddRecipeOptions} />
+       <Stack.Screen name="CurrentDiet" component={CurrentDiet} />
+      <Stack.Screen name="DietaryRestrictions" component={DietaryRestrctions} /> 
+      <Stack.Screen name="NutritionGoals" component={NutritionGoals} /> 
+      <Stack.Screen name="EditName" component={EditName} />
+      <Stack.Screen name="EditEmail" component={EditEmail} />
+      <Stack.Screen name="ChangePassword" component={ChangePassword} />
 
     </Stack.Navigator>
   );

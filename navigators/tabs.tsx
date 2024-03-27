@@ -168,7 +168,7 @@ const Tabs: React.FC = () => {
         options={{
           headerTitleAlign: "center",
           headerTitleStyle: {
-            fontSize: 20,
+            fontSize: 0,
             fontWeight:"700",
           },
           headerStyle: {

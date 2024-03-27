@@ -1,7 +1,7 @@
 // DietaryPreferences.js
 import React, { useState, useEffect } from 'react';
 import * as Yup from 'yup';
-import { Button, View, TouchableOpacity, Text} from 'react-native';
+import { Button, View, TouchableOpacity, Text, ActivityIndicator} from 'react-native';
 import { Formik, Field } from 'formik';
 import { Auth } from 'aws-amplify';
 import { styles } from '../../components/screen/DietaryPreferenceScreen'
@@ -28,8 +28,10 @@ const validate = (values: any) => {
 };
 
 const DietaryPreferences = ({ navigation,route }: { navigation: any, route:any }) => {
-  const { name } = route.params;
+  const { name , userId} = route.params;
+  //const userId = 'userId'; //remove
 
+  const [loading, setLoading] = useState(false);
 
   const [selectedPreferences, setSelectedPreferences] = useState([]);
 
@@ -67,6 +69,25 @@ const DietaryPreferences = ({ navigation,route }: { navigation: any, route:any }
   //   fetchNutritionGoals();
   // }, []);
 
+  // const fetchAllergies= async () => {
+  //   try {
+  //     const apiName = 'mealbuddyapi'; 
+  //     const response = await API.get(apiName, '/allergies', {});
+  //     console.log('Allergy Response:', response.body);
+  //     const AllergyArray = response.body;
+  //     setAllergies(AllergyArray.map((preference: string, index: number) => ({
+  //       id: index.toString(), 
+  //       name: preference, 
+  //     })));
+  //   } catch (error) {
+  //     console.error('Error fetching allergies:', error);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   fetchNutritionGoals();
+  // }, []);
+
   //  const fetchDietaryRestrictions = async () => {
   //   try {
   //     const apiName = 'mealbuddyapi'; 
@@ -86,18 +107,33 @@ const DietaryPreferences = ({ navigation,route }: { navigation: any, route:any }
   //   fetchDietaryRestrictions();
   // }, []);
 
-
-
-  const updateUserDietaryPreferences = async (dietaryPreferences: string[]) => {
+  const updateUserPreference = async (user_id: string, diets:any, goals:any, allergy:any ) => {
+    setLoading(true); 
     try {
-      const user = await Auth.currentAuthenticatedUser();
-      await Auth.updateUserAttributes(user, {
-        'custom:dietaryPreferences': dietaryPreferences.join(', '),
-      });
+      const apiName = 'mealbuddyapi'; 
+      const path =  `/users/${user_id}`;
+      const init = {
+        body: JSON.stringify({
+          "pathParameters": {
+            "user-id": user_id
+          },
+          "body": JSON.stringify({
+            "diets": diets,
+            "allergies": allergy,
+            "goals": goals,
+          })
+        })
+      };
+    
+      const response = await API.put(apiName, path, init);
+      console.log('Response from updating user preferences:', response);
+      return response;
     } catch (error) {
-      console.error('error updating user attributes:', error);
+      console.error('Error updating user preferences:', error);
+    }finally {
+      setLoading(false); // Set loading to false after the function is done
     }
-  };
+  }
 
 
   return (
@@ -111,12 +147,17 @@ const DietaryPreferences = ({ navigation,route }: { navigation: any, route:any }
           }}
          
           validate={validate}
-          onSubmit={(values) => {
-            console.log(values);
-            //api call to update user dietary preferences
-            
-            //updateUserDietaryPreferences(values.dietaryRestrictions);
-            navigation.navigate("Home");
+          onSubmit={async() => {
+            console.log('Diets:', currentValue);
+            console.log('Nutrition Goals:', currentValue1);
+            console.log('Allergies:', currentValue2);
+            try {
+              const apiResponse = await updateUserPreference(userId, currentValue, currentValue1, currentValue2);
+              console.log('API Response:', apiResponse);
+              navigation.navigate("Home", { userId: userId , name: 'name'});
+            } catch (error) {
+              console.error('Error updating user preferences:', error);
+            }
           }}
 
         >
@@ -131,11 +172,11 @@ const DietaryPreferences = ({ navigation,route }: { navigation: any, route:any }
                   setOpen={() => setIsOpen(!isOpen)}
                   value={currentValue}
                   items={dietss.map((diet) => ({ label: diet.name, value: diet.name }))}
-                  setValue={(callback) => {
-                    const newValue = callback(currentValue); // Correctly compute the new value
-                    setCurrentValue(newValue); // Update local state
-                    console.log('Selected diets:', newValue);
-                    setFieldValue('diets', newValue);
+                  setValue={(selectedValues) => {
+                    // This will now correctly log the selected values array
+                    setCurrentValue(selectedValues);
+                    setFieldValue('diets', selectedValues); // Update the local state
+                   
                   }}
                   maxHeight={200}
                   autoScroll
@@ -166,10 +207,8 @@ const DietaryPreferences = ({ navigation,route }: { navigation: any, route:any }
                   setOpen={() => setIsOpen1(!isOpen1)}
                   value={currentValue1}
                   items={nutrition.map((goal) => ({ label: goal.name, value: goal.name }))}
-                  setValue={(callback) => {
-                    const newValue = callback(currentValue1); // Correctly compute the new value
+                  setValue={(newValue) => {
                     setCurrentValue1(newValue); // Update local state
-                    console.log('Selected goals', newValue);
                     setFieldValue('nutritionGoals', newValue);
                   }}
                   maxHeight={200}
@@ -203,10 +242,8 @@ const DietaryPreferences = ({ navigation,route }: { navigation: any, route:any }
                   setOpen={() => setIsOpen2(!isOpen2)}
                   value={currentValue2}
                   items={restrctions.map((goal) => ({ label: goal.name, value: goal.name }))}
-                  setValue={(callback) => {
-                    const newValue = callback(currentValue2);
+                  setValue={(newValue) => {
                     setCurrentValue2(newValue); 
-                    console.log('Selected allergy:', newValue);
                     setFieldValue('allergies', newValue);
                   }}
                   maxHeight={200}
@@ -234,8 +271,12 @@ const DietaryPreferences = ({ navigation,route }: { navigation: any, route:any }
               </View>
 
               <View style={styles.ButtonContainer}>
-                <TouchableOpacity style={styles.StyledButton} onPress={() => {handleSubmit(); console.log(values)}}>
-                  <Text style={styles.ButtonText}>Submit</Text>
+              <TouchableOpacity style={styles.StyledButton} onPress={() => {handleSubmit();}}>
+                  {loading ? (
+                    <ActivityIndicator size="small" color="#0000ff" /> // Show loading indicator when loading
+                  ) : (
+                    <Text style={styles.ButtonText}>Submit</Text>
+                  )}
                 </TouchableOpacity>
               </View>
             </>

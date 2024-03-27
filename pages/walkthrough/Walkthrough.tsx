@@ -20,7 +20,7 @@ const Walkthrough: React.FC<Props> = ({ navigation }) => {
     navigation.navigate("Login");
   };
   const handleGoHome = () => {
-    navigation.navigate("Home"); 
+    navigation.navigate("DietaryPreferences"); 
   };
   const handleGoPreferences = () => {
     navigation.navigate("DietaryPreferences"); 

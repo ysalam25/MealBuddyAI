@@ -8,7 +8,7 @@ import { styles } from '../../components/screen/DietaryPreferenceScreen'
 
 const OnboardingPage1 = ({ navigation,route }: { navigation: any, route:any }) => {
   //const name  = "Yusra"; //remove
- const {name} = route.params; //use this
+ const {name, userId} = route.params; //use this
 
   return (
     <View style={styles.StyledContainer1}>
@@ -16,7 +16,7 @@ const OnboardingPage1 = ({ navigation,route }: { navigation: any, route:any }) =
           <Text style={styles.SubTitle1}>Hey {name}! Before we get started lets get your preferences in. </Text>
           <Text style={styles.ExtraText}>This will be used to help provide recipe reccomendations.</Text>
           <View style={styles.ButtonContainer1}>
-          <TouchableOpacity style={styles.StyledButton} onPress={() => navigation.navigate("DietaryPreferences", { name: name })}>
+          <TouchableOpacity style={styles.StyledButton} onPress={() => navigation.navigate("DietaryPreferences", { name: name, userId: userId })}>
               <Text style={styles.ButtonText}>Next</Text>
           </TouchableOpacity>
           </View>

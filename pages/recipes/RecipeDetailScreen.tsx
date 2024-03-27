@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { AntDesign } from "@expo/vector-icons";
+
 const DetailPageButton = ({ iconName, text, onPress, style, textStyle }) => (
   <TouchableOpacity onPress={onPress} style={[styles.detailButton, style]}>
     <AntDesign name={iconName} size={16} color="black" />
